@@ -107,12 +107,16 @@ plot2_clean</code></pre>
 aux_grob = ggplotGrob(plot2)$grobs
 legend = aux_grob[[which(sapply(aux_grob,function(x)x$name) == &quot;guide-box&quot;)]]
 
-bottom_part = arrangeGrob(plot2_clean,vp = viewport(angle = -45)) ## rotate the LD matrix
+## rotate the LD matrix
+bottom_part = arrangeGrob(plot2_clean,vp = viewport(angle = -45)) 
+
+## overlap the empty part of the LD matrix (which requires theme_minimal) and
+## included a bit of space at the bottom
 whole_plot = arrangeGrob(plot1,
-                         textGrob(&quot;&quot;), ## overlap the empty part of the LD matrix
-                         bottom_part,textGrob(&quot;&quot;), ## add a bit of space at the bottom
+                         textGrob(&quot;&quot;),
+                         bottom_part,textGrob(&quot;&quot;),
                          ncol =1,heights = c(5,-2,10,1.5))
 grid.newpage()
 grid.arrange(whole_plot,legend,nrow = 1,widths = c(9,1)) </code></pre>
 <p><img src="/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together_files/figure-html/done-1.png" width="768" /></p>
-<p>This figure shows that these 14 snps are clustered</p>
+<p>This figure clearly shows that these 14 snps are clustered into at least 4 clusters, and is also publication ready.</p>

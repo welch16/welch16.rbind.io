@@ -36,7 +36,7 @@ For the purpose of this post, I cleaned eQTL p.values for one loci.
 
 ```{r loci,echo=FALSE,include=FALSE}
 
-load(here::here("data/eQTL_data/example_loci.RData"))
+load(here::here("content/post/eQTL_data/example_loci.RData"))
 ```
 ```{r,echo=TRUE}
 plot_data
@@ -112,17 +112,21 @@ We almost have the pieces, so we arrange everything together by using `gridExtra
 aux_grob = ggplotGrob(plot2)$grobs
 legend = aux_grob[[which(sapply(aux_grob,function(x)x$name) == "guide-box")]]
 
-bottom_part = arrangeGrob(plot2_clean,vp = viewport(angle = -45)) ## rotate the LD matrix
+## rotate the LD matrix
+bottom_part = arrangeGrob(plot2_clean,vp = viewport(angle = -45)) 
+
+## overlap the empty part of the LD matrix (which requires theme_minimal) and
+## included a bit of space at the bottom
 whole_plot = arrangeGrob(plot1,
-                         textGrob(""), ## overlap the empty part of the LD matrix
-                         bottom_part,textGrob(""), ## add a bit of space at the bottom
+                         textGrob(""),
+                         bottom_part,textGrob(""),
                          ncol =1,heights = c(5,-2,10,1.5))
 grid.newpage()
 grid.arrange(whole_plot,legend,nrow = 1,widths = c(9,1)) 
 
 ```
 
-This figure shows that these 14 snps are clustered 
+This figure clearly shows that these 14 snps are clustered into at least 4 clusters, and is also publication ready.
 
 
 
