@@ -27,7 +27,6 @@ library(tidyverse)
 library(scales)
 library(grid)
 library(gridExtra)
-library(ggrepel)
 
 theme_set(theme_minimal())
 ```
