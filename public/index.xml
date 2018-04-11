@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rene Welch</title>
+    <link>/</link>
+    <description>Recent content on Rene Welch</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 10 Apr 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Plotting manhattan plots and LD matrices together</title>
+      <link>/post/plotting-manhattan-plots-and-ld-matrices-together/</link>
+      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/plotting-manhattan-plots-and-ld-matrices-together/</guid>
+      <description>Genomic Wide Association Studies have robustly identified associations between phenotype and genotypes. However, these studies are hard to interpret as positions in the genome are usually correlated. For that purpose, we would like to compare the signal’s strength and the correlation between the SNPs at the same time.
+When I looked for tools to make these type of plots, I only found the LDheatmap which is capable of plotting the heatmap but not adding it to a manhattan plot.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Wed, 26 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Hello, my name is Rene Welch and I am a Ph.D. candidate at the deparment of Statistics at UW - Madison. My focus is to develop computational tools to better understand genomic data.
+My research interests are:
+ Computational biology
+ Reproducible research
+ Data visualization
+  </description>
+    </item>
+    
+    <item>
+      <title>Home</title>
+      <link>/home/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/home/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>License</title>
+      <link>/license/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/license/</guid>
+      <description>You can use this page to put a license on the contents of your blog, like so:
+ The MIT License (MIT)
+Copyright &amp;copy; 2015 Nishanth Shanmughamnishanth.gerrard@gmail.com
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &amp;ldquo;Software&amp;rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</description>
+    </item>
+    
+  </channel>
+</rss>

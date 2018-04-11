@@ -1,0 +1,131 @@
+---
+title: Plotting manhattan plots and LD matrices together
+author: ''
+date: '2018-04-10'
+categories:
+  - GWAS
+slug: plotting-manhattan-plots-and-ld-matrices-together
+---
+
+Genomic Wide Association Studies have robustly identified associations between phenotype and genotypes. However, these studies are hard to interpret as positions in the genome are usually correlated. For that purpose, we would like to compare the signal's strength and the correlation between the SNPs at the same time.
+
+```{r,include=FALSE,eval=TRUE,echo=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE,
+                      include =TRUE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+
+```
+
+When I looked for tools to make these type of plots, I only found the `LDheatmap` which is capable of plotting the heatmap but not adding it to a manhattan plot. 
+
+```{r packages,echo=TRUE}
+
+library(tidyverse)
+library(scales)
+library(grid)
+library(gridExtra)
+library(ggrepel)
+
+theme_set(theme_minimal())
+```
+
+For the purpose of this post, I cleaned eQTL p.values for one loci.
+
+```{r loci,echo=FALSE,include=FALSE}
+
+load(here::here("data/eQTL_data/example_loci.RData"))
+```
+```{r,echo=TRUE}
+plot_data
+mat_data
+```
+
+The first steps are to make the plots by separate:
+
+```{r, fig.height=3,fig.width=8 }
+plot1 = plot_data %>% 
+  ggplot(aes(pos,-eQTL_log10pval))+
+  geom_point()+
+  scale_x_continuous(labels = comma)
+plot1
+```
+
+```{r, fig.height=2.5}
+
+snp_levels = mat_data %>% 
+    dplyr::select(SNP1,pos1) %>% 
+    unique() %>% 
+    arrange(pos1) %>% 
+    pluck("SNP1")
+
+plot2 = mat_data %>% 
+  dplyr::filter(pos1 >= pos2) %>% 
+  mutate_at(vars(contains("SNP")),funs(factor(.,levels = snp_levels))) %>% 
+    ggplot(
+      aes(SNP1,SNP2,fill = cor^2))+
+    geom_tile()+
+    theme(legend.position = "right")+
+    scale_fill_distiller(palette = "Spectral",
+                         guide = guide_colourbar(title = expression(R^2),
+                                                 barheight = unit(0.4,"npc"),
+                                                 barwidth = unit(0.03,"npc")))+
+    theme(
+      axis.text.x = element_text(angle = 90)
+    )+
+    xlab("SNP")+ylab("SNP")+coord_fixed()
+plot2
+```
+
+This plot requires some cleaning work, we first remove the labels from the axis:
+
+```{r clean,fig.height=2,results='hold',fig.align="center"}
+
+plot2_clean = plot2 +
+    theme(legend.position = "none",
+        axis.title = element_blank(),
+        panel.grid = element_blank(),
+        plot.background = element_blank(),
+        panel.border = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x = element_blank())
+plot2_clean
+
+snp_data = mat_data %>% 
+  dplyr::filter(SNP1 == SNP2)
+
+plot2_clean = plot2_clean +
+  geom_text(
+    data = snp_data,aes(label = SNP1),size =3,angle = -45,hjust = 1,
+    nudge_x = -.5,nudge_y = .5,show.legend = FALSE)
+plot2_clean
+
+```
+
+We almost have the pieces, so we arrange everything together by using `gridExtra`:
+
+```{r done, fig.width=8,warning=FALSE}
+
+## extract the legend
+aux_grob = ggplotGrob(plot2)$grobs
+legend = aux_grob[[which(sapply(aux_grob,function(x)x$name) == "guide-box")]]
+
+bottom_part = arrangeGrob(plot2_clean,vp = viewport(angle = -45)) ## rotate the LD matrix
+whole_plot = arrangeGrob(plot1,
+                         textGrob(""), ## overlap the empty part of the LD matrix
+                         bottom_part,textGrob(""), ## add a bit of space at the bottom
+                         ncol =1,heights = c(5,-2,10,1.5))
+grid.newpage()
+grid.arrange(whole_plot,legend,nrow = 1,widths = c(9,1)) 
+
+```
+
+This figure shows that these 14 snps are clustered 
+
+
+
+
+
+

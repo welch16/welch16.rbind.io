@@ -1,0 +1,118 @@
+---
+title: Plotting manhattan plots and LD matrices together
+author: ''
+date: '2018-04-10'
+categories:
+  - GWAS
+slug: plotting-manhattan-plots-and-ld-matrices-together
+---
+
+
+
+<p>Genomic Wide Association Studies have robustly identified associations between phenotype and genotypes. However, these studies are hard to interpret as positions in the genome are usually correlated. For that purpose, we would like to compare the signal’s strength and the correlation between the SNPs at the same time.</p>
+<p>When I looked for tools to make these type of plots, I only found the <code>LDheatmap</code> which is capable of plotting the heatmap but not adding it to a manhattan plot.</p>
+<pre class="r"><code>library(tidyverse)
+library(scales)
+library(grid)
+library(gridExtra)
+library(ggrepel)
+
+theme_set(theme_minimal())</code></pre>
+<p>For the purpose of this post, I cleaned eQTL p.values for one loci.</p>
+<pre class="r"><code>plot_data</code></pre>
+<pre><code>## # A tibble: 14 x 3
+##    SNP             pos eQTL_log10pval
+##    &lt;chr&gt;         &lt;int&gt;          &lt;dbl&gt;
+##  1 rs10864454 10417853          -15.2
+##  2 rs12135774 10386506          -13.4
+##  3 rs1220400   9997079          -55.6
+##  4 rs1234694  10003320          -99.4
+##  5 rs3820192  11847772          -19.4
+##  6 rs41275494 11894133          -14.3
+##  7 rs4240912  10437778          -13.8
+##  8 rs55741089 11898859          -14.0
+##  9 rs55867221 11845222          -19.4
+## 10 rs56001051 11838841          -19.4
+## 11 rs6670157  10458439          -12.4
+## 12 rs6688187  11837473          -19.4
+## 13 rs6703535  11843919          -19.4
+## 14 rs72638698 11835455          -19.4</code></pre>
+<pre class="r"><code>mat_data</code></pre>
+<pre><code>## # A tibble: 196 x 6
+##    SNP1       SNP2          cor     pos1    pos2 abs_dist
+##    &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;    &lt;int&gt;   &lt;int&gt;    &lt;int&gt;
+##  1 rs1220400  rs1220400  1.00    9997079 9997079        0
+##  2 rs1234694  rs1220400  0.952  10003320 9997079     6241
+##  3 rs10864454 rs1220400 -0.102  10417853 9997079   420774
+##  4 rs12135774 rs1220400 -0.0985 10386506 9997079   389427
+##  5 rs3820192  rs1220400 -0.0474 11847772 9997079  1850693
+##  6 rs41275494 rs1220400 -0.0489 11894133 9997079  1897054
+##  7 rs4240912  rs1220400 -0.0426 10437778 9997079   440699
+##  8 rs55741089 rs1220400 -0.0473 11898859 9997079  1901780
+##  9 rs55867221 rs1220400 -0.0557 11845222 9997079  1848143
+## 10 rs56001051 rs1220400 -0.0670 11838841 9997079  1841762
+## # ... with 186 more rows</code></pre>
+<p>The first steps are to make the plots by separate:</p>
+<pre class="r"><code>plot1 = plot_data %&gt;% 
+  ggplot(aes(pos,-eQTL_log10pval))+
+  geom_point()+
+  scale_x_continuous(labels = comma)
+plot1</code></pre>
+<p><img src="/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
+<pre class="r"><code>snp_levels = mat_data %&gt;% 
+    dplyr::select(SNP1,pos1) %&gt;% 
+    unique() %&gt;% 
+    arrange(pos1) %&gt;% 
+    pluck(&quot;SNP1&quot;)
+
+plot2 = mat_data %&gt;% 
+  dplyr::filter(pos1 &gt;= pos2) %&gt;% 
+  mutate_at(vars(contains(&quot;SNP&quot;)),funs(factor(.,levels = snp_levels))) %&gt;% 
+    ggplot(
+      aes(SNP1,SNP2,fill = cor^2))+
+    geom_tile()+
+    theme(legend.position = &quot;right&quot;)+
+    scale_fill_distiller(palette = &quot;Spectral&quot;,
+                         guide = guide_colourbar(title = expression(R^2),
+                                                 barheight = unit(0.4,&quot;npc&quot;),
+                                                 barwidth = unit(0.03,&quot;npc&quot;)))+
+    theme(
+      axis.text.x = element_text(angle = 90)
+    )+
+    xlab(&quot;SNP&quot;)+ylab(&quot;SNP&quot;)+coord_fixed()
+plot2</code></pre>
+<p><img src="/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>This plot requires some cleaning work, we first remove the labels from the axis:</p>
+<pre class="r"><code>plot2_clean = plot2 +
+    theme(legend.position = &quot;none&quot;,
+        axis.title = element_blank(),
+        panel.grid = element_blank(),
+        plot.background = element_blank(),
+        panel.border = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x = element_blank())
+plot2_clean</code></pre>
+<p><img src="/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together_files/figure-html/clean-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>snp_data = mat_data %&gt;% 
+  dplyr::filter(SNP1 == SNP2)
+
+plot2_clean = plot2_clean +
+  geom_text(
+    data = snp_data,aes(label = SNP1),size =3,angle = -45,hjust = 1,
+    nudge_x = -.5,nudge_y = .5,show.legend = FALSE)
+plot2_clean</code></pre>
+<p><img src="/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together_files/figure-html/clean-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We almost have the pieces, so we arrange everything together by using <code>gridExtra</code>:</p>
+<pre class="r"><code>## extract the legend
+aux_grob = ggplotGrob(plot2)$grobs
+legend = aux_grob[[which(sapply(aux_grob,function(x)x$name) == &quot;guide-box&quot;)]]
+
+bottom_part = arrangeGrob(plot2_clean,vp = viewport(angle = -45)) ## rotate the LD matrix
+whole_plot = arrangeGrob(plot1,
+                         textGrob(&quot;&quot;), ## overlap the empty part of the LD matrix
+                         bottom_part,textGrob(&quot;&quot;), ## add a bit of space at the bottom
+                         ncol =1,heights = c(5,-2,10,1.5))
+grid.newpage()
+grid.arrange(whole_plot,legend,nrow = 1,widths = c(9,1)) </code></pre>
+<p><img src="/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together_files/figure-html/done-1.png" width="768" /></p>
+<p>This figure shows that these 14 snps are clustered</p>
