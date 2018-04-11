@@ -116,10 +116,11 @@ bottom_part = arrangeGrob(plot2_clean,vp = viewport(angle = -45))
 
 ## overlap the empty part of the LD matrix (which requires theme_minimal) and
 ## included a bit of space at the bottom
-whole_plot = arrangeGrob(plot1,
+whole_plot = arrangeGrob(plot1 +
+                           theme(axis.title.x = element_blank()),
                          textGrob(""),
                          bottom_part,textGrob(""),
-                         ncol =1,heights = c(5,-2,10,1.5))
+                         ncol =1,heights = c(5,-2,10,2))
 grid.newpage()
 grid.arrange(whole_plot,legend,nrow = 1,widths = c(9,1)) 
 
