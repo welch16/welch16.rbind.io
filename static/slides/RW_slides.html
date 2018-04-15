@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rene Welch</title>
+    <meta charset="utf-8">
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="uw_slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Rene Welch
+## Assistant scientist job talk
+### 2018/04/17
+
+---
+
+class: top
+
+
+
+## Rene Welch
+
+.left-column2[
+&lt;img src="color-center-UWlogo-print.png" width="250px" /&gt;
+]
+
+.right-column2[
+
+### PhD candidate in Statistics
+
+- Projects:
+
+    - ChIPexoQual: A quality control pipeline for ChIP-exo/nexus data
+    
+    - Fine-mapping method for SNPs in High LD, associated to multiple responses
+    
+    - Biological effects of EBV
+    
+- Analysis experience:
+
+    - ChIP-seq/exo/nexus, DNAse/ATAC-seq, RNA-seq, MeDIP-seq, MPRA, GWAS
+    
+]
+
+---
+class: center, middle, inverse
+
+# ChIPexoQual: A quality control pipeline for ChIP-exo/nexus data
+
+---
+class: center, middle
+
+# ChIP-exo vs ChIP-seq
+
+&lt;div class="figure"&gt;
+&lt;img src="figs/rhee.png" alt="Coverage of different ChIP-protocols, Pugh &amp;amp; Rhee 2012" width="600px" /&gt;
+&lt;p class="caption"&gt;Coverage of different ChIP-protocols, Pugh &amp; Rhee 2012&lt;/p&gt;
+&lt;/div&gt;
+
+---
+class: top
+
+# ChIP-exo/nexus protocols
+
+.pull-left[
+&lt;img src="figs/chip_explanation_withEnzyme_nexus.png" width="400px" /&gt;
+]
+
+.pull-right[
+
+After DNA sonication:
+
+- In ChIP-exo a `\(\lambda\)`-enzyme digests from the `\(5\prime\)` end until it finds the TF, then one adapter is added for each side
+
+- In ChIP-nexus, only one adapter is added at the `\(3\prime\)` end, transferred to the `\(5\prime\)` end by self-circularization. Unique fragments are distinguished by using random barcodes.
+
+- In SE (PE) ChIP-seq, one (two) adaptors are added.
+]
+
+---
+layout: true
+
+background-image: url(figs/kmer_profiles.png)
+background-size: 600px
+
+---
+class: top, center 
+
+## FASTQC
+
+---
+class: top, center 
+
+## FASTQC
+
+.pull-right[
+&lt;img src="figs/motif.png" width="300px" /&gt;
+]
+
+---
+layout: false
+class: top
+
+.pull-left[
+
+## PBC
+
+`\begin{aligned}
+\mbox{PBC} = {\text{# of locs. with exactly 1 read}\over\text{# of locs. with }\geq 1\text{ reads}}
+\end{aligned}`
+
+
+&lt;img src="figs/PBC.png" width="400px" /&gt;
+
+.important[ENCODE] bottlenecking thresholds:
+
+- .important[0.9 - 1] None
+
+- .important[0.8 -0.9 ] Mild
+
+- .important[0.5 -0.8 ] Moderate
+
+- .important[0 -0.5 ] Severe
+
+]
+
+--
+
+.pull-right[
+
+## SCC
+`\begin{aligned}
+\mbox{SCC}(\delta) = \sum_c w_c \rho(\mbox{fwd}_c - \delta , \mbox{bwd}_c + \delta)
+\end{aligned}`
+
+&lt;img src="figs/scc.png" width="600px" /&gt;
+
+`\begin{aligned}
+\mbox{NSC} &amp;= {\max_\delta \mbox{SCC}(\delta) \over \min_\delta \mbox{SCC}(\delta)  }, \\
+\mbox{RSC} &amp;= {\max_\delta \mbox{SCC}(\delta) - C \over \min_\delta \mbox{SCC}(\delta) - C  }
+\end{aligned}`
+
+]
+
+
+--
+This metrics are available in [ChIPUtils](http://www.github.com/welch16/ChIPUtils)
+
+---
+class: top
+
+# ChIPexoQual pipeline
+
+Assuming a set of .important[N aligned reads]
+
+1. Partition the genome and generate ChIP-exo islands
+
+&lt;img src="figs/qc_pipeline_diagram.png" width="900px" /&gt;
+
+---
+class: top
+# ChIPexoQual pipeline 
+Assuming a set of .important[N aligned reads]
+
+1. Partition the genome and generate ChIP-exo islands
+
+2. Calculate summary statistics for each islands
+
+`\begin{aligned}
+D_i &amp;= \text{# of aligned reads in island } i \\
+U_i &amp;= \text{# of unique positions that reads map in islands } i \\
+W_i &amp;= \text{width of islands } i \\
+\mbox{ARC}_i &amp;= D_i / W_i (\text{ represents sample enrichment}) \\
+\mbox{URC}_i &amp;= U_i / D_i (\text{ represents library complexity}) 
+\end{aligned}`
+
+---
+class: top
+# ChIPexoQual pipeline 
+Assuming a set of .important[N aligned reads]
+
+1. Partition the genome and generate ChIP-exo islands
+
+2. Calculate summary statistics for each islands
+
+3. Visualize all islands together
+
+&lt;img src="figs/qc_viz.png" width="700px" style="display: block; margin: auto;" /&gt;
+
+---
+class: top
+# ChIPexoQual pipeline 
+Assuming a set of .important[N aligned reads]
+
+1. Partition the genome and generate ChIP-exo islands
+
+2. Calculate summary statistics for each islands
+
+3. Visualize all islands together
+
+4. Calculate quality scores for the .important[ARC vs URC] plot:
+
+`\begin{aligned}
+  D_i &amp;= \beta_1 U_i + \beta_2 W_i + \varepsilon_i ,\quad \varepsilon_i \sim N(0,\sigma^2) 
+\end{aligned}`
+--
+5. If necessary, use extra modules: 
+
+      1. Subsampling approach for deeply sequenced samples
+      
+      2. Analysis of blacklisted regions
+      
+      3. Strand-imbalance analysis
+
+--
+Available at [Bioconductor](http://www.bioconductor.org/packages/release/bioc/html/ChIPexoQual.html)
+
+---
+class: top, center
+
+# ARC vs URC plot
+
+.left-column2[
+
+Two arms: One with a decreasing trend and other with low .important[ARC] 
+
+- As .important[URC] decreases, the number of unique positions per region decreases
+
+- The regions with low .important[ARC], are sort of like ChIP-exo's "background"
+
+
+]
+
+
+.right-column2[
+&lt;img src="./figs/FoxA1_ARCvURC.gif" width="250px" /&gt;
+
+&lt;img src="./figs/FoxA1_profile.gif" width="380px" /&gt;
+]
+
+
+---
+class: top, left
+
+## Quality scores
+
+We sample 1K regions, and fit the linear model:
+
+`\begin{aligned}
+  D_i &amp;= \beta_1 U_i + \beta_2 W_i + \varepsilon_i ,\quad \varepsilon_i \sim N(0,\sigma^2) ,
+\end{aligned}`
+at least 1K times.
+
+&lt;img src="./figs/quality_scores.png" width="900px" /&gt;
+
+---
+class: top
+
+## TBP ChIP-exo vs. ChIP-nexus at fixed sequencing depth
+
+&lt;img src="./figs/sampscores.png" width="900px" /&gt;
+
+- ChIP-nexus is better than ChIP-exo
+
+
+---
+class: inverse, middle, center
+
+# Fine-mapping of SNPs in High LD associated to multiple eQTLs
+
+---
+class: top, left
+
+# Motivation: Fine-mapping of SNPs in High LD
+
+.right-column[
+&lt;img src="./figs/loci_example.png" width="500px" /&gt;
+]
+
+--
+
+.left-column[
+- SNPs are in very high LD
+
+- Peak overlaps don't separate them either.
+
+- .important[Our solution:] Add allele-specific information
+]
+
+---
+class: top, left
+
+## Measuring allele-specific activity
+
+1. Mask SNP positions in human genome
+
+2. Align FASTQ files to masked genome with `bowtie2`, and separate the alignment to each allele with [SNPsplit](https://www.bioinformatics.babraham.ac.uk/projects/SNPsplit/)
+
+3. For every SNP:
+
+      a. Count reads aligned to each allele
+      
+      b. For reads aligned to both alleles, solve the tie by randomly allocating them with prob. 0.5
+      
+4. Calculate TF skew as:
+$$
+\mbox{skew} = \log_2( 1 + \mbox{alt}) - \log_2( 1 + \mbox{ref})
+$$
+5. Aggregate the reads to avoid "artificial" allele-specific balance:
+
+$$
+\mbox{skew}_{\text{alle}}  = \log_2\left(1 + \sum_a \mbox{alt}_a 1(\mbox{alt}_a \geq \mbox{ref}_a) \right) - \log_2\left(  1 + \sum_a \mbox{ref}_a 1(\mbox{alt}_a &lt; \mbox{ref}_a)\right)
+$$
+
+---
+class: top, left
+
+## Description of the model
+
+.pull-left[
+
+&lt;img src="figs/eQTL_skew.png" width="500px" /&gt;
+`\begin{aligned}
+w_{gk} &amp;\sim \mbox{Ber}(\pi) \\
+\widetilde{y}_{gk} \vert w_{gk} =0, \widetilde{x}_{gk} &amp;\sim N(0,\sigma^2_{b}) \\
+\widetilde{y}_{gk} \vert w_{gk} = 1,\widetilde{x}_{gk} &amp;\sim N( \widetilde{x}_{gk}\beta, \sigma^2_{gk})
+\end{aligned}`
+
+]
+
+--
+
+.pull-right[
+
+Using a set of .important[regulatory] SNPs
+
+1. Cluster SNPs by corr. and distance
+
+2. Given a set of causal candidates, iterate:
+
+      i. Calculate prob. of LD block of containing a causal SNP
+      
+      ii. Fit weighted LMM:
+      
+      `\(\widetilde{y}_{gk} = \widetilde{x}_{gk} \beta + \widetilde{z}_{gk} u_g + \widetilde{\epsilon}_{gk}\)`
+        
+      iii. Select another set of causal candidates 
+
+]
+
+---
+class: top, left
+
+## Performance
+
+.pull-left[
+&lt;img src="figs/auroc.png" width="300px" /&gt;
+
+
+]
+
+.pull-right[
+&lt;img src="figs/auprec.png" width="300px" /&gt;
+
+]
+
+---
+class: middle, center
+
+&lt;img src="figs/descr.png" width="700px" /&gt;
+
+
+---
+class: inverse, middle, center
+
+# Acknowledgements
+
+## Keles lab 
+
+## Johannsen lab
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
