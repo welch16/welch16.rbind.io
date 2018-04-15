@@ -4,7 +4,7 @@ subtitle: "Assistant scientist job talk"
 date: "2018/04/17"
 output:
   xaringan::moon_reader:
-    css: ["default","default-fonts","uw_slides.css"]
+    css: ["uw_slides.css","default","default-fonts"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -23,7 +23,7 @@ opts_chunk$set(echo = FALSE,include= TRUE)
 
 .left-column2[
 ```{r logo,include=TRUE,dpi = 300,out.width="250px"}
-include_graphics("color-center-UWlogo-print.png")
+include_graphics("figs/color-center-UWlogo-print.png")
 ```
 ]
 
