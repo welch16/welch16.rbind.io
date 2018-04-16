@@ -126,11 +126,11 @@ include_graphics("figs/PBC.png")
 
 - .important[0.9 - 1] None
 
-- .important[0.8 -0.9 ] Mild
+- .important[0.8 - 0.9 ] Mild
 
-- .important[0.5 -0.8 ] Moderate
+- .important[0.5 - 0.8 ] Moderate
 
-- .important[0 -0.5 ] Severe
+- .important[0 - 0.5 ] Severe (.important[The majority of ChIP-exo/nexus samples are in this range])
 
 ]
 
@@ -253,11 +253,11 @@ Two arms: One with a decreasing trend and other with low .important[ARC]
 
 
 .right-column2[
-```{r,include=TRUE,out.width="250px"}
+```{r,include=TRUE,out.width="250px",dpi = 800}
 include_graphics("./figs/FoxA1_ARCvURC.gif")
 ```
 
-```{r,include=TRUE,out.width="380px"}
+```{r,include=TRUE,out.width="380px",dpi = 800}
 include_graphics("./figs/FoxA1_profile.gif")
 ```
 ]

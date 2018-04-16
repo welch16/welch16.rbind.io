@@ -4,7 +4,7 @@ subtitle: "Assistant scientist job talk"
 date: "2018/04/17"
 output:
   xaringan::moon_reader:
-    css: ["default","default-fonts","uw_slides.css"]
+    css: ["uw_slides.css","default","default-fonts"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -23,7 +23,7 @@ opts_chunk$set(echo = FALSE,include= TRUE)
 
 .left-column2[
 ```{r logo,include=TRUE,dpi = 300,out.width="250px"}
-include_graphics("color-center-UWlogo-print.png")
+include_graphics("figs/color-center-UWlogo-print.png")
 ```
 ]
 
@@ -126,11 +126,11 @@ include_graphics("figs/PBC.png")
 
 - .important[0.9 - 1] None
 
-- .important[0.8 -0.9 ] Mild
+- .important[0.8 - 0.9 ] Mild
 
-- .important[0.5 -0.8 ] Moderate
+- .important[0.5 - 0.8 ] Moderate
 
-- .important[0 -0.5 ] Severe
+- .important[0 - 0.5 ] Severe (.important[The majority of ChIP-exo/nexus samples are in this range])
 
 ]
 
@@ -253,11 +253,11 @@ Two arms: One with a decreasing trend and other with low .important[ARC]
 
 
 .right-column2[
-```{r,include=TRUE,out.width="250px"}
+```{r,include=TRUE,out.width="250px",dpi = 800}
 include_graphics("./figs/FoxA1_ARCvURC.gif")
 ```
 
-```{r,include=TRUE,out.width="380px"}
+```{r,include=TRUE,out.width="380px",dpi = 800}
 include_graphics("./figs/FoxA1_profile.gif")
 ```
 ]
