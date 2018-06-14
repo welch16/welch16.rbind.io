@@ -1,5 +1,5 @@
 ---
-title: '2018 06 14 Tidy Parallel Loading of Rdata Files'
+title: Tidy Parallel Loading of Rdata Files
 author: ''
 date: '2018-06-14'
 categories:
