@@ -1120,7 +1120,8 @@ my_data = tibble(
   files = list.files( my_dir ,full.names = TRUE )) %&gt;% 
   mutate(
     env = map(files,  ~ new.env()),
-    data = future_map2( files, env, load2env   )
+    data = future_map2( files, env, load2env   ) %&gt;% 
+      map(as.list)
   )</code></pre>
 <p>This command will create the environments in advance, and then load the content of the RData files into them.</p>
 
