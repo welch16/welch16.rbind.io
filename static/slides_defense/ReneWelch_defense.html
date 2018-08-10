@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Multi-Trait Fine-Mapping with Integrated Functional Annotation</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Rene Welch" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Multi-Trait Fine-Mapping with Integrated Functional Annotation
+## Ph.D. defense
+### Rene Welch
+### 2018/08/15
+
+---
+
+
+
+
+
+
+
+class: center, middle, inverse
+# The GWAS problem
+
+
+---
+class: left, middle
+# Typical GWAS setting
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/part1.png" width="945" height="500px" /&gt;
+
+???
+
+Np individuals
+
+Q associations
+
+
+---
+class: left, middle
+# Typical GWAS setting
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/part2.png" width="945" height="500px" /&gt;
+
+???
+
+Simple linear models are fitted for every SNP
+
+`\(\mathbf{y} = \mu + \beta \mathbf{x} + \epsilon\)`
+
+with `\(\epsilon \sim N(0,\sigma^2)\)`
+
+
+---
+class: left, middle
+# Typical GWAS setting 
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/part3.png" width="945" height="500px" /&gt;
+
+
+???
+
+The SNPs are correlated, 
+
+- red -- `\(\rho \approx 1\)`
+
+- blue `\(\rho \approx 0\)`
+
+this makes to see cases, where an association is very significant due to the fact that the SNP is associated to another one that is the true causal.
+
+
+---
+class: left, top
+
+# Manhattan plot example 
+
+&lt;img src="ReneWelch_defense_files/figure-html/manhattan_plot-1.png" height="500" style="display: block; margin: auto;" /&gt;
+
+???
+
+loci, took most associated variant.
+
+When `\(\rho=1\)`, two variants are statistically indistinguishable
+
+
+
+---
+
+class: middle, center, inverse
+
+# Fine-mapping methods
+
+
+---
+class: left, top
+
+# What is a fine-mapping method?
+
+- Methods to assign well-calibrated probabilities of  causality to a set of candidate variants (Spain &amp; Barrett, 2015)
+
+- Methods using genotype data:
+
+  - Most associated SNP
+  - Sequentially conditioning on SNPs.
+
+  &lt;!-- - BIMBAM, etc. --&gt;
+
+- Methods using summary statistics:
+$$
+z | C = c \sim N( \Sigma \lambda_c , \Sigma )
+$$
+  - CAVIAR, (Hormozdiari et al, 2014 )
+  
+  - PAINTOR, prior over causal conf. depends on annotation data (Kichaev et al, 2014)
+  
+  - CAVIARBF, Bayesian fitting and numerical improvements (Chen et al, 2015 )
+
+---
+class: left, top
+
+# Why do we need fine-maping methods?
+
+- Adapting [Udler et al.](https://onlinelibrary.wiley.com/doi/abs/10.1002/gepi.20504) test to a continuous phenotype:
+
+&lt;img src="ReneWelch_defense_files/figure-html/power_calc-1.png" style="display: block; margin: auto;" /&gt;
+
+- As `\(\rho\)` increases, more individuals are required to recognize the causal SNP
+
+    - Data collection cost may become prohibitive, or
+    
+    - The population may not exists.
+
+
+???
+Can say, increase population size until we can distinguish the causal variant
+
+
+---
+class: left, top
+
+# Fine-Mapping in GWAS setting
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/part3.png" width="945" height="500px" /&gt;
+
+???
+going back to prior diagram
+  
+---
+class: left, top
+
+# Fine-Mapping in GWAS setting
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/part4.png" width="945" height="500px" /&gt;
+
+???
+
+- `\(C \sim \mbox{Ber}(p)\)`, vector of causal states
+
+- focus on methods that use summary statistics
+- The idea now becomes in estimating the vector of causal states
+
+---
+class: left, top
+
+# Fine-Mapping in GWAS setting
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/d1annot.png" width="945" height="500px" /&gt;
+
+???
+
+- An extra source of information is required
+
+- Hopefully we can built it from in-vivo data
+
+---
+class: center, middle, inverse
+
+# Massively Parallel Reporter Assay 
+
+
+---
+class: top, left
+
+# Massively Parallel Reporter Assay 
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/mpra.png" width="945" /&gt;
+
+???
+
+how did we label the variants -&gt; to show what type of annotations we used
+
+Two sequences:
+
+  - Ref base + context
+  - Alt base + context
+  
+Add min promoter + set of barcodes
+
+Transfection = Transcription in vitro
+
+Result: Expression for both alleles for each variant
+
+---
+class: left, top
+
+# Manhattan plot example 
+
+&lt;img src="ReneWelch_defense_files/figure-html/manhattan_plot2-1.png" height="500" style="display: block; margin: auto;" /&gt;
+
+---
+class: left, top
+
+# Manhattan plot example 
+
+&lt;img src="ReneWelch_defense_files/figure-html/manhattan_plot_em-1.png" height="500" style="display: block; margin: auto;" /&gt;
+
+???
+
+Fortunately, we got MPRA data
+First time, that we got data based labels 
+
+
+---
+class: center, middle, inverse
+
+# Annotation data
+
+
+---
+class: top, left
+
+
+
+
+# Annotation data: Peak Overlaps
+
+.pull-left[
+
+`\(\chi^2\)` tests Regulatory label vs. Peak overlaps.
+
+![](ReneWelch_defense_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+
+
+]
+
+
+.pull-right[
+
+`\(\chi^2\)` tests Expr. Mod. vs. Peak overlaps. 
+
+![](ReneWelch_defense_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+
+]
+
+???
+
+There are more assays (only 15 most associated assays)
+Peaks are not very good
+
+---
+class: left, top
+
+# Annotation data: % covered variants
+
+![](ReneWelch_defense_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+
+- For almost every assay, 75% of variants are not covered by `\(\geq 5\)` reads
+--
+,
+
+- unless we aggregate multiple assays.
+
+---
+class: top, left
+
+# Annotation data: Allelic skew 
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/pai.png" width="945" height="500px" /&gt;
+
+
+---
+class: top, left
+
+# Annotation data: Allelic skew 
+
+- Mask SNP positions in hg19 genome.
+
+- For every ChIP-seq assay:
+
+    1. Align reads to masked genome with [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml).
+    
+    2. Separate aligned reads with [SNPsplit](https://www.bioinformatics.babraham.ac.uk/projects/SNPsplit/). 
+    
+    3. Allocate unassigned reads to each allele with probability `\(0.5\)`.
+
+
+- Define allelic skew for SNP `\(n\)`:
+
+`\begin{aligned}
+\text{allelic skew}_n  &amp;= \log_2\left(1 + \sum_a \mbox{alt}_{a,n} 1(\mbox{alt}_{a,n} \geq \mbox{ref}_{a,n}) \right) \\ &amp;\quad - \log_2\left(  1 + \sum_a \mbox{ref}_{a,n} 1(\mbox{alt}_{a,n} \leq \mbox{ref}_{a,n})\right)
+\end{aligned}`
+
+- We conjecture that by using this formula, we may be able to be avoiding "artificial ties"
+
+---
+class: left, top
+
+# Annotation data: Allelic skew comparison
+
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+
+???
+
+- Ties argument
+
+- Different bases modify the binding, I guess it depends on if a different base could block the binding for every protein.
+
+- Probably we need to figure out a middle ground
+
+
+
+
+---
+class: left, top
+
+# Annotation data: Allelic skew
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+- Expr. Mod. SNPs are more likely to exhibit higher allelic transcriptional activity
+
+
+
+
+---
+class: left, top
+
+# Annotation data: Discrete Allelic skew
+
+`\(\chi^2\)` tests between Expr. Mod. labels and `\(1( \mid \text{allelic skew}\geq M)\)`:
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+--
+
+- Robust range with more significant p.values than with single assays
+
+---
+class: left, top
+
+# Annotation data: Allelic skew vs. MPRA skew
+
+- Take Regulatory SNPs in `chr7: 30,838,237 - 32,814,458` loci.
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+--
+- Locally allelic skew is capable of separating the MPRA skew.
+
+
+
+---
+class: center, middle, inverse
+
+# FM-HighLD
+
+
+---
+class: left, top
+
+# FM-HighLD: assumptions
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/d1annot.png" width="945" height="500px" /&gt;
+
+---
+class: left, top
+
+# FM-HighLD: assumptions
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/annot2.png" width="945" height="500px" /&gt;
+
+???
+
+Instead of trying to figure out the causal variants from the LD matrix, 
+we use a stronger assumption.
+
+1. The causal snp effects depend functionally on annotation data
+
+2. After the causal variants are selected then the errors are independents
+
+---
+class: left, top
+
+# FM-HighLD: Intuition
+
+Consider a genomic region with `\(N\)` regulatory variants, clustered into `\(M\)` LD clusters of length `\(q_m\)` each. We want to estimate the two parameters `\(\mathbf{C}\)` and `\(\lambda\)`:
+
+`$$\mbox{argmax}_{\mathbf{C},\lambda} L(\mathbf{C},\lambda) =\mbox{argmin}_{\mathbf{C},\lambda} \Vert \mathbf{C}^T( \mathbf{z} - \mathbf{A}\lambda  )\Vert^2$$`
+
+.pull-right[
+
+where:
+
+- `\(\mathbf{C}\)` is the causal configuration matrix
+
+- `\(\lambda\)` is the vector of coefficients
+
+- `\(\mathbf{z}\)` is a vector `\(Q\)` summary statistics
+
+- `\(\mathbf{A}\)` is the annotation matrix
+]
+
+
+--
+Optimizing for `\(\mathbf{C}\)` and `\(\lambda\)` simultaneously is a hard problem.
+
+
+---
+class: left, top
+
+# FM-HighLD: Intuition 
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/diagramtest.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+class: top, left
+
+# FM-HighLD: Model (Single-trait)
+
+Let `\(m=1,\cdots,M\)` be the LD cluster, define the latent variable:
+
+`\begin{aligned}
+w_m \sim \mbox{Ber}(\pi) 
+\end{aligned}`
+
+Then, define the generative equations for candidate causals:
+
+`\begin{aligned}
+\tilde{z}_m \sim \begin{cases} N(0,\sigma_0^2),&amp; w_m = 0, \\ N(\tilde{\mathbf{A}}_m\lambda, \sigma^2),&amp; w_m =1. \end{cases} \nonumber 
+\end{aligned}`
+
+The variance is derived from the models:
+
+`\begin{aligned}
+\mathbf{z} = \mathbf{A}\lambda + \epsilon.
+\end{aligned}`
+
+where `\(\epsilon \sim N(0,\sigma^2)\)`.
+
+---
+class: top, left
+
+# FM-HighLD: Algorithm (Single-trait)
+ 
+1. __E-step__: Using the causal candidates, calculate the posterior probabilities:
+  
+  \begin{aligned}
+  \gamma_m = P(w_m = 1\mid \tilde{z}_m ,\mathbf{A}_m ) \propto \pi N(\tilde{z}_m\mid \tilde{\mathbf{A}}_m\lambda ,\sigma^2) 
+  \end{aligned}
+
+2. __M-step__: We pool the posterior probabilities into a weight vector `\(\Gamma\)`. The regression coefficient vector `\(\lambda\)`, and the error variance `\(\sigma^2\)` are estimated by fitting a weighted linear model with the `lm` function.
+
+  For each LD cluster `\(m\)`, we pick the causal candidate as the SNP that is best represented by the annotation data:
+
+`$$\mathbf{C}_m[k] =
+  \begin{cases} 
+    1 &amp; \text{if } k = \mbox{argmin}_{s} (z_m[s] - \mathbf{A}_m[s] \hat{\lambda})^2, \\
+    0 &amp; \text{otherwise.}
+  \end{cases}$$`
+  
+  where `\([k]\)` denotes the `\(k\)`-th entry (row) of the vector (matrix).
+
+---
+class: center, middle, inverse
+
+# Single-trait simulations
+
+
+---
+class: left, top
+
+# Single-trait simulations: Settings
+
+Simulate from a polygenic model, with the same genotype data
+
+$$
+\mathbf{y} = \sum_{k \in \mathcal{C}} \mathbf{x}_k \beta_k + \varepsilon,\quad \varepsilon \sim N( 0  , 1 - h_g^2)
+$$
+
+
+.pull-left[
+
+### Picking the causal SNPs `\(\mathcal{C}\)`
+
+Two cases:
+
+- Random: Pick `\(K\)` causal variants randomly
+
+- HighLD: Pick `\(K\)` LD clusters randomly weighted by `\(\mbox{ave}(\rho^2)\)` 
+
+$$
+\mbox{ave}(\rho^2) = \frac{\sum_{i\neq j} \rho^2(s_i,s_j)}{\text{# SNP pairs}}
+$$
+
+]
+
+
+.pull-right[
+
+### Simulating the SNP effects
+
+`\(\beta_k \sim \pi N(-\mu , \sigma^2) + ( 1- \pi ) N(\mu, \sigma^2)\)`, where:
+
+- `\(\pi = 0.8\)`,
+- `\(\mu = 4.5\)`,
+- `\(\sigma^2 = 2\)`.
+
+]
+
+
+---
+class: top, left
+
+# Single-trait simulations: Settings
+
+.pull-left[
+
+`\(\mbox{ave}(\rho^2)\)`
+
+| **K** | **Random**    | **High LD**  |
+| ---- |:-------------:| :-----------:|
+| 5    | 0.90 (0.05)   | 0.93 (0.02)  |
+| 10   | 0.91 (0.03)   | 0.94 (0.01)  |
+
+
+]
+
+
+.pull-right[
+
+&lt;img src="ReneWelch_defense_files/figure-html/skew_sim-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+class: top, left
+
+# Single-trait simulations: AUROC
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
+
+- **FM-HighLD** shows higher values AUROC values, but the variance is higher too.
+
+
+---
+class: top, left
+
+# Single-trait simulations: Recall Rate
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
+
+- Below `\(K\)`, **FM-HighLD** outperforms the rest.
+- After `\(K\)` is comparable in some settings.
+
+---
+class: top, left
+
+# Single-trait simulations: 
+
+- PAINTOR is an extension of CAVIAR. Both methods enumerate the causal state vector `\(\mathbf{C}\)`, and calculate Bayes Factors of the form:
+
+.pull-left[
+`$$\mbox{BF} = \frac{N(z\mid 0 , R_c + \gamma R_c R_c^T) }{N(z\mid 0,R_c) }$$`
+]
+
+.pull-right[
+- For CAVIAR: `\(\gamma = 5\)`
+- For PAINTOR: `\(\gamma = h(\Sigma)\)`
+]
+
+where `\(R_c\)` is the LD matrix, at the causal states vector.
+
+&lt;img src="ReneWelch_defense_files/figure-html/cond-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: center, middle, inverse
+
+# Multi-trait eQTL analysis in Lymphoblastoid Cell Lines 
+
+---
+class: left, top
+
+# Recall Single-trait FM-HighLD
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/diagramtest.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+---
+class: left, top
+
+# FM-HighLD (Multiple trait)
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/ours/diagramMulti.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: top, left
+
+# FM-HighLD: Model (Multiple traits)
+
+Let `\(t =1,\cdots,T\)` be the trait, and `\(m=1,\cdots,M_t\)` be the LD clusters for trait `\(t\)`, define the latent variables:
+
+`\begin{aligned}
+\text{Multiple traits: } &amp; w_{tm} \sim \mbox{Ber}(\pi) 
+\end{aligned}`
+
+Then, define the generative equations for candidate causals:
+
+`\begin{aligned}
+\text{Multiple traits: } \tilde{z}_{tm} \sim \begin{cases}N(0,\sigma_0^2),&amp;w_{tm} = 0, \\ N(\tilde{\mathbf{A}}_{tm}\lambda,\sigma^2 + \tilde{\mathbf{B}}_{tm}\Sigma \tilde{\mathbf{B}}_{tm}^T),&amp;w_{tm}=1. \end{cases}
+\end{aligned}`
+
+The variance is derived from the models:
+
+`\begin{aligned}
+\text{Multiple traits: } &amp; \mathbf{z} = \mathbf{A}\lambda + \mathbf{B} \mathbf{u} + \epsilon.
+\end{aligned}`
+
+where `\(\epsilon \sim N(0,\sigma^2)\)`, `\(u \sim N(0,\Sigma)\)`, `\(\Sigma = \mbox{diag}(\sigma^2_1,\cdots,\sigma^2_h)\)`, and `\(h\)` is the number of random effects.
+
+---
+class: top, left
+
+# FM-HighLD: Algorithm (Multiple traits)
+ 
+1. __E-step__: Using the causal candidates, calculate the posterior probabilities:
+  
+  `$$\gamma_{tm} = P(w_{tm} = 1\mid \tilde{z}_{tm} , \mathbf{A}_{tm})\propto \pi N(\tilde{z}_m\mid \tilde{\mathbf{A}}_m\lambda ,\sigma^2 + \tilde{\mathbf{B}}_{tm}\Sigma \tilde{\mathbf{B}}_{tm})$$`
+
+2. __M-step__: We pool the posterior probabilities into a weight vector `\(\Gamma\)`. The regression coefficient vector `\(\lambda\)`, the error variance `\(\sigma^2\)` and the random effect variances `\(\Sigma\)` are estimated by fitting a weighted linear mixed model with the `lme4::lmer` function.
+
+  For each trait, and each LD cluster `\(m=1,\cdots,M_t\)`, we pick the causal candidate for trait `\(t\)` as the SNP that is best represented by the annotation data:
+
+`$$\mathbf{C}_{tm}[k] =
+  \begin{cases} 
+    1 &amp; \text{if } k = \mbox{argmin}_{s} (z_{tm}[s] - \mathbf{A}_{tm}[s] \hat{\lambda})^2, \\
+    0 &amp; \text{otherwise.}
+  \end{cases}$$`
+  
+  where `\([k]\)` denotes the `\(k\)`-th entry (row) of the vector (matrix). Finally, we construct `\(\mathbf{C} = \mbox{diag}(\mathbf{C}_1,\cdots,\mathbf{C}_M)\)`
+
+---
+class: top, left
+
+# FM-HighLD: Pooling multiple loci
+
+- For every loci, we fitted a latent model of the form:
+
+`$$\begin{aligned}
+    w_q &amp;\sim \mbox{Ber}(\pi) \nonumber \\
+    z_q\mid w_q = 0 &amp;\sim N(0,\sigma^2_0) \\
+    z_q\mid w_q = 1 &amp;\sim N( A_q^T\lambda , \sigma_{q}^2 ) 
+\end{aligned}$$`
+
+| **Group** | **Description** |
+| ---- |:-------------------------------------------------------------|
+| I    |  Both intercept and allelic skew coefficients `\(\geq0\)` |
+| II   |  Intercept coefficient `\(&lt;0\)` and allelic skew coefficient `\(\geq0\)` |
+| III  | Both intercept and allelic skew coefficients `\(&lt;0\)` |
+| IV   | Intercept coefficient `\(\geq0\)` and allelic skew coefficient `\(&lt;0\)` |
+
+- That way we can increase the number of fixed effects `\(p\)`, as `\(p\leq M\)`.
+
+---
+class: top, left
+
+# eQTL analysis: Genes tested per SNP
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+
+In average:
+
+- 2 LD clusters per loci,
+
+- 1.7 SNPs per LD cluster,
+
+- 0.4 Expr. Mod. SNPs per cluster.
+
+
+---
+class: left, top
+
+# eQTL analysis: Loci example
+
+
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: top, left
+
+# eQTL analysis: Different annotations
+
+- __atSNP scores__: For every JASPAR PWM, we quantify the likelihood that a given SNP disrupts or enhances the binding sites.
+
+`$$s_{n,a} = -\log_{10}\mbox{p.value}_{n,a}^\mbox{ref} + \log_{10}\mbox{p.value}_{n,a}^\mbox{alt}$$`
+
+- __DeepSea scores__: Provides chromatin feature log fold change, computed by comparing the chromatin feature probabilities for sequences carrying the reference, and alternative alleles.
+
+`$$s_{n,a} = \log \left(\frac{\mathbf{P}(\text{Assay }a\text{ carries ref allele at SNP }n  )}{\mathbf{P}(\text{Assay }a\text{ carries alt allele at SNP }n  )} \right)$$`
+
+- __Peak overlaps__: ENCODE ChIP-seq peaks in GM12878,
+
+`$$s_{n,a} = 1(\text{SNP}_n\text{ overlaps a peaks for assay }a)$$`
+
+- __Modified scores__: We modified the sequence scores by multiplying the SNP score by a peak overlap indicator:
+
+`$$\mathbf{a}_{n,a} = \mathbf{s}_{n,a}1(\text{SNP}_n \text{ overlaps a peak for assay }a)$$`
+
+
+
+---
+class: top, left
+
+# eQTL analysis: % of identified loci
+
+
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: top, left
+
+# eQTL analysis: % of identified loci
+
+&lt;img src="ReneWelch_defense_files/figure-html/cut-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+class: left, top
+
+# eQTL analysis: Probability comparison
+
+
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
+
+- **FM-HighLD** assigns causal probabilities per association,
+
+- **PAINTOR** assigns causal probabilities per SNP (almost), thus there are non-significant associations with high probability of being causal with **PAINTOR**.
+
+
+
+
+---
+class: center, middle, inverse
+
+# Conclusions and Future work
+
+
+---
+class: top, left
+
+# Conclusions
+
+- We evaluated fine-mapping methods with MPRA data for the first time, i.e. this is the first time that real data was used to evaluate multiple methods. But, as with any new technology we need to understand its limitations, and MPRA may introduce some difficulties as the assay's sensitivity is between 9% and 24%.
+
+- __FM-HighDL__ is an integrative fine-mapping methods for variants in high LD, which works for both single and multiple traits cases. The key idea of the framework is that the causal SNPs summary statistics can be explained by annotation data.
+
+- __FM-HighLD__ outperforms other methods:
+
+  - When evaluating with simulated data.
+  
+  - When evaluating with eQTL data.
+
+---
+class: left, top
+
+# Future work
+
+1. Our methods optimizes a mixed continuous / combinatorial problem, it would be interesting to see how algorithms better suited for this kind of problems perform. For example, genetic algorithms.
+
+2. Allow `\(&gt;1\)` causal SNPs per LD cluster. On one side, we can select the `\(h\)` smallest residuals per LD cluster, and create a matrix of `\(h\times q_m\)` for each LD cluster when building `\(\mathbf{C}\)`. But, extra assumptions will be needed for causal probabilities.
+
+3. In theory, by adding a Laplace prior over the fixed-effects matrices it is possible to add model selection capabilities to __FM-HighLD__.
+
+4. We were able to generate in-vivo annotation data, because LCL are very well studied. For rare diseases e.g. psychiatric diseases, there is not so much data. Perhaps, in the future with the development of single-cell ATAC-seq we will be able to apply __FM-HighLD__ to rare diseases.
+
+5. Design features based on Hi-C data?
+
+---
+class: center, middle, inverse
+
+# Thanks!
+
+
+Keles group
+
+Johannsen lab
+
+Nadya + cats 🐈 🐈 
+
+
+
+
+---
+class: center, middle, inverse
+
+# Extra
+
+---
+class: left, top
+
+# Derivation of Udler et al. test
+
+.pull-left[
+
+Criterion for exclusion based no the likelihood ratio relative to the most likely SNP `\(k\)`:
+
+$$
+\max_j L_j(\beta_j) / L_k(\beta_k) &gt; K
+$$
+
+Assume the summary statistics for two SNPs `\(a\)` and `\(b\)`. For a sufficiently large population:
+
+- `\(Z_a \sim N(\eta,1)\)`
+
+- `\(Z_b \sim N(\rho\eta,1)\)`
+
+- `\(\mbox{cov}(Z_a,Z_b) = \rho\)`
+
+where `\(\eta\)` is the NCP.
+
+]
+
+
+.pull-right[
+
+Then, by properties of Gaussian dist:
+
+$$
+Z_a^2 - Z_b^2 \sim N( (1 - \rho^2)\eta^2 , 4\eta^2(1 - \rho^2))
+$$
+
+- The SNP `\(b\)` is excluded if `\(Z_a^2 - Z_b^2 &gt; \log K\)`.
+
+-To calculate the required power `\((1 - \beta)\)`, we can solve:
+
+$$
+\eta^2 ( 1 - \rho^2) - z_{1-\beta}\sqrt{4\eta^2(1 - \rho^2)} = \log K
+$$
+
+]
+
+
+
+
+---
+class: left, top
+
+# Derivation of CAVIAR framework
+
+.pull-left[
+Assume the GWAS model for 1 SNP:
+
+`\begin{aligned}
+y &amp;= \mu 1 + \beta_c x_c + e \\
+\hat{\mu} = \bar{y} &amp;\quad \hat{\mu}\sim N(\mu,\sigma^2 / n) \\
+\hat{\beta}_c = {x_c^Ty \over n } &amp;\quad \hat{\beta}_c \sim N(\beta_c,\sigma^2 / n) \\
+\end{aligned}`
+
+with `\(e \sim N(0,\sigma^2 I)\)` and `\(x_c\)` centered and scaled.
+
+Then,
+
+`\begin{aligned}
+\hat{z}_c = { \sqrt{n}\beta_c / \sigma \over \sqrt{1/n} \sqrt{\hat{e}^T\hat{e}/\sigma^2}} \sim N(\lambda_c,1)
+\end{aligned}`
+
+with `\(\lambda_c = \beta_c\sqrt{n} / \sigma\)` and large `\(n\)`
+]
+
+.pull-right[
+
+Assume other SNP `\(x_i\)` with `\({x_i^Tx_c\over n } = r\)`, then:
+
+`\begin{aligned}
+\hat{\beta_i} \sim N(r\beta_c ,\sigma^2 / n)
+\end{aligned}`
+
+which follows:
+
+`\begin{aligned}
+\begin{bmatrix}\hat{z}_c \\ \hat{z}_i \end{bmatrix} \sim N\left( \begin{bmatrix} 1 &amp; r \\ r &amp; 1 \end{bmatrix} \begin{bmatrix}\lambda_c \\ 0\end{bmatrix},\begin{bmatrix}1 &amp; r \\r &amp; 1 \end{bmatrix}\right)
+\end{aligned}`
+
+or in general, without knowledge of the causal SNPs in advance:
+
+`\begin{aligned}
+\hat{z}\mid C = c \sim N(\Sigma \lambda_c, \Sigma)
+\end{aligned}`
+
+where the entries of `\(\lambda_c\)` are the non-centrality parameters when causal and zero otherwise.
+
+]
+
+---
+class: left, top
+
+# Allelic skew vs. Peak %
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: left, top
+
+# ATAC-seq vs. allelic skew
+
+&lt;img src="ReneWelch_defense_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
