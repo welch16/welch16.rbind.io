@@ -16,7 +16,7 @@ blog = "blog/:slug/"
 
 [params]
 dateform = "Jan 2, 2006"
-dateformfull = "Mon Jan 2 2006 15:04:05 MST"
+dateformfull = "Jan 2 2006"
 description = "Example blog"
 copyright = "Copyright © 2018 Rene Welch"
 # copyrightUrl = "https://creativecommons.org/licenses/by-sa/4.0/"
@@ -30,7 +30,7 @@ share = true
 latestpostcount = 5
 github = "welch16"
 email = "welch@stat.wisc.edu"
-linkedin = "ReneWelch"
+linkedin = "welch16"
 twitter = "ReneWelch"
 social_banner = "img/banner.png"
 usesmallsummarycard = true
