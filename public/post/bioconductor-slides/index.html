@@ -15,24 +15,24 @@
 <meta property="og:site_name" content="Rene Welch" />
 <meta property="og:locale" content="nn_NO" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/tidy-parallel-loading-of-rdata-files/" />
-<meta property="og:title" content="Tidy Parallel Loading of Rdata Files" />
-<meta property="twitter:title" content="Tidy Parallel Loading of Rdata Files">
+<meta property="og:url" content="/post/bioconductor-slides/" />
+<meta property="og:title" content="Bioconductor slides" />
+<meta property="twitter:title" content="Bioconductor slides">
 
-    <meta property="og:image" content="/img/banner.png">
+    <meta property="og:image" content="//images/image.jpg">
     <meta property="twitter:card" content="summary">
-    <meta property="twitter:image" content="/img/banner.png">
+    <meta property="twitter:image" content="//images/image.jpg">
 
-<meta property="og:description" content="">
-<meta property="twitter:description" content="">
+<meta property="og:description" content="Desc">
+<meta property="twitter:description" content="Desc">
 
 <title>
 
 
-     Rene Welch - Tidy Parallel Loading of Rdata Files 
+     Rene Welch - Bioconductor slides 
 
 </title>
-<link rel="canonical" href="/post/tidy-parallel-loading-of-rdata-files/">
+<link rel="canonical" href="/post/bioconductor-slides/">
 
 
 <style media="screen">
@@ -1097,7 +1097,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
         <div class="content">
             <div class="page-heading">
 
-    Tidy Parallel Loading of Rdata Files
+    Bioconductor slides
 
 </div>
 
@@ -1107,26 +1107,10 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
 
 
-<p>In my last project, I have been using the following function a lot:</p>
-<pre class="r"><code>load2env &lt;- function(file,env = new.env())
-{
-  load(file,envir = env)
-  env
-}</code></pre>
-<p>This function load the RData file into the environment <code>env</code>, which will return. However, if we have multiple files to load simultaneously then we would like to load those files in parallel.</p>
-<p>Using the new <a href="https://github.com/DavisVaughan/furrr">furrr</a> or any other package that allows parallel processing, we can do that by using something as:</p>
-<pre class="r"><code>library(furrr)
-
-plan(multiprocess)
-
-my_data = tibble(
-  files = list.files( my_dir ,full.names = TRUE )) %&gt;% 
-  mutate(
-    env = map(files,  ~ new.env()),
-    data = future_map2( files, env, load2env   ) %&gt;% 
-      map(as.list)
-  )</code></pre>
-<p>This command will create the environments in advance, and then load the content of the RData files into them.</p>
+<p>Last week, I gave a presentation about developing <strong>R packages</strong> with Bioconductor. The slides are available <a href="http://welch16.rbind.io/bioc_slides/2019_01_creating_bioc_package#1">here</a></p>
+<iframe src="http://welch16.rbind.io/bioc_slides/2019_01_creating_bioc_package#1" width="672" height="400px">
+</iframe>
+<p>Besides the slides, I created a format based on the amazing <a href="https://emitanaka.github.io/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1">ninjutsu, kunoichi</a> with the <a href="https://github.com/welch16/create_bioc_package/blob/master/assets/bioctheme.css">Bioconductor colors</a>.</p>
 
 
             </div>

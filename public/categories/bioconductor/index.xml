@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bioconductor on Rene Welch</title>
+    <link>/categories/bioconductor/</link>
+    <description>Recent content in Bioconductor on Rene Welch</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 21 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/bioconductor/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bioconductor slides</title>
+      <link>/post/bioconductor-slides/</link>
+      <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bioconductor-slides/</guid>
+      <description>Last week, I gave a presentation about developing R packages with Bioconductor. The slides are available here
+ Besides the slides, I created a format based on the amazing ninjutsu, kunoichi with the Bioconductor colors.</description>
+    </item>
+    
+  </channel>
+</rss>

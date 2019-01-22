@@ -6,10 +6,20 @@
     <description>Recent content in Post on Rene Welch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 14 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Bioconductor slides</title>
+      <link>/post/bioconductor-slides/</link>
+      <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bioconductor-slides/</guid>
+      <description>Last week, I gave a presentation about developing R packages with Bioconductor. The slides are available here
+ Besides the slides, I created a format based on the amazing ninjutsu, kunoichi with the Bioconductor colors.</description>
+    </item>
     
     <item>
       <title>Tidy Parallel Loading of Rdata Files</title>

@@ -15,9 +15,9 @@
 <meta property="og:site_name" content="Rene Welch" />
 <meta property="og:locale" content="nn_NO" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/tidy-parallel-loading-of-rdata-files/" />
-<meta property="og:title" content="Tidy Parallel Loading of Rdata Files" />
-<meta property="twitter:title" content="Tidy Parallel Loading of Rdata Files">
+<meta property="og:url" content="/categories/bioconductor/" />
+<meta property="og:title" content="Bioconductor" />
+<meta property="twitter:title" content="Bioconductor">
 
     <meta property="og:image" content="/img/banner.png">
     <meta property="twitter:card" content="summary">
@@ -29,10 +29,10 @@
 <title>
 
 
-     Rene Welch - Tidy Parallel Loading of Rdata Files 
+     Rene Welch - Bioconductor 
 
 </title>
-<link rel="canonical" href="/post/tidy-parallel-loading-of-rdata-files/">
+<link rel="canonical" href="/categories/bioconductor/">
 
 
 <style media="screen">
@@ -1054,6 +1054,8 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
+  <link href="/categories/bioconductor/index.xml" rel="alternate" type="application/rss+xml" title="Rene Welch" />
+
 
 </head>
 
@@ -1061,7 +1063,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <body>
 
 
-<div class="header column">
+<div class="header header-home column">
 
     <div class="container">
         
@@ -1095,40 +1097,17 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 <div class="main column">
     <div class="container">
         <div class="content">
-            <div class="page-heading">
+            <div class="posts">
+                <div class="page-heading">Posts about Bioconductor</div>
+                <ul>
+                    
+                        <li class="post-item">
+    <span class="meta">Jan 21, 2019</span>
+    <a href="/post/bioconductor-slides/"><span>Bioconductor slides</span></a>
+</li>
 
-    Tidy Parallel Loading of Rdata Files
-
-</div>
-
-            <div class="markdown">
-                
-    
-    
-
-
-<p>In my last project, I have been using the following function a lot:</p>
-<pre class="r"><code>load2env &lt;- function(file,env = new.env())
-{
-  load(file,envir = env)
-  env
-}</code></pre>
-<p>This function load the RData file into the environment <code>env</code>, which will return. However, if we have multiple files to load simultaneously then we would like to load those files in parallel.</p>
-<p>Using the new <a href="https://github.com/DavisVaughan/furrr">furrr</a> or any other package that allows parallel processing, we can do that by using something as:</p>
-<pre class="r"><code>library(furrr)
-
-plan(multiprocess)
-
-my_data = tibble(
-  files = list.files( my_dir ,full.names = TRUE )) %&gt;% 
-  mutate(
-    env = map(files,  ~ new.env()),
-    data = future_map2( files, env, load2env   ) %&gt;% 
-      map(as.list)
-  )</code></pre>
-<p>This command will create the environments in advance, and then load the content of the RData files into them.</p>
-
-
+                    
+                </ul>
             </div>
         </div>
     </div>
