@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Creating an R/Bioconductor package</title>
+    <meta charset="utf-8">
+    <meta name="author" content=" Rene Welch" />
+    <link href="libs/remark-css/shinobi.css" rel="stylesheet" />
+    <link href="libs/remark-css/ninjutsu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/bioctheme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Creating an R/Bioconductor package
+### <br>Rene Welch<br>
+### updated: 2019-01-14
+
+---
+
+
+
+
+layout: false
+class: bg-main1 middle
+
+.font5[.center.light-green[Shameless plug]]
+
+.font2[
+
+I have written some .alert[R packages] over the last years, that may be of use:
+
+&amp;nbsp;&amp;nbsp; [ChIPUtils](https://github.com/welch16/ChIPUtils/tree/devel) - quality control and basic analysis routines for ChIP-seq (ChIP-exo)
+
+&amp;nbsp;&amp;nbsp; [Segvis](https://github.com/welch16/Segvis) - plotting tool to make average profiles, plot peaks, etc
+
+&amp;nbsp;&amp;nbsp; [rwlib](https://github.com/welch16/rwlib) - some functions that I use very frequently
+
+&amp;nbsp;&amp;nbsp; Also [this slides are in github](https://github.com/welch16/create_bioc_package)
+
+]
+
+---
+layout: false
+class: bg-main1 center middle
+
+.font5.light-green[What is Bioconductor?]
+
+.font3[Bioconductor provides tools for the analysis and comprehension of high-throughput genomic data. Bioconductor uses the R statistical programming language, and is open source and open development. It has two releases each year, and an active user community.]
+
+---
+layout: false
+class: bg-main1 middle
+
+.center[.font5.light-green[Why Bioconductor?]]
+
+.font2[
+
+- .alert[Accessibility:] It is a central repository for high-throughput genomic data
+
+- .alert[Resources:] There are many software/annotation/experiment packages that can be used
+
+- .alert[Community:] It is very active, so there is a lot of people that can help
+
+]
+
+
+---
+layout: false
+class: bg-main1 middle
+
+.center[.font5.light-green[What kind of packages?]]
+
+.font2[
+
+- .alert[Software:] For methods almost everything gets accepted.
+
+- .alert[Experiment:] This is for experimental data. If the package need some example data to run, it is recommended to use one of their datasets prior to adding a new one. 
+
+- .alert[Annotation:] Annotation packages contain lightly or non-curated data from a public source and are updated with each .alert[Bioconductor] release (every 6 months). They are a source of general annotation for one or many organisms and are not specific to a particular experiment. When possible, they should support the `select()` interface from `AnnotationDbi`.
+
+]
+
+
+---
+layout: false
+class: bg-main1 middle center
+
+.font5.light-green[Available packages in BiocViews] 
+
+&lt;iframe src="https://bioconductor.org/packages/release/BiocViews.html" width="850px" height="400px"&gt;&lt;/iframe&gt;
+
+
+
+---
+layuot: false
+class: bg-main1 middle center
+
+.font5.light-green[Experiment packages]
+
+.font3[Typical stuff: Some data for the vignette]
+
+&lt;img src="images/chipexoqualexample.png" width="650px" style="display: block; margin: auto;" /&gt;
+
+---
+layuot: false
+class: bg-main1 middle center
+
+.font5.light-green[Experiment packages]
+
+.font3[or a package with plotting functions]
+
+&lt;iframe src="http://bioconductor.org/packages/release/data/experiment/html/IHWpaper.html" width="650px" height="400px"&gt;&lt;/iframe&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- layout: false --&gt;
+&lt;!-- class: bg-main1 middle center --&gt;
+
+&lt;!-- .font5.light-green[Software packages] --&gt;
+
+---
+layout: false
+class: bg-main1 middle center
+
+.font5[.light-green[SOFTWARE]]
+
+.font4[Composition of a .alert[R/Bioconductor] package]
+
+---
+layout: false
+class: bg-main1 middle 
+
+.center[.font3.light-green[DESCRIPTION]]
+
+
+.font1[
+
+The DESCRIPTION file must be properly formatted. The following section will review some important notes regarding DESCRIPTION fields and associated files.
+
+1. “Package:” and “Title:” fields
+
+3. “Version:” field: All Bioconductor packages use an x.y.z version scheme. x is usually 0 for packages that have not yet been released. y is even for packages in release, and odd for packages in devel. Generally, do not bump this number especially in pre-release. z is incremented whenever committing changes to a package.
+
+4. “Description:” field: The description should be a relatively short but detailed overview of what the package functionality entails. It should be one or more complete sentences.
+
+5. “Authors@R or Author/Maintainer:” fields: Use either Authors@R seems simpler. Only one maintainer
+
+6. “License:” field: should preferably refer to a standard license (see wikipedia) using one of R’s standard specifications.
+
+7. “LazyData:” field: .red[Don't]
+
+8. .alert[“Depends/Imports/Suggests/Enhances:” fields] &lt;- later
+
+9. “SystemRequirements:” field: This field is for listing any external software which is required, but not automatically installed by the normal package installation process. If the installation process is non-trivial, a top-level README file should be included to document the process.
+
+10. .alert[“biocViews:” field: REQUIRED!] Specify one or more biocViews categories. Multiple terms are encouraged but terms must come from the same package type (Software, AnnotationData, ExperimentData, Workflow). 
+
+11. “BugReports:” field: .alert[Github link]
+
+12. “URL:” and “Video:” fields: .red[not really necessary]
+
+14. “Collates:” field: This may be necessary to order class and method definitions appropriately during package installation.
+
+]
+
+---
+layout: false
+class: bg-main1 
+
+
+.split-two[
+
+.column[.content[
+
+.center.top[.font3.light-green[NAMESPACE] and .light-green[man]]
+
+
+.font2[
+
+In my experience, using [roxygen2](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) is the best alternative, as it allows to document the functions as comments in the code (under a given structure)
+
+Then, the `NAMESPACE` file is generated by calling in R: 
+
+- .alert[devtools::document()]
+- .alert[roxygen2::roxygenise()]
+- .alert[Ctrl + Shift + D] in Rstudio
+]
+
+]]
+
+.column[.content[
+
+.font2[.alert[Example]]
+
+```
+#' Add together two numbers.
+#' 
+#' @param x A number.
+#' @param y A number.
+#' @return The sum of \code{x} and \code{y}.
+#' @export # this will write the 
+#'         # function in the NAMESPACE
+#' @examples
+#' add(1, 1)
+#' add(10, 1)
+add &lt;- function(x, y) {
+  x + y
+}
+```
+
+.font2[.alert[Extra:] This gives a bit of structure to the comments
+]
+
+]]]
+
+---
+layout: false
+class: bg-main1 split-five
+
+.row[.content[
+.font5.center[.light-green[R]]
+]]
+
+.row.slide-in-bottom[
+
+.content[
+
+.split-two[
+
+.column[.content[
+
+.font3[.alert[Input]]
+
+.font2[GTF, GFF, BED, BigWig .alert[rtracklayer::import()]]
+
+.font2[VCF .alert[VariantAnnotation::readVcf()]]
+
+.font2[SAM / BAM .alert[Rsamtools::scanBam(), GenomicAlignments::readGAlignment*()]]
+
+.font2[FASTA .alert[Biostrings::readDNAStringSet()]]
+
+.font2[FASTQ .alert[ShortRead::readFastq()]]
+
+.font2[etc]
+
+]]
+
+.column[.content[
+
+.font3[.alert[Common classes]]
+
+.font2[Rectangular feature x sample data .alert[SummarizedExperiment::SummarizedExperiment()]]
+
+.font2[Genomic coordinates .alert[GenomicRanges::GRanges()]]
+
+.font2[DNA / RNA / AA sequences .alert[Biostrings::*StringSet()]]
+
+.font2[Multi-omics data .alert[MultiAssayExperiment::MultiAssayExperiment()]]
+
+]]
+]]
+]
+
+---
+layout: false
+class: bg-main1 center middle
+
+.font5[For an example of how to extend one of those classes, check [DESeq2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8) in
+ [Bioconductor](https://github.com/mikelove/DESeq2) and [github](https://bioconductor.org/packages/release/bioc/html/DESeq2.html)]
+
+
+
+---
+layout: false
+class: bg-main1 
+
+
+.font5.center[.light-green[BiocParallel]]
+
+.font2[There are many methods to work in .alert[parallel]. .alert[BiocParallel] provides unified interfacem and allows .alert[cluster scheduling]
+
+For example, we just change .alert[BPPARAM] to use the package in other OS:]
+
+```
+if(Sys.info()[["sysname"]] == "Windows"){
+  snow &lt;- SnowParam(workers = mc.cores, type = "SOCK")
+  stats &lt;- bpmapply(calculateSummary,rlist,fwdReads,revReads,
+           BPPARAM = snow,SIMPLIFY = FALSE)       
+}else{
+  stats &lt;- bpmapply(calculateSummary,rlist,fwdReads,revReads,
+            BPPARAM = MulticoreParam(workers = mc.cores),
+            SIMPLIFY = FALSE)       
+}
+```
+
+---
+layout: false
+class: bg-main1 
+
+
+.font5.center[.light-green[BiocParallel]]
+
+.font3[Possible to check the available parallel parameters with .alert[BiocParallel::registered()],
+and even reconfigured them with .alert[BiocParallel::register()]. For example,
+]
+
+
+```
+register(MulticoreParam(workers = k))
+
+## then run 
+bplapply() 
+bpmapply()
+
+```
+
+.font3[The syntax is the same than .alert[lapply, mapply(),] etc.]
+
+
+---
+layout: false
+class: middle center
+
+.font5[.light-green[vignettes]]
+
+.font2.black[Easy to follow use cases. Can contain one or many .Rmd or .Rnw files. But it need to run in less than 5 minutes. Check [BiocStyle](https://bioconductor.org/packages/release/bioc/html/BiocStyle.html) for more formatting stuff]
+
+&lt;iframe src="https://bioconductor.org/packages/release/bioc/vignettes/ChIPexoQual/inst/doc/vignette.html" width="750px" height="400px"&gt;&lt;/iframe&gt;
+
+
+
+---
+layout: false
+class: bg-main1 split-five
+
+.row[.content[
+.center.font5[.light-green[BiocStyle]]
+]]
+
+.row.slide-in-bottom[
+
+.content[
+
+.split-two[
+
+.column[.content[
+
+.font2[Need to use in the .alert[DESCRIPTION]]
+
+```
+  VignetteBuilder: knitr
+  Suggests: BiocStyle, knitr, rmarkdown
+```
+
+.font2[Then, start the .Rmd file with:]
+
+```
+  ---
+  title: "Vignette Title"
+  author: "Vignette Author"
+  package: PackageName
+  output: 
+    BiocStyle::html_document
+  vignette: &gt;
+    %\VignetteIndexEntry{Vignette Title}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}  
+  ---
+  ```
+
+
+
+]]
+
+.column[.content[
+
+.font2[Requires .alert[rmarkdown] and .alert[pandoc]
+
+Some extra macros, unique to .alert[BiocStyle]:
+]
+
+
+```
+Biocpkg("IRanges")
+CRANpkg("data.table")
+Githubpkg("rstudio/rmarkdown")
+Rpackage("MyPkg")
+```
+
+.font2[Use with .alert['r Biocpkg("IRanges")'] in the markdown document to get highlight and link]
+
+
+]]
+]]
+]
+
+---
+layout: false
+class: bg-main1 middle 
+
+.font5[.center[.light-green[CITATION]]]
+
+.font2[We can add the article citation in this file:]
+
+```
+citEntry(entry="article",
+         title = "Moderated estimation of fold change and dispersion for RNA-seq data
+                  with DESeq2",
+         author = personList( as.person("Michael I. Love"),
+                              as.person("Wolfgang Huber"),
+                              as.person("Simon Anders")),
+         year = 2014,
+         journal = "Genome Biology",
+         doi = "10.1186/s13059-014-0550-8",
+         volume = 15,
+         issue = 12,
+         pages = 550,
+         textVersion = 
+         paste("Love, M.I., Huber, W., Anders, S.", 
+               "Moderated estimation of fold change and dispersion for RNA-seq data 
+               with DESeq2",
+"Genome Biology 15(12):550 (2014)" ) )
+```
+
+
+---
+layout: false
+class: bg-main1 middle
+
+.font5.center[.light-green[Other stuff in the main dir:]]
+
+- .font4[.alert[NEWS] lists the changes per version]
+
+- .font4[.alert[src] dir with cpp functions [see Rcpp](http://www.rcpp.org/)]]]
+
+- .font4[.alert[inst] dir with extra files]
+
+- .font4[.alert[data] dir with easy to load .RData files]
+
+
+---
+layou: false
+class: bg-main1 middle
+
+.center[.font5.light-green[Software packages] .font3.alert[ General guidelines]
+
+]
+
+
+.font2[
+
+- In general almost every methods package can be submited, but it is recommended to re-use the available classes to avoid duplication of functionality. For example  `GRanges`, `SummarizedExperiment`, `Biostrings`, etc.
+
+- Minimal requierements are to pass `R CMD build`, `R CMD check`, and `R CMD BiocCheck` (from [BiocCheck package](https://bioconductor.org/packages/release/bioc/html/BiocCheck.html)) &lt;br&gt; (i.e. no `ERRORS`, no `WARNINGS`)
+
+
+]
+
+---
+layou: false
+class: bg-main1 middle
+
+.center[.font5.light-green[Software packages] .font3.alert[ General guidelines]
+
+]
+
+
+.font2[
+
+- Follow a .alert[camelCase] convention when naming functions
+
+- If using .alert[OOP]:
+
+  - Interoperate with .alert[Bioconductor] classes
+
+  - Have all the classes and generics in .alert[R/AllClasses.R] and .alert[R/AllGenerics.R], respectively
+  
+- Use .alert[&lt;-] instead of .alert[=] when doing functions
+
+- More on [bioconductor.org](https://www.bioconductor.org/developers/package-guidelines/)
+
+]
+
+---
+layout: false
+class: bg-main1 middle
+
+.center[.font5[.light-green[Developmental cycle] ] ]
+
+.center.font3[
+
+mid-April to mid-October: Most recent version of .alert[R]
+
+mid-October to mid-April: .alert[devel] version of .alert[R]
+]
+
+```
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install(version = "devel")
+BiocManager::valid()              # checks for out of date packages
+```
+
+.font2.right[ [details here](https://www.bioconductor.org/developers/how-to/useDevel/)]
+
+
+---
+layout: false
+class: bg-main1 middle
+
+.font5.center[.light-green[After submission]]
+
+.font2[After submission, and everyday the package is checked for errors, in multiple OS]
+
+&lt;iframe src="https://www.bioconductor.org/checkResults/3.8/bioc-LATEST/ChIPexoQual/malbec1-checksrc.html" width="1000px" height="400px"&gt;&lt;/iframe&gt;
+
+---
+layout: false
+class: bg-main1 split-five
+
+.row[.content[
+.font5.center[.light-green[After submission]]
+]]
+
+.row.slide-in-bottom[
+
+.content[
+
+.split-three[
+
+.column[.content[
+
+.font3[A .alert[Bioconductor] representative will check the package manually, and suggest a series of improvements.]
+
+]]
+
+.column[.content[
+
+.font3[
+
+For example:
+
+Check with [spelling](https://cran.r-project.org/web/packages/spelling/index.html) or [goodpractice](https://cran.r-project.org/web/packages/goodpractice/index.html) packages
+
+]
+
+]]
+
+.column[
+
+.content[
+
+.font3[
+Simplify certain functions, etc.
+
+Basically, they will help to improve the package
+]
+
+
+]
+]
+
+]]
+]
+
+
+
+---
+layout: false
+class: middle center
+
+.font5[.light-green[Accessibility: Download stats]]
+
+.font2.black[Bioconductor is a large body of R packages, so the accesibility increase the number of uses. For example:]
+
+&lt;iframe src="http://bioconductor.org/packages/stats/bioc/ChIPexoQual/" width="950px" height="400px"&gt;&lt;/iframe&gt;
+
+
+
+---
+layout: false
+class: bg-main1 middle center
+
+.font5.light-green[F1000Research Channel]
+
+
+&lt;img src="images/F1000Bioc.png" width="650px" style="display: block; margin: auto;" /&gt;
+
+
+---
+layout: false
+class: bg-main1 middle
+
+.center[.font5.light-green[Additional Resources]]
+
+.font2[
+
+- Ramos et al., [_"Software for the Integration of Multiomics Experiments in Bioconductor"_"](http://cancerres.aacrjournals.org/content/77/21/e39), Cancer Research 2017
+
+- Pasolli et al., [_"Accessible, curated metagenomic data through ExperimentHub"_](https://www.nature.com/articles/nmeth.4468), Nature Methods 2017
+
+- Huber et al., [_"Orchestrating high-throughput genomic analysis with Bioconductor"_](https://www.nature.com/articles/nmeth.3252), Nature Methods 2015
+
+- Lawrence et al., [_"Software for Computing and Annotating Genomic Ranges"_](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003118), PLOS Comp Bio 2013
+
+]
+
+
+---
+layout: false
+class: bg-main1 middle
+
+
+&lt;img src="https://media.giphy.com/media/l3vRfMnNtfBvwsdby/giphy.gif" width="450px" style="display: block; margin: auto;" /&gt;
+
+.font3.center[[Not yet, an example of a simple package](https://github.com/welch16/rwlib)]
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
