@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data-driven hypothesis weighting increases detection power in genome-scale multiple testing</title>
+    <meta charset="utf-8">
+    <link href="libs/remark-css-0.0.1/shinobi.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link rel="stylesheet" href="assets/bioctheme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# <a href="https://www.nature.com/articles/nmeth.3885">Data-driven hypothesis weighting increases detection power in genome-scale multiple testing</a>
+### (2019-03-07)
+
+---
+
+layout: false
+class: middle center
+
+
+
+
+&lt;img src="paper_figs/paper.png" width="600" /&gt;
+
+---
+layout: false
+class: middle center
+
+.font5[.alert[Why this paper?]]
+
+.font3.black[
+
+This is a very general method to do .alert[multiple hypothesis testing]
+
+Can dramatically improve the number of discoveries, while controlling the .alert[false discovery rate]
+
+]
+
+
+---
+layout: false
+class: top center
+
+.font4[.alert[Multiple hypothesis testing]]
+
+.font2.black[
+
+.content[
+
+.alert[Hypothesis testing:] `\(H_0: \theta \in \Theta_0\)` vs. `\(H_1: \theta \in \Theta_1\)`. 
+
+.alert[Multiple hypothesis testing:] `\(H_{0i}\)` vs. `\(H_{1i}\)` for `\(i=1,\cdots,m\)`.
+
+.alert[Solution:] For each test, we get a p.value `\(p_1,\cdots, p_m\)`, and then use 
+
+.alert[p.adjust(pvalues,method = "BH")],
+
+.alert[qvalue(pvalues)]  (equivalent to BH with some assumptions)
+
+and call it a day
+
+]
+]
+
+
+---
+layout: false
+class: top center
+
+.font4[.alert[False discovery Rate]]
+
+.font3.black[
+
+.center[
+
+.content[
+
+| | Not significant  | Significant | total | 
+| :------------: | :----------: | :--------: | 
+||    (p.value &gt; t) |  (p.value &lt;= t) |  |
+|  Null true     |   U | V | m0 |
+| Alternative true | T | S | m1 |
+| total | W | R| m | 
+]
+
+want to control .alert[FDR = E[V/R | R &gt; 0]P(R &gt; 0)] (will work with .alert[pFDR = E[V/R | R &gt; 0]] instead)
+
+]]
+
+---
+layout: false
+class: top center
+
+.font4[.alert[False discovery Rate]]
+
+.font3.black[
+
+The general idea is to define for threshold t:
+]
+
+.font2[
+`\begin{aligned}
+V(t) &amp;= \# (\text{true null } p_i \leq t) \\
+R(t) &amp;= \# (p_i \leq t ) \\
+\end{aligned}`
+]
+
+.font2[
+`\begin{aligned}
+\widehat{\mbox{FDR}}(t) &amp;= \hat{\pi}_0 (\lambda) mt / (R(t)\wedge 1)
+\end{aligned}`
+]
+.font3[Can be done with the [qvalue package](http://bioconductor.org/packages/release/bioc/html/qvalue.html)]
+
+---
+layout: false
+class: center middle
+
+.font4[.alert[IHW idea]]
+
+&lt;img src="paper_figs/fig1.jpg" width="1000" /&gt;
+
+.font2.black[
+
+.left[
+
+.content[
+
+.alert[a)] Typical multiple testing diagnostic plot for all p.values, .alert[b-c)] p.values from .alert[(a)] divided into 3 strata. For a good partition, there are going to be more discoveries in .alert[(b-c)] than in .alert[(a)].
+
+]
+]]
+
+---
+layout: false
+class: center middle
+
+.font4[.alert[IHW idea]]
+
+.font2.left[.alert[1.] Given pairs of p.values and covariates] 
+
+.font1[
+`\begin{aligned}
+(p_i,x_i),\quad i=1,\cdots,m
+\end{aligned}`
+]
+
+.font2.left[generate a partition of the pairs into G groups.]
+
+.font2.left[.alert[2.] Given a partition of the m tests, into G groups, replace .alert[FDR] :]
+
+.font1[
+`\begin{aligned}
+\widehat{\mbox{FDR}}(t,w ) &amp;= \sum_{g=1}^G m_g w_g t_g / (R(t,w)\wedge 1) \\
+\max \sum_{g=1}^G m_g &amp;\hat{F}_g(w_gt_g)\quad \text{s.t. } \widehat{\mbox{FDR}}(t,w)\leq \alpha
+\end{aligned}`
+]
+
+.font2.left[The idea is to estimate the weights that give the highest number of discoveries, the partition is based on a covariate that is independent to the p.values.]
+
+---
+layout: false
+class: left middle
+
+.split-two[
+
+.column[
+.content[
+
+.font3.center[.alert[IHW idea]]
+
+.center[
+&lt;img src="paper_figs/fig3tdr.png" width="450" /&gt;
+
+.font1[
+`\begin{aligned}
+f(p) &amp;= \pi_0 f_0(p) + \pi_1 f_1(p) \\
+\mbox{tdr}(p) &amp;= \frac{\pi_1 f_1(p)}{f(p)}
+\end{aligned}`
+
+]
+
+]
+]]
+
+.column[
+.content[
+
+.font2[
+
+.alert[a)] Schematic representation of the density f, .alert[b–d)] The .alert[tdr] of individual tests can vary.
+
+.alert[b)] The test has high power, and π0,i is well below 1
+
+.alert[c)] The test has equal power, but π0,i is higher, leading to a reduced .alert[tdr]
+
+.alert[d)] π0,i is as in .alert[b)], but the test has little power, again leading to a reduced .alert[tdr]
+]
+
+]]]
+
+
+---
+layout: false
+class: center middle
+
+.split-two[
+
+.column[
+.content[
+.font3[.alert[IHW idea]]
+
+&lt;img src="paper_figs/fig3boundary.png" width="450" /&gt;
+
+.font2.left[
+
+.alert[e)] If an informative covariate is associated with each test, the distribution of the P-values from multiple tests is different for different values of the covariate. 
+]
+
+
+]]
+
+.column[.content[
+.font2.left[
+
+.red[BH] accounts only for the P-values and not the covariates
+In contrast, the decision boundary of .blue[IHW] is a step function: each step corresponds to one weight
+
+
+.alert[f)] The .alert[tdr's density] also depends on the covariate. The decision boundary of .red[BH] leads to a suboptimal set of discoveries. In contrast, .blue[IHW] approximates a line of constant .alert[tdr], i.e. the .alert[FDR budget's] use is  more efficient
+
+]]]
+]
+
+---
+layout: false
+class: left top
+
+.font4.center[.alert[Gene expression example]]
+
+.font2[Typical .alert[DESeq2] workflow, on a gene expression dataset]
+
+
+
+.font2[The .alert[airway] dataset has 64,102 genes, and 8 samples (4 cells x 2 treatments)]
+
+
+```r
+library("DESeq2")
+library("dplyr")
+data("airway", package = "airway")
+dds &lt;- DESeqDataSet(se = airway, design = ~ cell + dex) 
+dds &lt;- DESeq(dds)
+deRes &lt;- as.data.frame(results(dds))
+```
+
+.font2[Formula based approach to use .alert[IHW]]
+
+
+```r
+library("IHW")
+ihwRes &lt;- ihw(pvalue ~ baseMean,  data = deRes, alpha = 0.1)
+```
+
+---
+layout: false
+class: left top
+
+.font4.center[.alert[Quick comparison]]
+
+.font2[Using a significance threshold of α = 0.1, we can notice]
+
+
+```r
+rejections(ihwRes)
+```
+
+```
+## [1] 4868
+```
+
+```r
+padjBH &lt;- p.adjust(deRes$pvalue, method = "BH")
+sum(padjBH &lt;= 0.1, na.rm = TRUE)
+```
+
+```
+## [1] 4099
+```
+
+.font2[.alert[We get more rejections, i.e. more discoveries!]]
+
+---
+layout: false
+class: left middle 
+
+.split-two[
+
+.column[.content[
+
+.center.top[.font3.alert[Diagnostics]]
+
+
+```r
+plot(ihwRes)
+```
+
+
+
+
+.font2[.alert[G = 22] strata and do .alert[5-fold CV]]
+
+
+```r
+plot(ihwRes,what = "decisionboundary")
+```
+
+
+&lt;img src="ihw_slides_files/figure-html/boundary-1.png" width="400" /&gt;
+
+
+
+]]
+
+.column[.content[
+
+.middle[
+&lt;img src="ihw_slides_files/figure-html/stratum-out-1.png" width="500" /&gt;
+]
+
+.font2[
+
+The weights are driven by the total number of reads, for strata with low reads the weights are .alert[nearly zero]
+
+]
+
+
+]]]
+
+
+---
+layout: false
+class: top left
+
+.font4.center[.alert[Bad covariate selection]]
+
+&lt;img src="ihw_slides_files/figure-html/bad_cov-1.png" width="900" /&gt;
+
+.font2[
+
+.alert[in the left panel] mean expression is correlated with the p.values, while
+.alert[in the right panel] the gene id's are not 
+
+]
+
+---
+layout: false
+class: top left
+
+.split-two[
+
+.column[.content[
+
+.font3.center[.alert[Good covariate: avg expression]]
+
+.center[
+.content[
+
+&lt;img src="ihw_slides_files/figure-html/deseq_hist-1.png" width="350" /&gt;
+
+&lt;img src="ihw_slides_files/figure-html/ihw_ecdf-1.png" width="350" /&gt;
+
+.font2[The groups on the .alert[right] looks like the histogram on the .alert[left]]
+
+]]
+
+
+]]
+
+.column[.content[
+
+
+&lt;img src="ihw_slides_files/figure-html/ihw_hist-1.png" width="330" /&gt;
+
+
+]]]
+
+
+---
+layout: false
+class: top left
+
+.split-two[
+
+.column[.content[
+
+.font3.center[.alert[Bad covariate: fold change]]
+
+.center[
+.content[
+
+&lt;img src="ihw_slides_files/figure-html/deseq_hist2-1.png" width="350" /&gt;
+
+&lt;img src="ihw_slides_files/figure-html/ihw_ecdf2-1.png" width="350" /&gt;
+
+.font2[All groups look .alert[different]]
+
+]]
+
+
+]]
+
+.column[.content[
+
+
+&lt;img src="ihw_slides_files/figure-html/ihw_hist2-1.png" width="330" /&gt;
+
+
+]]]
+
+
+---
+layout: false
+class: middle center
+
+.font5[.alert[Why this paper?]]
+
+.font3.black[
+
+This is a very general method to do .alert[multiple hypothesis testing]
+
+Can dramatically improve the number of discoveries, while controlling the .alert[false discovery rate]
+
+]
+
+
+---
+layout: false
+class: middle left
+
+.split-two[
+
+.column[.content[
+
+.font3.center[.alert[Many data types]]
+
+.center[
+.content[
+
+
+&lt;img src="paper_figs/fig2a.png" width="400" /&gt;
+
+
+.font2.left[
+.alert[a)] RNA-seq data with mean of normalized counts for each gene as the covariate
+
+.alert[b)] Hyperplexed mass-spectrometry data with number of peptides quantified per protein as the covariate 
+]
+
+
+]]
+
+
+]]
+
+.column[.content[
+
+
+&lt;img src="paper_figs/fig2b.png" width="400" /&gt;
+
+.font2.left[
+
+.alert[c)] histone QTL (hQTL) data set16 for chromosome 21, with genomic distance between SNPs and ChIP-seq signals as the covariate. Independent filtering with different distance cutoffs was also applied. 
+.alert[d)] Weight function learned by IHW at α = 0.1 for the hQTL data set
+
+
+]
+
+
+]]]
+
+
+---
+layout: false
+class: center middle
+
+.font4[.alert[Covariate ideas]]
+
+&lt;table class="table table-striped table-hover" style="font-size: 32px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Application &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Covariate &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Differential expression &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Total read counts per gene across all samples &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GWAS &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Minor allele frequency &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; eQTL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Distance between variant, and locus of expression or commembership in TAD &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hQTL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Distance between variant, and locus of expression or commembership in TAD &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; mQTL &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Distance between variant, and locus of expression or commembership in TAD &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; t-test &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Overall variance &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Two-sided tests &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sign of the effect &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; etc &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Signal quality, sample size &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+layout: false
+class: middle center bg-main1
+
+.font5[.alert[Extra slides]]
+
+---
+layout: false
+class: top left split-two
+
+.column[
+.content[
+.font3.center[.alert[BH]]
+
+.font2[
+Given a `\(m\)` tests, i.e. p.values `\(p_1,\cdots,p_m\)`:
+
+1. Sort the p.values `\(p_{(1)}\leq \cdots p_{(m)}\)`
+
+2. Calculate `\(\hat{k} = \mbox{argmax} \{k: p_{(k)}\leq \alpha k /m \}\)`
+
+3. Reject the hypothesis corresponding to `\(p_{(1)}\leq \cdots\leq p_{(k)}\)`
+
+.alert[Note:] If `\(\hat{\pi}(\lambda) =1\)`, then equiv. to .alert[q.values]
+]
+
+]]
+
+
+.column[
+.content[
+.font3.center[.alert[q-value]]
+
+.font2[
+
+Recall, we estimate:
+`\begin{aligned}
+\widehat{\mbox{FDR}}(t) &amp;= \hat{\pi}_0 (\lambda) mt / (R(t)\wedge 1) \\
+\hat{\pi}(\lambda) &amp;= \frac{\#(p_i &gt; \lambda) }{m(1-\lambda)}
+\end{aligned}`
+
+q.values are defined:
+
+`\begin{aligned}
+q_i(p_i) &amp;= \min_{t \geq p_i} \widehat{\mbox{FDR}}(t)
+\end{aligned}`
+
+
+]
+
+]]
+
+---
+layout: false
+class: middle center
+
+.font4[.alert[[qvalue](http://bioconductor.org/packages/release/bioc/html/qvalue.html) is equivalent to BH]]
+
+&lt;img src="paper_figs/qvalue.png" width="530" /&gt;
+
+---
+layout: false
+class: middle center bg-main1
+
+.font5[.alert[Links]]
+
+.font2.left[
+
+- [Data-driven hypothesis weighting increases detection power in genome-scale multiple testing](https://www.nature.com/articles/nmeth.3885)
+
+- [Bioconductor IHW package](http://bioconductor.org/packages/release/bioc/html/IHW.html), [vignette](http://bioconductor.org/packages/release/bioc/vignettes/IHW/inst/doc/introduction_to_ihw.html)
+
+- [The positive False Discovery Rate: A bayesian interpretation and the q-value](https://projecteuclid.org/download/pdf_1/euclid.aos/1074290335)
+
+- [Bioconductor qvalue package](http://bioconductor.org/packages/release/bioc/html/qvalue.html), [vignette](http://bioconductor.org/packages/release/bioc/vignettes/qvalue/inst/doc/qvalue.pdf)
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
