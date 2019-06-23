@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tidy on Rene Welch</title>
+    <link>/tags/tidy/</link>
+    <description>Recent content in tidy on Rene Welch</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>{year}</copyright>
+    <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/tags/tidy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tidy loading of RData files in parallel</title>
+      <link>/post/tidy-loading-of-rdata-files-in-parallel/</link>
+      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tidy-loading-of-rdata-files-in-parallel/</guid>
+      <description>
+
+
+&lt;p&gt;In my last project, I have been using this function very frequently:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;load2env &amp;lt;- function(file,env = new.env())
+{
+  load(file,envir = env)
+  env
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This function loads the RData file into the environment &lt;code&gt;env&lt;/code&gt;, which will usually return. However, if we have multiple files to load simultaneously, when trying to load multiple files in parallel we would run into an error, because it would be creating many environments at the same time.&lt;/p&gt;
+&lt;p&gt;Using the new &lt;a href=&#34;https://github.com/DavisVaughan/furrr&#34;&gt;furrr&lt;/a&gt; or any other package that allows parallel processing, and creating the environments in advance, we can load many RData files in paralele by using:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(furrr)
+
+plan(multiprocess)
+
+my_data = tibble(
+  files = list.files( my_dir ,full.names = TRUE )) %&amp;gt;% 
+  mutate(
+    env = map(files,  ~ new.env()),
+    data = future_map2( files, env, load2env   ) %&amp;gt;% 
+      map(as.list)
+  )&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

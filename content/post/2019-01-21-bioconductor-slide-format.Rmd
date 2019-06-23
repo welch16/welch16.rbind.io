@@ -1,0 +1,32 @@
+---
+title: Bioconductor slide format
+author: ''
+date: '2019-01-21'
+slug: bioconductor-slide-format
+categories:
+  - Bioconductor
+  - xaringan
+  - R
+tags:
+  - slides
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-01-21'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+Last week, I gave a presentation about developing __R packages__ with Bioconductor. The slides are available [here](http://welch16.rbind.io/bioc_slides/2019_01_creating_bioc_package#1)
+
+```{r bioc_slides,include=TRUE,echo=FALSE,eval=TRUE}
+
+knitr::include_url("http://welch16.rbind.io/bioc_slides/2019_01_creating_bioc_package#1")
+
+```
+
+Besides the slides, I created a format based on the amazing [ninjutsu, kunoichi](https://emitanaka.github.io/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1) with the [Bioconductor colors](https://github.com/welch16/create_bioc_package/blob/master/assets/bioctheme.css).

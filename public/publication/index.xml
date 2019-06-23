@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publications on Rene Welch</title>
+    <link>/publication/</link>
+    <description>Recent content in Publications on Rene Welch</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>{year}</copyright>
+    <lastBuildDate>Sat, 29 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/publication/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data Exploration, quality control and statistical analysis of ChIP-exo/nexus experiments</title>
+      <link>/publication/welch17/</link>
+      <pubDate>Sat, 29 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/welch17/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Predicting gene expression in massively parallel reporter assays: A comparative study</title>
+      <link>/publication/kreimer17/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/kreimer17/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Epstein-Barr Virus Nuclear Antigen 3 (EBNA3) Proteins Regulate EBNA2 Binding to Distinct RBPJ Genomic Sites</title>
+      <link>/publication/wang15/</link>
+      <pubDate>Mon, 21 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/wang15/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Perm-seq: Mapping Protein-DNA Interactions in Segmental Duplication and Highly Repetitive Regions of Genomes with Prior-Enhanced Read Mapping</title>
+      <link>/publication/zeng15/</link>
+      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/zeng15/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

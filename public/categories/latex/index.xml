@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Latex on Rene Welch</title>
+    <link>/categories/latex/</link>
+    <description>Recent content in Latex on Rene Welch</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>{year}</copyright>
+    <lastBuildDate>Fri, 14 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/categories/latex/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>University of Wisconsin Poster format</title>
+      <link>/post/university-of-wisconsin-poster-format/</link>
+      <pubDate>Fri, 14 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/university-of-wisconsin-poster-format/</guid>
+      <description>
+
+
+&lt;p&gt;I recently presented a poster at &lt;a href=&#34;https://www.iscb.org/glbio2019&#34;&gt;GLBIO 2019&lt;/a&gt;. I adapted the &lt;a href=&#34;https://www.overleaf.com/latex/templates/emory-poster-template/skpfmpxjnqdh&#34;&gt;Emory Poster template&lt;/a&gt; to have &lt;a href=&#34;https://www.overleaf.com/latex/templates/uw-madison-poster-template/tfbyxyhbymsq&#34;&gt;UW Madison’s colors&lt;/a&gt;. And it will look similar to:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/uwposter.jpeg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;I hope this is useful!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

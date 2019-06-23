@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Rene Welch</title>
+    <link>/project/</link>
+    <description>Recent content in Projects on Rene Welch</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>{year}</copyright>
+    <lastBuildDate>Tue, 03 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ChIPUtils</title>
+      <link>/project/chiputils/</link>
+      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/project/chiputils/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/welch16/ChIPUtils&#34; target=&#34;_blank&#34;&gt;ChIPUtils&lt;/a&gt; is an R package that contains many functions used for exploratory analysis of ChIP-seq and ChIP-exo data. It includes some commonly used quality control measures:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PCR bottleneck coefficient&lt;/li&gt;
+&lt;li&gt;Strand cross-correlation&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ChIPexoQual</title>
+      <link>/project/chipexoqual/</link>
+      <pubDate>Wed, 06 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/project/chipexoqual/</guid>
+      <description>&lt;p&gt;ChIP-exo/nexus experiments rely on innovative modifications of the commonly used ChIP-seq protocol for high resolution mapping of transcription factor binding sites. Although many aspects of the ChIP-exo data analysis are similar to those of ChIP-seq, these high throughput experiments pose a number of unique quality control and analysis challenges. We develop a novel statistical quality control pipeline and accompanying R/Bioconductor package, ChIPexoQual, to enable exploration and analysis of ChIP-exo and related experiments. ChIPexoQual evaluates a number of key issues including strand imbalance, library complexity, and signal enrichment of data. Assessment of these features are facilitated through diagnostic plots and summary statistics computed over regions of the genome with varying levels of coverage.&lt;/p&gt;
+
+&lt;p&gt;The package is available in &lt;a href=&#34;https://bioconductor.org/packages/release/bioc/html/ChIPexoQual.html&#34; target=&#34;_blank&#34;&gt;Bioconductor&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Segvis</title>
+      <link>/project/segvis/</link>
+      <pubDate>Fri, 03 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/project/segvis/</guid>
+      <description>&lt;p&gt;An R package to visualize ChIP-seq experiments across a set of pre-defined peaks. The package requires a set of pre-defined genomic regions, and aligned reads in bam format. We can do many tasks with it, some examples are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Extracts read data of specified input regions&lt;/li&gt;
+&lt;li&gt;Plot peaks of different conditions across the same set of regions&lt;/li&gt;
+&lt;li&gt;Plot central measures for a set of regions with the same width&lt;/li&gt;
+&lt;li&gt;Subset regions according to used defined annotations&lt;/li&gt;
+&lt;li&gt;Plot the heatmap of signal curves accross regions separated by annotation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The package is available &lt;a href=&#34;https://github.com/welch16/Segvis&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

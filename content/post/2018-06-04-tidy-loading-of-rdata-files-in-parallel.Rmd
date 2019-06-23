@@ -1,0 +1,51 @@
+---
+title: Tidy loading of RData files in parallel
+author: ''
+date: '2018-06-04'
+slug: tidy-loading-of-rdata-files-in-parallel
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2018-06-04'
+categories: ["R"]
+tags: ["load data", "furrr", "tidy"]
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+In my last project, I have been using this function very frequently:
+
+```{r fun,include=TRUE,eval=FALSE,echo=TRUE}
+load2env <- function(file,env = new.env())
+{
+  load(file,envir = env)
+  env
+}
+
+```
+
+This function loads the RData file into the environment `env`, which will usually return. However, if we have multiple files to load simultaneously, when trying to load multiple files in parallel we would run into an error, because it would be creating many environments at the same time.
+
+Using the new [furrr](https://github.com/DavisVaughan/furrr) or any other package that allows parallel processing, and creating the environments in advance, we can load many RData files in paralele by using:
+
+```{r load_parallel,include=TRUE,echo=TRUE,eval=FALSE}
+
+library(furrr)
+
+plan(multiprocess)
+
+my_data = tibble(
+  files = list.files( my_dir ,full.names = TRUE )) %>% 
+  mutate(
+    env = map(files,  ~ new.env()),
+    data = future_map2( files, env, load2env   ) %>% 
+      map(as.list)
+  )
+
+
+```
+

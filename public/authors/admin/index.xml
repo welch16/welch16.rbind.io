@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rene Welch</title>
+    <link>/authors/admin/</link>
+    <description>Recent content on Rene Welch</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>{year}</copyright>
+    <lastBuildDate>Sat, 29 Jul 2017 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/authors/admin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data Exploration, quality control and statistical analysis of ChIP-exo/nexus experiments</title>
+      <link>/publication/welch17/</link>
+      <pubDate>Sat, 29 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/welch17/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Predicting gene expression in massively parallel reporter assays: A comparative study</title>
+      <link>/publication/kreimer17/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/kreimer17/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Epstein-Barr Virus Nuclear Antigen 3 (EBNA3) Proteins Regulate EBNA2 Binding to Distinct RBPJ Genomic Sites</title>
+      <link>/publication/wang15/</link>
+      <pubDate>Mon, 21 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/wang15/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Perm-seq: Mapping Protein-DNA Interactions in Segmental Duplication and Highly Repetitive Regions of Genomes with Prior-Enhanced Read Mapping</title>
+      <link>/publication/zeng15/</link>
+      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/zeng15/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/authors/admin/</link>
+      <pubDate>Sat, 29 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/admin/</guid>
+      <description>&lt;p&gt;I am an Assistant Scientist at the &lt;a href=&#34;https://cancer.wisc.edu/research/resources/cisr/&#34; target=&#34;_blank&#34;&gt;CISR&lt;/a&gt; in the University of Wisconsin - Madison Carbone Cancer Center, and a Postdoc under the instruction of &lt;a href=&#34;http://pages.cs.wisc.edu/~ong/&#34; target=&#34;_blank&#34;&gt;Dr. Irene Ong&lt;/a&gt;. My research interests lie in the application of statistics to problems in computational biology, and lately I have been working on statistical methods for the analysis of microbiome data. I am also passionate in the creation of software to facilitate the analysis and interpretation of biological data.&lt;/p&gt;
+
+&lt;p&gt;I received my PhD in Statistics at the University of Wisconsin - Madison Department of Statistics where I worked with Dr. Sunduz Keles on problems arising in epigenetics, focusing on ChIP-seq, and ChIP-exo data.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

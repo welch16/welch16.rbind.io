@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data visualization on Rene Welch</title>
+    <link>/tags/data-visualization/</link>
+    <description>Recent content in Data visualization on Rene Welch</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 03 Jul 2015 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/tags/data-visualization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Segvis</title>
+      <link>/project/segvis/</link>
+      <pubDate>Fri, 03 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/project/segvis/</guid>
+      <description>&lt;p&gt;An R package to visualize ChIP-seq experiments across a set of pre-defined peaks. The package requires a set of pre-defined genomic regions, and aligned reads in bam format. We can do many tasks with it, some examples are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Extracts read data of specified input regions&lt;/li&gt;
+&lt;li&gt;Plot peaks of different conditions across the same set of regions&lt;/li&gt;
+&lt;li&gt;Plot central measures for a set of regions with the same width&lt;/li&gt;
+&lt;li&gt;Subset regions according to used defined annotations&lt;/li&gt;
+&lt;li&gt;Plot the heatmap of signal curves accross regions separated by annotation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The package is available &lt;a href=&#34;https://github.com/welch16/Segvis&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
