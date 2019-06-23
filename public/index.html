@@ -1,1228 +1,2164 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-us">
 
 <head>
-	<meta name="generator" content="Hugo 0.54.0" />
-<meta charset="utf-8">
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="no-referrer">
-<meta name="description" content="Example blog">
 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.3.1">
 
-    <meta property="twitter:site" content="@ReneWelch">
-
-<meta property="og:site_name" content="Rene Welch" />
-<meta property="og:locale" content="nn_NO" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="/" />
-<meta property="og:title" content="Rene Welch" />
-<meta property="twitter:title" content="Rene Welch">
-
-    <meta property="og:image" content="/img/banner.png">
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:image" content="/img/banner.png">
-
-<meta property="og:description" content="Example blog">
-<meta property="twitter:description" content="Example blog">
-
-<title>
-
-
-    Rene Welch
-
-</title>
-<link rel="canonical" href="/">
-
-
-<style media="screen">
-  @font-face {
-  font-family: 'Nexa Bold';
-  src: url('/fonts/Nexa Bold.otf');
-}
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section, div.column {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol, ul {
-  list-style: none;
-}
-blockquote, q {
-  quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-a,
-a:visited,
-a:focus,
-a:active {
-  text-decoration: none;
-}
-html {
-  height: 100%;
-  font-size: 16px;
-}
-body {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  -webkit-justify-content: flex-start;
-  -moz-justify-content: flex-start;
-  -ms-justify-content: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-  min-height: 100%;
-  font-weight: 400;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
-  color: #111111;
-  line-height: 1.6;
-  text-rendering: optimizeLegibility !important;
-}
-.icon {
-  text-rendering: geometricPrecision !important;
-}
-section {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  width: 100%;
-}
-div.column {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  width: 100%;
-}
-.container {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  width: 100%;
-}
-div.header .container {
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-}
-div.header .content {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-}
-div.header .container .logo {
-  max-width: 100px;
-  margin-left: -2em;
-}
-div.header .name {
-  padding-top: 20px;
-  font-size: 28px;
-  font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
-  letter-spacing: -0.005rem;
-  text-transform: uppercase;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  color: #333333;
-}
-div.header nav {
-  margin-bottom: 16px;
-}
-div.header nav ul {
-  list-style: none;
-  text-align: center;
-  display: -webkit-inline-flex;
-  display: -moz-inline-flex;
-  display: -ms-inline-flexbox;
-  display: -ms-inline-flex;
-  display: inline-flex;
-}
-div.header nav ul li {
-  margin-left: 6px;
-  margin-right: 6px;
-}
-div.header nav ul li:first-child {
-  margin-left: 0;
-}
-div.header nav ul li:last-child {
-  margin-right: 0;
-}
-div.header nav ul a {
-  color: #555555;
-  font-weight: 400;
-  font-size: 14px;
-  text-transform: uppercase;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
-  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-}
-div.header nav ul a:hover {
-  color: #111111;
-}
-div.footer .container {
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  flex-direction: column-reverse;
-  width: 100%;
-  text-align: center;
-}
-div.footer .container a {
-  font-size: 14px;
-  margin-left: 6px;
-  margin-right: 6px;
-  opacity: 0.6;
-  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-}
-div.footer .container a:first-child {
-  margin-left: 0;
-}
-div.footer .container a:last-child {
-  margin-right: 0;
-}
-div.footer .container a:hover {
-  opacity: 0.8;
-}
-div.footer .container a .icon {
-  width: 16px;
-  height: 16px;
-}
-div.footer .container .copyright {
-  flex-grow: 0.5;
-  text-align: start;
-}
-div.footer .container .icons {
-  flex-grow: 0.5;
-  text-align: end;
-}
-div.main .container {
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  -webkit-justify-content: flex-start;
-  -moz-justify-content: flex-start;
-  -ms-justify-content: flex-start;
-  justify-content: flex-start;
-}
-div.main .content {
-  color: #111111;
-  font-size: 16px;
-}
-div.main .content .title-container {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-justify-content: space-between;
-  -moz-justify-content: space-between;
-  -ms-justify-content: space-between;
-  justify-content: space-between;
-}
-div.main .content .posts {
-  margin-bottom: 4em;
-}
-div.main .content .page-heading {
-  font-size: 20px;
-  font-weight: 700;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
-  letter-spacing: -0.005rem;
-  text-transform: uppercase;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  color: #333333;
-  margin-bottom: 16px;
-}
-div.main .content .front-matter .page-heading {
-  margin-bottom: 0;
-}
-div.main .content .front-matter .meta {
-  font-size: 14px;
-  color: #666666;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  margin-bottom: 32px;
-}
-div.main .content .front-matter .date,
-div.main .content .front-matter .author,
-div.main .content .front-matter .tags,
-div.main .content .front-matter .word-count,
-div.main .content .front-matter .middot:before {
-  display: none;
-}
-div.main .content .front-matter .middot:before {
-  font-size: 6px;
-  margin: 0 6px;
-  vertical-align: middle;
-  content: "•";
-}
-div.main .content .front-matter .tags ul {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-}
-div.main .content .front-matter .tags ul li {
-  -webkit-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -moz-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -ms-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -o-transition: opacity 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-}
-div.main .content .front-matter .tags ul li:hover {
-  opacity: 0.7;
-}
-div.main .content .front-matter .tags ul li a {
-  color: #666666;
-}
-div.main .container.f04 {
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-}
-div.main .container.f04 .content {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-}
-div.main .container.f04 .content .num {
-  margin: 30px 0px 30px 0;
-  font-weight: 400;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
-  font-size: 50px;
-}
-div.main .container.f04 .content .detail {
-  margin-bottom: 40px;
-}
-div.main .container .content .groupby {
-  margin-top: 1em;
-  padding-left: 0.5em;
-}
-div.main .container .content .post-item {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  display: list-item;
-  list-style: disc inside;
-}
-div.main .container .content .post-item .meta {
-  font-size: 14px;
-  color: #666666;
-  display: none;
-  min-width: 100px;
-}
-div.main .container .content .see-more {
-  font-style: italic;
-  float: right;
-  font-size: 0.9em;
-  margin-top: 2em;
-  color: #313537;
-}
-div.main .container .content .see-more:hover {
-  color: #666;
-}
-section {
-  padding: 0 16px;
-}
-div.column {
-  padding: 0 16px;
-}
-div.header {
-  padding-top: 10px;
-}
-div.header-home {
-  padding-top: 36px;
-}
-div.main {
-  padding-top: 32px;
-}
-div.main .container .content .post-item .meta {
-    display: block;
-}
-div.main .container .content .post-item {
-    display: flex;
-    list-style: none;
-}
-a {
-  color: #428bca;
-  -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-  -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-}
-a:hover {
-  color: #2a6496;
-}
-img {
-  max-width: 100%;
-}
-div.main .content {
-    width: 100%;
-}
-div.main .content .markdown {
-  font-size: 1.1em;
-  line-height: 1.75em;
-  color: #313537;
-  font-family: serif;
-  font-weight: 300;
-}
-div.main .content .markdown h1,
-div.main .content .markdown h2,
-div.main .content .markdown h3,
-div.main .content .markdown h4,
-div.main .content .markdown h5,
-div.main .content .markdown h6 {
-  font-size: 22px;
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
-  letter-spacing: -0.005rem;
-  font-weight: 700;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  color: #333333;
-  text-transform: none;
-  margin-top: 1.75rem;
-}
-div.main .content .markdown h1 {
-  font-size: 1.75rem;
-  margin-bottom: 2rem;
-}
-div.main .content .markdown h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-div.main .content .markdown h3 {
-  font-size: 1em;
-  margin-bottom: 1rem;
-}
-div.main .content .markdown h4,
-div.main .content .markdown h5,
-div.main .content .markdown h6 {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  letter-spacing: none;
-}
-div.main .content .markdown code,
-div.main .content .markdown pre {
-  font-family: 'Menlo', monospace;
-  font-size: 0.98rem;
-  background-color: #f7f7f7;
-}
-div.main .content .markdown code {
-  /* enclosed by single backtick (`) */
-  padding: .15em .5em;
-  border-radius: 2px;
-}
-div.main .content .markdown pre {
-  /* Hugo specific: consider using the 'highlight' shortcode */
-  display: block;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  padding: 1rem;
-  line-height: 1.5em;
-  white-space: pre;
-  word-break: break-all;
-  word-wrap: break-word;
-}
-div.main .content .markdown pre code {
-  /* enclosed by 4 backticks (````) */
-  padding: 0;
-  font-size: 0.9rem;
-}
-div.main .content .markdown a code {
-  color: #428bca !important;
-}
-div.main .content .markdown a code:hover {
-  text-decoration: underline;
-}
-div.main .content .markdown p {
   
-  text-align: justify;
+
   
-  margin-top: 0;
-  margin-bottom: 1em;
-}
-div.main .content .markdown ul,
-div.main .content .markdown ol,
-div.main .content .markdown dl {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-}
-div.main .content .markdown dt {
-  font-weight: bold;
-}
-div.main .content .markdown dd {
-  margin-bottom: .5rem;
-}
-div.main .content .markdown ul {
-  list-style-type: disc;
-  list-style-position: outside;
-  margin-bottom: 1.25rem;
-}
-div.main .content .markdown ol {
-  list-style-type: decimal;
-  margin-bottom: 1.25rem;
-}
-div.main .content .markdown li {
-  margin-left: 2em;
-}
-div.main .content .markdown em {
-  font-style: italic;
-}
-div.main .content .markdown strong {
-  font-weight: 700;
-}
-div.main .content .markdown hr {
-  position: relative;
-  margin: 1.75rem 0;
-  border: 0;
-  border-top: 1px solid #808080;
-  border-top: 1px solid #999999;
-}
-div.main .content .markdown abbr {
-  font-size: 0.85rem;
-  font-weight: bold;
-  color: #666666;
-  text-transform: uppercase;
-}
-div.main .content .markdown abbr[title] {
-  cursor: help;
-  border-bottom: 1px dotted #808080;
-}
-div.main .content .markdown blockquote {
-  padding: .5rem 1rem;
-  margin: .8rem 0;
-  color: #7a7a7a;
-  border-left: .25rem solid #e5e5e5;
-}
-div.main .content .markdown blockquote p:last-child {
-  margin-bottom: 0;
-}
-div.main .content .markdown figure {
-  width: 100%;
-  background: #fff;
-  margin-bottom: 1em;
-}
-div.main .content .markdown figure img {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  display: block;
-  position: static;
-  margin: auto;
-}
-div.main .content .markdown table {
-  margin-bottom: 1rem;
-  width: 100%;
-  border: 1px solid #e5e5e5;
-  border-collapse: collapse;
-}
-div.main .content .markdown td,
-div.main .content .markdown th {
-  padding: .25rem .5rem;
-  border: 1px solid #e5e5e5;
-}
-div.main .content .markdown tbody tr:nth-child(odd) td,
-div.main .content .markdown tbody tr:nth-child(odd) th {
-  background-color: #f7f7f7;
-}
-div.main .content .markdown .footnotes ol {
-  list-style-type: decimal;
-  margin-left: 16px;
-}
-div.main .content .markdown .footnotes li {
-  list-style-type: unset;
-}
-div.main .content .markdown .footnote-ref {
-  font-size: 0.7em;
-}
-div.main .content .navigation {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  padding: 2em;
-}
-div.main .content .navigation div {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  margin-top: 1em;
-}
-div.main .content .navigation .icon {
-  width: 16px;
-  height: 16px;
-}
-div.main .content .navigation a {
-  width: 250px;
-  margin: 0 1em;
-  text-align: center;
-  font-style: italic;
-  color: #313537;
-}
-div.main .content .share, div.main .content .share div {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: -ms-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  justify-content: center;
-}
-div.main .content .share {
-  background-color: rgba(152, 152, 152, 0.07);
-  padding: 1em 0;
-}
-div.main .content .share a {
-  margin: 0 6px;
-}
-kbd {
-  padding: 0.1em 0.6em;
-  border: 1px solid #ccc;
-  font-size: 11px;
-  font-family: Arial,Helvetica,sans-serif;
-  background-color: #f7f7f7;
-  color: #333;
-  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
-  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
-  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  display: inline-block;
-  margin: 0 0.1em;
-  text-shadow: 0 1px 0 #fff;
-  line-height: 1.4;
-  white-space: nowrap;
-}
+  
+  
+  
+  
+    
+    
+    
+  
+  
 
-/* Fonts */
+  <meta name="author" content="Rene Welch">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Rene Welch&#39;s website">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/">
+
+  
 
 
-.wf-raleway-n4-active body, 
-.wf-raleway-n4-active div.header nav ul a,
-.wf-raleway-n7-active div.main .content .page-heading,
-.wf-raleway-n2-active div.main .container.f04 .content .num,
-.wf-raleway-n7-active div.main .content .markdown h1,
-.wf-raleway-n7-active div.main .content .markdown h2,
-.wf-raleway-n7-active div.main .content .markdown h3,
-.wf-raleway-n7-active div.main .content .markdown h4,
-.wf-raleway-n7-active div.main .content .markdown h5,
-.wf-raleway-n7-active div.main .content .markdown h6 {
-      font-family: 'Raleway';
-}
+  
 
-.wf-merriweather-n3-active div.main .content .markdown {
-      font-family: 'Merriweather';
-}
+  
+  
+  
+  <meta name="theme-color" content="#328cc1">
+  
 
-.wf-ubuntu-mono-n4-active div.main .content .markdown code,
-.wf-ubuntu-mono-n4-active div.main .content .markdown pre {
-      font-family: 'Ubuntu Mono';
-}
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
 
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/magula.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/magula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
 
-</style>
-<style media="(min-width: 600px)">
-  body {
--webkit-justify-content: center;
--moz-justify-content: center;
--ms-justify-content: center;
-justify-content: center;
-}
-.non-narrow.zero-top-spacing {
-padding-top: 0 !important;
-}
-section {
-padding: 0 16px;
-margin-left: 100px;
-margin-right: 100px;
-max-width: 750px;
-}
-div.column {
-padding: 0 16px;
-max-width: 750px;
-}
-div.header {
-background-color: transparent;
-}
-div.header .container {
--webkit-justify-content: flex-start;
--moz-justify-content: flex-start;
--ms-justify-content: flex-start;
-justify-content: flex-start;
-}
-div.header .container .logo {
-margin: 0;
-}
-div.header-home .container .logo {
-max-width: 180px;
-margin-left: 20px;
-}
-div.header-home .name-home {
-padding-top: 30px;
-font-size: 40px;
-}
-div.header-home nav ul a {
-font-size: 18px;
-}
-div.header .content {
--webkit-align-items: flex-start;
--moz-align-items: flex-start;
--ms-align-items: flex-start;
-align-items: flex-start;
-}
-div.header .name {
-color: #333333;
-}
-div.header nav {
-font-size: 14px;
-margin-bottom: 0;
-}
-div.header nav ul {
-text-align: left;
-}
-div.header nav ul a {
-color: #666666;
-}
-div.header nav ul a:hover {
-color: #333333;
-}
-div.footer {
-background-color: transparent;
-}
-div.footer .container {
-flex-direction: row;
-}
-div.footer .container a {
-margin-left: 3px;
-margin-right: 3px;
-color: #666666;
-}
-div.footer .container a:hover {
-color: #333333;
-}
-div.footer .container a .icon {
-font-size: 18px;
-}
-div.footer .container a .icon.larger {
-font-size: 20px;
-}
-div.main .content .front-matter .date,
-div.main .content .front-matter .author,
-div.main .content .front-matter .tags,
-div.main .content .front-matter .word-count,
-div.main .content .front-matter .middot:before {
-display: initial;
-}
-div.main .container.f04 {
--webkit-justify-content: flex-start;
--moz-justify-content: flex-start;
--ms-justify-content: flex-start;
-justify-content: flex-start;
-}
-div.main .container.f04 .content {
--webkit-align-items: flex-start;
--moz-align-items: flex-start;
--ms-align-items: flex-start;
-align-items: flex-start;
-}
-div.main .container.f04 .content .num {
-margin: 0 0 10px 0;
-font-size: 32px;
-}
-div.main .container.f04 .content .detail {
-margin-bottom: 30px;
-}
-.container {
-padding: 0 30px;
-}
-div.header {
-padding-top: 60px;
-padding-bottom: 60px;
-}
-div.footer {
-padding-top: 30px;
-padding-bottom: 60px;
-}
-div.main {
-padding-top: 0;
-}
-div.main .container .content .post-item {
-display: flex;
-list-style: none;
-padding-left: 1.5em;
-}
-div.main .container .content .post-item .meta {
-display: block;
-}
-div.main.post {
-padding-top: 60px;
-padding-bottom: 60px;
-}
-div.main .content .markdown blockquote {
-padding-right: 5rem;
-padding-left: 1.25rem;
-}
-div.main .content .navigation {
--webkit-flex-direction: row;
--moz-flex-direction: row;
--ms-flex-direction: row;
-flex-direction: row;
-}
-div.main .content .navigation div {
-margin-top: 0em;
-}
+    
 
-</style>
-<style media="(min-width: 769px)">
-  div.main .content .markdown figure {
-width: 110%;
-margin-left: -4%;
-}
-div.main .content .markdown img {
-max-width: 110%;
-width: 110%;
-margin-left: -4%;
-}
-div.main .content .markdown pre {
-width: 110%;
-margin-left: -4%;
-}
+    
 
-</style>
+  
 
-<noscript>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,700,700i" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
-</noscript>
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.min.6d15b98bfec35045f2c2c0fea22dc68f.css">
+
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Rene Welch">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Rene Welch">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@ReneWelch">
+  <meta property="twitter:creator" content="@ReneWelch">
+  
+  <meta property="og:site_name" content="Rene Welch">
+  <meta property="og:url" content="/">
+  <meta property="og:title" content="Rene Welch">
+  <meta property="og:description" content="Rene Welch&#39;s website"><meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="og:updated_time" content="2019-06-14T00:00:00&#43;00:00">
+  
+
+  
 
 
-  <style type="text/css" media="screen">
-    .hljs{display:block;background:white;padding:0.5em;color:#333333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-string,.hljs-variable,.hljs-template-variable,.hljs-strong,.hljs-emphasis,.hljs-quote{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-literal,.hljs-symbol,.hljs-bullet,.hljs-attribute{color:#0086b3}.hljs-section,.hljs-name{color:#63a35c}.hljs-tag{color:#333333}.hljs-title,.hljs-attr,.hljs-selector-id,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}
-  </style>
-
-
-
-  <style type="text/css" media="screen">
-    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;position:absolute;-webkit-transform:translateZ(0);transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px);-webkit-filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);-webkit-filter:blur(20px);-webkit-animation:sharpen .5s both;animation:sharpen .5s both}@-webkit-keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}@keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}
-  </style>
-
-
-
-  <style type="text/css" media="screen">
-    /*!
- * Social Share Kit v1.0.7 (http://socialsharekit.com)
- * Copyright 2015 Social Share Kit / Kaspars Sprogis.
- * Licensed under Creative Commons Attribution-NonCommercial 3.0 license:
- * https://github.com/darklow/social-share-kit/blob/master/LICENSE
- * ---
- */@font-face{font-family:'social-share-kit';src:url('/fonts/social-share-kit.eot');src:url('/fonts/social-share-kit.eot?#iefix') format('embedded-opentype'),url('/fonts/social-share-kit.woff') format('woff'),url('/fonts/social-share-kit.ttf') format('truetype'),url('/fonts/social-share-kit.svg#social-share-kit') format('svg');font-weight:normal;font-style:normal}.ssk:before{display:inline-block;font-family:"social-share-kit" !important;font-style:normal !important;font-weight:normal !important;font-variant:normal !important;text-transform:none !important;speak:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ssk-facebook:before{content:"a";text-indent:4px;margin-right:-4px}.ssk-twitter:before{content:"b"}.ssk-google-plus:before{content:"v"}.ssk-google-plus-old:before{content:"c"}.ssk-email:before{content:"d";top:-1px;position:relative}.ssk-pinterest:before{content:"e"}.ssk-tumblr:before{content:"f"}.ssk-linkedin:before{content:"g"}.ssk-github:before{content:"h"}.ssk-vk:before{content:"i"}.ssk-instagram:before{content:"j"}.ssk-amazon:before{content:"k"}.ssk-skype:before{content:"s"}.ssk-youtube:before{content:"x"}.ssk-vimeo:before{content:"u"}.ssk-ebay:before{content:"p"}.ssk-apple:before{content:"l"}.ssk-behance:before{content:"q"}.ssk-dribble:before{content:"n"}.ssk-android:before{content:"o"}.ssk-whatsapp:before{content:"m"}.ssk-reddit:before{content:"r"}.ssk-reddit2:before{content:"t"}.ssk-link:before{content:"w"}.ssk{background-color:#757575;color:white;display:inline-block;font-size:22px;line-height:1px;margin-right:2px;margin-bottom:2px;padding:7px;text-align:center;text-decoration:none;transition:background-color .1s;-webkit-transition:background-color .1s;-moz-transition:background-color .1s;-ms-transition:background-color .1s;-o-transition:background-color .1s}.ssk:before,.ssk .glyphicon,.ssk .fa{position:relative;font-size:22px;top:0;vertical-align:middle}.ssk.ssk-xs,.ssk-xs>.ssk{padding:4px}.ssk.ssk-xs:before,.ssk-xs>.ssk:before,.ssk.ssk-xs .glyphicon,.ssk-xs>.ssk .glyphicon,.ssk.ssk-xs .fa,.ssk-xs>.ssk .fa{font-size:15px}.ssk.ssk-sm,.ssk-sm>.ssk{padding:5px}.ssk.ssk-sm:before,.ssk-sm>.ssk:before,.ssk.ssk-sm .glyphicon,.ssk-sm>.ssk .glyphicon,.ssk.ssk-sm .fa,.ssk-sm>.ssk .fa{font-size:20px}.ssk.ssk-lg,.ssk-lg>.ssk{padding:9px}.ssk.ssk-lg:before,.ssk-lg>.ssk:before,.ssk.ssk-lg .glyphicon,.ssk-lg>.ssk .glyphicon,.ssk.ssk-lg .fa,.ssk-lg>.ssk .fa{font-size:28px}.ssk:last-child{margin-right:0}.ssk:hover{background-color:#424242}.ssk:hover,.ssk:focus{color:#fff;text-decoration:none}.ssk.ssk-round,.ssk-round .ssk{border-radius:50%}.ssk.ssk-round:before,.ssk-round .ssk:before{text-indent:0;margin-right:0}.ssk.ssk-rounded,.ssk-rounded .ssk{border-radius:15%}.ssk.ssk-icon{color:#757575;padding:2px;font-size:24px}.ssk.ssk-icon,.ssk.ssk-icon:hover{background-color:transparent}.ssk.ssk-icon:hover{color:#424242}.ssk.ssk-icon.ssk-xs,.ssk-xs>.ssk.ssk-icon{font-size:16px}.ssk.ssk-icon.ssk-sm,.ssk-sm>.ssk.ssk-icon{font-size:20px}.ssk.ssk-icon.ssk-lg,.ssk-lg>.ssk.ssk-icon{font-size:28px}.ssk.ssk-text{overflow:hidden;font-size:17px;line-height:normal;padding-right:10px}.ssk.ssk-text:before,.ssk.ssk-text .glyphicon,.ssk.ssk-text .fa{margin:-7px 10px -7px -7px;padding:7px;background-color:rgba(0,0,0,0.15);vertical-align:bottom;text-indent:0}.ssk-block .ssk.ssk-text{display:block;margin-right:0;text-align:left}.ssk.ssk-text.ssk-xs,.ssk-xs>.ssk.ssk-text{font-size:12px;padding-right:6px}.ssk.ssk-text.ssk-xs:before,.ssk-xs>.ssk.ssk-text:before,.ssk.ssk-text.ssk-xs .glyphicon,.ssk-xs>.ssk.ssk-text .glyphicon,.ssk.ssk-text.ssk-xs .fa,.ssk-xs>.ssk.ssk-text .fa{margin:-4px 6px -4px -4px;padding:4px}.ssk.ssk-text.ssk-sm,.ssk-sm>.ssk.ssk-text{font-size:16px;padding-right:7px}.ssk.ssk-text.ssk-sm:before,.ssk-sm>.ssk.ssk-text:before,.ssk.ssk-text.ssk-sm .glyphicon,.ssk-sm>.ssk.ssk-text .glyphicon,.ssk.ssk-text.ssk-sm .fa,.ssk-sm>.ssk.ssk-text .fa{margin:-5px 7px -5px -5px;padding:5px}.ssk.ssk-text.ssk-lg,.ssk-lg>.ssk.ssk-text{font-size:22px;padding-right:13px}.ssk.ssk-text.ssk-lg:before,.ssk-lg>.ssk.ssk-text:before,.ssk.ssk-text.ssk-lg .glyphicon,.ssk-lg>.ssk.ssk-text .glyphicon,.ssk.ssk-text.ssk-lg .fa,.ssk-lg>.ssk.ssk-text .fa{margin:-9px 13px -9px -9px;padding:9px}.ssk-group,.ssk-sticky{font-size:0}.ssk-sticky{top:0;position:fixed;z-index:2000}.ssk-sticky .ssk{transition:padding .1s ease-out;-webkit-transition:padding .1s ease-out;-moz-transition:padding .1s ease-out;-ms-transition:padding .1s ease-out;-o-transition:padding .1s ease-out;margin:0}@media (min-width:768px){.ssk-sticky.ssk-left .ssk,.ssk-sticky.ssk-right .ssk{display:block;clear:both}.ssk-sticky.ssk-left.ssk-center,.ssk-sticky.ssk-right.ssk-center{top:50%;transform:translateY(-50%);-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);-ms-transform:translateY(-50%);-o-transform:translateY(-50%)}.ssk-sticky.ssk-left{left:0}.ssk-sticky.ssk-left .ssk{float:left}.ssk-sticky.ssk-left .ssk:hover{padding-left:15px}.ssk-sticky.ssk-right{right:0}.ssk-sticky.ssk-right .ssk{float:right}.ssk-sticky.ssk-right .ssk:hover{padding-right:15px}}.ssk-sticky.ssk-bottom{font-size:0;top:auto;bottom:0}.ssk-sticky.ssk-bottom.ssk-center{left:50%;right:auto;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);-ms-transform:translateX(-50%);-o-transform:translateX(-50%)}.ssk-sticky.ssk-bottom .ssk{vertical-align:bottom}.ssk-sticky.ssk-bottom .ssk:hover{padding-bottom:15px}.ssk-sticky.ssk-round.ssk-xs .ssk:hover{padding:8px}.ssk-sticky.ssk-round.ssk-sm .ssk:hover{padding:9px}.ssk-sticky.ssk-round .ssk:hover{padding:11px}.ssk-sticky.ssk-round.ssk-lg .ssk:hover{padding:13px}@media (max-width:767px){.ssk-sticky{left:0;right:0;bottom:0;top:auto;width:100%;display:flex !important;flex-direction:row;flex-wrap:nowrap}.ssk-sticky.ssk-sticky-hide-xs{display:none !important}.ssk-sticky .ssk{flex:1;width:auto}.ssk-sticky .ssk .ssk-num{display:none}}.ssk-count{padding-top:20px}.ssk-count .ssk{position:relative}.ssk-count .ssk-num{border-radius:4px;color:#8f8f8f;background-color:rgba(50,50,50,0.03);display:block;font-size:12px;left:0;line-height:20px;position:absolute;right:0;text-align:center;top:-20px}@media (min-width:768px){.ssk-count.ssk-sticky{padding-top:0}.ssk-count.ssk-sticky.ssk-left .ssk-num,.ssk-count.ssk-sticky.ssk-right .ssk-num{top:20%;background-color:transparent}.ssk-count.ssk-sticky.ssk-left .ssk-num{left:100%;margin-left:5px}.ssk-count.ssk-sticky.ssk-right .ssk-num{right:115%;margin-left:-100%;text-align:right}}.ssk-facebook{background-color:#3B5998}.ssk-grayscale>.ssk-facebook{background-color:#757575}.ssk-facebook:hover{background-color:#2d4373}.ssk-facebook:hover{background-color:#2d4373}.ssk-grayscale>.ssk-facebook:hover{background-color:#3B5998}.ssk-facebook.ssk-icon{color:#3B5998}.ssk-facebook.ssk-icon:hover{color:#2d4373}.ssk-facebook.ssk-icon:before{text-indent:0;margin-right:0}.ssk-twitter{background-color:#1DA1F2}.ssk-grayscale>.ssk-twitter{background-color:#757575}.ssk-twitter:hover{background-color:#0c85d0}.ssk-twitter:hover{background-color:#0c85d0}.ssk-grayscale>.ssk-twitter:hover{background-color:#1DA1F2}.ssk-twitter.ssk-icon{color:#1DA1F2}.ssk-twitter.ssk-icon:hover{color:#0c85d0}.ssk-google-plus{background-color:#EA4335}.ssk-grayscale>.ssk-google-plus{background-color:#757575}.ssk-google-plus:hover{background-color:#d62516}.ssk-google-plus:hover{background-color:#d62516}.ssk-grayscale>.ssk-google-plus:hover{background-color:#EA4335}.ssk-google-plus.ssk-icon{color:#EA4335}.ssk-google-plus.ssk-icon:hover{color:#d62516}.ssk-pinterest{background-color:#BD081C}.ssk-grayscale>.ssk-pinterest{background-color:#757575}.ssk-pinterest:hover{background-color:#8c0615}.ssk-pinterest:hover{background-color:#8c0615}.ssk-grayscale>.ssk-pinterest:hover{background-color:#BD081C}.ssk-pinterest.ssk-icon{color:#BD081C}.ssk-pinterest.ssk-icon:hover{color:#8c0615}.ssk-tumblr{background-color:#395773}.ssk-grayscale>.ssk-tumblr{background-color:#757575}.ssk-tumblr:hover{background-color:#283d51}.ssk-tumblr:hover{background-color:#283d51}.ssk-grayscale>.ssk-tumblr:hover{background-color:#395773}.ssk-tumblr.ssk-icon{color:#395773}.ssk-tumblr.ssk-icon:hover{color:#283d51}.ssk-email{background-color:#757575}.ssk-grayscale>.ssk-email{background-color:#757575}.ssk-email:hover{background-color:#5b5b5b}.ssk-email:hover{background-color:#5b5b5b}.ssk-grayscale>.ssk-email:hover{background-color:#757575}.ssk-grayscale>.ssk-email:hover{background-color:#5b5b5b}.ssk-email.ssk-icon{color:#757575}.ssk-email.ssk-icon:hover{color:#5b5b5b}.ssk-vk{background-color:#54769a}.ssk-grayscale>.ssk-vk{background-color:#757575}.ssk-vk:hover{background-color:#425d79}.ssk-vk:hover{background-color:#425d79}.ssk-grayscale>.ssk-vk:hover{background-color:#54769a}.ssk-vk.ssk-icon{color:#54769a}.ssk-vk.ssk-icon:hover{color:#425d79}.ssk-linkedin{background-color:#1c87bd}.ssk-grayscale>.ssk-linkedin{background-color:#757575}.ssk-linkedin:hover{background-color:#156791}.ssk-linkedin:hover{background-color:#156791}.ssk-grayscale>.ssk-linkedin:hover{background-color:#1c87bd}.ssk-linkedin.ssk-icon{color:#1c87bd}.ssk-linkedin.ssk-icon:hover{color:#156791}.ssk-whatsapp{background-color:#34AF23}.ssk-grayscale>.ssk-whatsapp{background-color:#757575}.ssk-whatsapp:hover{background-color:#27851a}.ssk-whatsapp:hover{background-color:#27851a}.ssk-grayscale>.ssk-whatsapp:hover{background-color:#34AF23}.ssk-whatsapp.ssk-icon{color:#34AF23}.ssk-whatsapp.ssk-icon:hover{color:#27851a}.ssk-reddit{background-color:#5f99cf}.ssk-grayscale>.ssk-reddit{background-color:#757575}.ssk-reddit:hover{background-color:#3a80c1}.ssk-reddit:hover{background-color:#3a80c1}.ssk-grayscale>.ssk-reddit:hover{background-color:#5f99cf}.ssk-reddit.ssk-icon{color:#5f99cf}.ssk-reddit.ssk-icon:hover{color:#3a80c1}.ssk-reddit2{background-color:#5f99cf}.ssk-grayscale>.ssk-reddit2{background-color:#757575}.ssk-reddit2:hover{background-color:#3a80c1}.ssk-reddit2:hover{background-color:#3a80c1}.ssk-grayscale>.ssk-reddit2:hover{background-color:#5f99cf}.ssk-reddit2.ssk-icon{color:#5f99cf}.ssk-reddit2.ssk-icon:hover{color:#3a80c1}.ssk-turquoise{background-color:#1abc9c}.ssk-turquoise:hover{background-color:#148f77}.ssk-emerald{background-color:#2ecc71}.ssk-emerald:hover{background-color:#25a25a}.ssk-peter-river{background-color:#3498db}.ssk-peter-river:hover{background-color:#217dbb}.ssk-belize-hole{background-color:#2980b9}.ssk-belize-hole:hover{background-color:#20638f}.ssk-amethyst{background-color:#9b59b6}.ssk-amethyst:hover{background-color:#804399}.ssk-wisteria{background-color:#8e44ad}.ssk-wisteria:hover{background-color:#703688}.ssk-wet-asphalt{background-color:#34495e}.ssk-wet-asphalt:hover{background-color:#222f3d}.ssk-midnight-blue{background-color:#2c3e50}.ssk-midnight-blue:hover{background-color:#1a242f}.ssk-green-sea{background-color:#16a085}.ssk-green-sea:hover{background-color:#107360}.ssk-nephritis{background-color:#27ae60}.ssk-nephritis:hover{background-color:#1e8449}.ssk-sunflower{background-color:#f1c40f}.ssk-sunflower:hover{background-color:#c29d0b}.ssk-orange{background-color:#f39c12}.ssk-orange:hover{background-color:#c87f0a}.ssk-carrot{background-color:#e67e22}.ssk-carrot:hover{background-color:#bf6516}.ssk-pumpkin{background-color:#d35400}.ssk-pumpkin:hover{background-color:#a04000}.ssk-alizarin{background-color:#e74c3c}.ssk-alizarin:hover{background-color:#d62c1a}.ssk-pomegranate{background-color:#c0392b}.ssk-pomegranate:hover{background-color:#962d22}.ssk-clouds{background-color:#cfd9db}.ssk-clouds:hover{background-color:#b1c2c6}.ssk-concrete{background-color:#95a5a6}.ssk-concrete:hover{background-color:#798d8f}.ssk-silver{background-color:#bdc3c7}.ssk-silver:hover{background-color:#a1aab0}.ssk-asbestos{background-color:#7f8c8d}.ssk-asbestos:hover{background-color:#667273}.ssk-dark-gray{background-color:#555}.ssk-dark-gray:hover{background-color:#3b3b3b}.ssk-black{background-color:#333}.ssk-black:hover{background-color:#1a1a1a}
-  </style>
-
-
-
-  <style type="text/css" media="screen">
-    a {
-    color: #527fc1f;
-}
-
-a:hover {
-    color: #1a3152;
-}
-
-div.main .content .markdown, div.header .name, div.header nav ul a:hover {
-    color: #181d2a;
-}
-
-div.header nav ul a {
-    color: #6a7a8b;
-}
-
-div.main .content .markdown code {
-    background-color: #f9f9f9;
-    color: #527fc1f;
-}
-
-div.main .content .markdown pre, div.main .content .markdown pre code {
-    background-color: #282a36;
-    color: #87a5d2;
-}
-
-.hljs, .hljs-subst, .hljs-variable {
-    color: #87a5d2;
-}
-
-.hljs-type {
-    color: #97d28b;
-}
-
-.hljs-quote {
-    color: #ffcb8d;
-}
-
-.hljs-string, .hljs-number, .hljs-selector-id, .hljs-selector-class, .hljs-template-tag, .hljs-deletion {
-    color: #96c2d7;
-}
-
-.hljs-comment {
-    color: #6a7a8b;
-}
-
-.hljs-regexp, .hljs-symbol, .hljs-template-variable {
-    color: #ffcb8d;
-}
-
-.hljs-keyword, .hljs-attribute, .hljs-meta-keyword, .hljs-doctag, .hljs-name {
-    color: #97d28b;
-}
-
-.hljs-link, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-title, .hljs-section {
-    color: #ff8e91;
-}
-
-.hljs-built_in, .hljs-bullet, .hljs-code, .hljs-addition {
-    color: #97d28b;
-}
-
-.ssk {
-    background-color: #6a7a8b;
-}
-
-  </style>
+  
 
 
 
 
 
-<link rel="shortcut icon"
-
-    href="/img/favicon.ico"
-
->
-
-
-
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Rene Welch" />
-
+  <title>Rene Welch</title>
 
 </head>
 
 
-<body>
+<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71" >
 
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
 
-<div class="header header-home column">
-
-    <div class="container">
-        
-        <div class="content">
-            <a href="/"><div class="name"><h1>Rene Welch</h1></div></a>
-            <nav>
-                <ul>
-                    
-                    
-                        
-                            
-                            <li><a href="/post">post</a></li>
-                            
-                        
-                    
-                    
-                        
-                            <li><a href="/about/">About</a></li>
-                        
-                    
-                        
-                    
-                        
-                    
-                </ul>
-            </nav>
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
         </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Rene Welch</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about" data-target="#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts" data-target="#posts"><span>Posts</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects" data-target="#projects"><span>Software</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#featured" data-target="#featured"><span>Publications</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+
+      </ul>
+
     </div>
-</div>
-
-<div class="main column">
-    <div class="container">
-        <div class="content">
-            
-                <div class="markdown">
-                <!--
-_This is the home page. It will display the blog section if there is one, and a text before._-->
-
-<!---
-Hey ! Welcome to the **Cocoa Enhanced theme**. Here are some articles :-->
-
-                </div>
-            
-
-            
-                <div class="posts">
-                
-                
-                </div>
-            
-
-        </div>
-    </div>
-</div>
-<div class="footer column">
-    <div class="container">
-
-        
-
-        <div class="copyright">
-
-        
-            
-                <a href="/license">Copyright © 2018 Rene Welch</a>
-            
-        
-
-        </div>
-        <div class="icons">
-
-        
-
-        
-
-        
-
-        
-            <a href="https://github.com/welch16" target="_blank">
-                <img class="icon" src="/img/github.svg" alt="github" />
-            </a>
-        
-
-        
-            <a href="https://twitter.com/ReneWelch" target="_blank">
-                <img class="icon" src="/img/twitter.svg" alt="twitter" />
-            </a>
-        
-
-        
-            <a href="https://www.linkedin.com/in/welch16" target="_blank">
-                <img class="icon" src="/img/linkedin.svg" alt="linkedin" />
-            </a>
-        
-
-        
-            <a href="mailto:welch@stat.wisc.edu">
-                <img class="icon" src="/img/email.svg" alt="email" />
-            </a>
-        
-
-        
-            <a href="/index.xml">
-                <img class="icon" src="/img/rss.svg" alt="rss" />
-            </a>
-        
-
-        </div>
-    </div>
-</div>
+  </div>
+</nav>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-<script>
-  WebFont.load({
-    google: {
-      families: ['Raleway:400,600,700', 'Merriweather:300,300i,700,700i', 'Ubuntu+Mono:400,700']
-    }
-  });
-</script>
+  
+
+
+<span class="js-widget-page d-none"></span>
 
 
 
-  <script src="/js/highlight.min.js" defer></script>
+
   
 
 
 
-  <script src="/js/progressively.min.js" defer></script>
-
-
-
-  <script src="/js/social-share-kit.min.js" defer></script>
 
 
 
 
-<script>
-  window.onload = function() {
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  <section id="about" class="home-section wg-about   "  >
+    <div class="container">
+      
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<div class="row" itemprop="author" itemscope itemtype="http://schema.org/Person" itemref="person-email">
+  <div class="col-12 col-lg-4">
+    <div id="profile">
+
+      
+      
+      <img class="portrait" src="/authors/admin/avatar_hu97516cfb59aa4ea532a5879b01821afb_72329_250x250_fill_q90_lanczos_center.jpg" itemprop="image" alt="Avatar">
+      
+
+      <div class="portrait-title">
+        <h2 itemprop="name">Rene Welch</h2>
+        <h3 itemprop="jobTitle">Assistant Scientist, CISR / Postdoc</h3>
+
+        
+        <h3 itemprop="worksFor" itemscope itemtype="http://schema.org/Organization">
+          
+          <span itemprop="name">University of Wisconsin - Madison</span>
+          
+        </h3>
+        
+      </div>
+
+      <link itemprop="url" href="">
+
+      <ul class="network-icon" aria-hidden="true">
+        
+        
+        
+        
+          
+        
+        
+        
+        
+        
+          
+        
+        <li>
+          <a itemprop="sameAs" href="/#contact" >
+            <i class="fas fa-envelope big-icon"></i>
+          </a>
+        </li>
+        
+        
+        
+        
+          
+        
+        
+        
+        
+        
+          
+        
+        <li>
+          <a itemprop="sameAs" href="https://twitter.com/ReneWelch" target="_blank" rel="noopener">
+            <i class="fab fa-twitter big-icon"></i>
+          </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+          
+        
+        <li>
+          <a itemprop="sameAs" href="https://scholar.google.com/citations?user=nsqGh6UAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+            <i class="ai ai-google-scholar big-icon"></i>
+          </a>
+        </li>
+        
+        
+        
+        
+          
+        
+        
+        
+        
+        
+          
+        
+        <li>
+          <a itemprop="sameAs" href="https://github.com/welch16" target="_blank" rel="noopener">
+            <i class="fab fa-github big-icon"></i>
+          </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+          
+        
+        <li>
+          <a itemprop="sameAs" href="https://orcid.org/0000-0001-9861-530X" target="_blank" rel="noopener">
+            <i class="ai ai-orcid big-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+
+    </div>
+  </div>
+  <div class="col-12 col-lg-8" itemprop="description">
+
     
-      hljs.initHighlighting();
-    
-    
-      progressively.init({delay: 30, throttle: 50});
-    
-    
-      SocialShareKit.init({
-        twitter: {
-            text: '',
-            via: 'ReneWelch'
-        }
-      });
-    
-  };
-</script>
+    <h1>About me</h1>
+
+    <p>I am an Assistant Scientist at the <a href="https://cancer.wisc.edu/research/resources/cisr/" target="_blank">CISR</a> in the University of Wisconsin - Madison Carbone Cancer Center, and a Postdoc under the instruction of <a href="http://pages.cs.wisc.edu/~ong/" target="_blank">Dr. Irene Ong</a>. My research interests lie in the application of statistics to problems in computational biology, and lately I have been working on statistical methods for the analysis of microbiome data. I am also passionate in the creation of software to facilitate the analysis and interpretation of biological data.</p>
+
+<p>I received my PhD in Statistics at the University of Wisconsin - Madison Department of Statistics where I worked with Dr. Sunduz Keles on problems arising in epigenetics, focusing on ChIP-seq, and ChIP-exo data.</p>
+
+
+    <div class="row">
+
+      
+      <div class="col-md-5">
+        <h3>Interests</h3>
+        <ul class="ul-interests">
+          
+          <li>Applied Statistics</li>
+          
+          <li>Computational Biology</li>
+          
+          <li>Reproducible research</li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <div class="col-md-7">
+        <h3>Education</h3>
+        <ul class="ul-edu fa-ul">
+          
+          <li>
+            <i class="fa-li fas fa-graduation-cap"></i>
+            <div class="description">
+              <p class="course">PhD in Statistics, 2018</p>
+              <p class="institution">University of Wisconsin - Madison, USA</p>
+            </div>
+          </li>
+          
+          <li>
+            <i class="fa-li fas fa-graduation-cap"></i>
+            <div class="description">
+              <p class="course">BSc in Applied Mathematics, 2008</p>
+              <p class="institution">ITAM, Mexico</p>
+            </div>
+          </li>
+          
+        </ul>
+      </div>
+      
+
+    </div>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  <section id="posts" class="home-section wg-pages   "  >
+    <div class="container">
+      
 
 
 
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="row">
+  <div class="col-12 col-lg-4 section-heading">
+    <h1>Recent Posts</h1>
+    
+  </div>
+  <div class="col-12 col-lg-8">
+
+    
+
+    
+      
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0" itemprop="name">
+      <a href="/post/university-of-wisconsin-poster-format/" itemprop="url">University of Wisconsin Poster format</a>
+    </h3>
+
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+
+<meta content="2019-06-14 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-06-14 22:41:04 -0500 CDT" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    <time>2019-06-14</time>
+  </span>
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/latex/">Latex</a></span>
+  
+
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0" itemprop="name">
+      <a href="/post/bioconductor-slide-format/" itemprop="url">Bioconductor slide format</a>
+    </h3>
+
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+
+<meta content="2019-01-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2019-01-21 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2019-01-21</time>
+  </span>
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/bioconductor/">Bioconductor</a>, <a href="/categories/xaringan/">xaringan</a>, <a href="/categories/r/">R</a></span>
+  
+
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0" itemprop="name">
+      <a href="/post/tidy-loading-of-rdata-files-in-parallel/" itemprop="url">Tidy loading of RData files in parallel</a>
+    </h3>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      In my last project, I have been using this function very frequently:
+load2env &lt;- function(file,env = new.env()) { load(file,envir = …
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+
+<meta content="2018-06-04 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2018-06-04 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2018-06-04</time>
+  </span>
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/r/">R</a></span>
+  
+
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0" itemprop="name">
+      <a href="/post/plotting-manhattan-plots-and-ld-matrices-together-in-r/" itemprop="url">Plotting manhattan plots and LD matrices together in R</a>
+    </h3>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      Genomic Wide Association Studies have been used to identify robust associations between phenotype and genotypes. However, these studies …
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+        
+
+
+
+<meta content="2018-04-10 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2018-04-10 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2018-04-10</time>
+  </span>
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    <a href="/categories/gwas/">GWAS</a>, <a href="/categories/r/">R</a></span>
+  
+
+  
+
+</div>
+
+      
+    </div>
+
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+
+    
+
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  <section id="projects" class="home-section wg-portfolio   "  >
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-xs-12 col-md-4 section-heading">
+
+    <h1>Software</h1>
+    
+
+  </div>
+  <div class="col-xs-12 col-md-8">
+
+
+
+    
+
+    
+
+    <div class="isotope projects-container js-layout-masonry ">
+      
+        
+        
+        
+        
+          
+
+
+
+
+
+
+
+
+<div class="project-card project-item isotope-item ">
+  <div class="card">
+    
+    
+    <a href="/project/chiputils/"  class="card-image hover-overlay">
+      <img src="/project/chiputils/featured_hu3c6dec2134b0519ef5dcd35fb928d39b_47714_550x0_resize_q90_lanczos_2.png" alt="" class="img-responsive">
+    </a>
+    
+    <div class="card-text">
+      <h4><a href="/project/chiputils/" >ChIPUtils</a></h4>
+      <div class="card-desription">
+        <p>An R package for ChIP-seq basic analysis</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+      
+        
+        
+        
+        
+          
+
+
+
+
+
+
+
+
+<div class="project-card project-item isotope-item ">
+  <div class="card">
+    
+    
+    <a href="/project/chipexoqual/"  class="card-image hover-overlay">
+      <img src="/project/chipexoqual/featured_hudc6195d3ca4f578d122f3a73d0983dc8_378373_550x0_resize_q90_lanczos_2.png" alt="" class="img-responsive">
+    </a>
+    
+    <div class="card-text">
+      <h4><a href="/project/chipexoqual/" >ChIPexoQual</a></h4>
+      <div class="card-desription">
+        <p>A quality control pipeline for ChIP-exo/nexus data</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+      
+        
+        
+        
+        
+          
+
+
+
+
+
+
+
+
+<div class="project-card project-item isotope-item ">
+  <div class="card">
+    
+    
+    <a href="/project/segvis/"  class="card-image hover-overlay">
+      <img src="/project/segvis/featured_hub29a13c335c80a8c9be1a66569f5dc39_414099_550x0_resize_q90_lanczos_2.png" alt="" class="img-responsive">
+    </a>
+    
+    <div class="card-text">
+      <h4><a href="/project/segvis/" >Segvis</a></h4>
+      <div class="card-desription">
+        <p>An R package for ChIP-seq peaks visualization</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+        
+      
+    </div>
+
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  <section id="featured" class="home-section wg-featured   "  >
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+  <div class="col-12 col-lg-4 section-heading">
+    <h1>Featured Publications</h1>
+    
+  </div>
+  <div class="col-12 col-lg-8">
+
+    
+
+    
+      
+        
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+<div class="card-simple" itemscope itemtype="http://schema.org/ScholarlyArticle">
+
+  
+    
+
+
+
+<meta content="2017-07-29 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2017-07-29 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/admin/">Rene Welch</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/dongjun-chung/">Dongjun Chung</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/jeffrey-grass/">Jeffrey Grass</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/robert-landick/">Robert Landick</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/sunduz-keles/">Sunduz Keles</a></span>
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>2017-07</time>
+  </span>
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="pub-publication">
+    
+      Nucleic Acids Research 45(15) e145
+    
+  </span>
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+</div>
+
+  
+
+  
+  
+  
+  
+  <a href="/publication/welch17/">
+      <img src="/publication/welch17/featured_hudc6195d3ca4f578d122f3a73d0983dc8_378373_918x517_fill_q90_lanczos_top_2.png" class="article-banner" itemprop="image" alt="">
+  </a>
+  
+
+  <h3 class="article-title mb-1 mt-3" itemprop="name">
+    <a href="/publication/welch17/" itemprop="url">Data Exploration, quality control and statistical analysis of ChIP-exo/nexus experiments</a>
+  </h3>
+
+  
+  <div class="article-style" itemprop="articleBody">
+    ChIP-exo/nexus experiments rely on innovative modifications of the commonly used ChIP-seq protocol for high resolution mapping of transcription factor binding sites. Although many aspects of the ChIP-exo data analysis are similar to those of ChIP-seq, these high throughput experiments pose a number of unique quality control and analysis challenges. We develop a novel statistical quality control pipeline and accompanying R/Bioconductor package, ChIPexoQual, to enable exploration and analysis of ChIP-exo and related experiments. ChIPexoQual evaluates a number of key issues including strand imbalance, library complexity, and signal enrichment of data. Assessment of these features are facilitated through diagnostic plots and summary statistics computed over regions of the genome with varying levels of coverage. We evaluated our QC pipeline with both large collections of public ChIP-exo/nexus data and multiple, new ChIP-exo datasets from Escherichia coli. ChIPexoQual analysis of these datasets resulted in guidelines for using these QC metrics across a wide range of sequencing depths and provided further insights for modelling ChIP-exo data.
+  </div>
+  
+
+  
+  <div class="btn-links">
+    
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/welch17/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1093/nar/gkx594" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+  </div>
+  
+
+</div>
+
+      
+    
+
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  <section id="publications" class="home-section wg-pages   "  >
+    <div class="container">
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+<div class="row">
+  <div class="col-12 col-lg-4 section-heading">
+    <h1>Recent Publications</h1>
+    
+  </div>
+  <div class="col-12 col-lg-8">
+
+    <p><div class="alert alert-note">
+  <div>
+    Quickly discover relevant content by <a href="/publication/">filtering publications</a>.
+  </div>
+</div>
+</p>
+
+    
+      
+        
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item" itemscope itemtype="http://schema.org/ScholarlyArticle">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0" itemprop="name">
+      <a href="/publication/welch17/" itemprop="url">Data Exploration, quality control and statistical analysis of ChIP-exo/nexus experiments</a>
+    </h3>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      ChIP-exo/nexus experiments rely on innovative modifications of the commonly used ChIP-seq protocol for high resolution mapping of …
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+      <div itemprop="author">
+        
+
+
+
+  <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/admin/">Rene Welch</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/dongjun-chung/">Dongjun Chung</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/jeffrey-grass/">Jeffrey Grass</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/robert-landick/">Robert Landick</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/sunduz-keles/">Sunduz Keles</a></span>
+
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/welch17/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1093/nar/gkx594" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+    
+    <a href="/publication/welch17/">
+      <img src="/publication/welch17/featured_hudc6195d3ca4f578d122f3a73d0983dc8_378373_150x0_resize_lanczos_2.png" itemprop="image">
+    </a>
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item" itemscope itemtype="http://schema.org/ScholarlyArticle">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0" itemprop="name">
+      <a href="/publication/kreimer17/" itemprop="url">Predicting gene expression in massively parallel reporter assays: A comparative study</a>
+    </h3>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      In many human diseases, associated genetic changes tend to occur within noncoding regions, whose effect might be related to …
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+      <div itemprop="author">
+        
+
+
+
+  <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/anat-kreimer/">Anat Kreimer</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/haoyang-zeng/">Haoyang Zeng</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/matthew-d-edwards/">Matthew D Edwards</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/yuchun-guo/">Yuchun Guo</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/kevin-tian/">Kevin Tian</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/sunyoung-shin/">Sunyoung Shin</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/admin/">Rene Welch</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/michael-wainberg/">Michael Wainberg</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/rahul-mohan/">Rahul Mohan</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/nicholas-sinnott-armstrong/">Nicholas Sinnott-Armstrong</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/yue-li/">Yue Li</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/gokcen-eraslan/">Gokcen Eraslan</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/talal-bin-amin/">Talal Bin Amin</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/ryan-tewhey/">Ryan Tewhey</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/pardis-sabetti/">Pardis Sabetti</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/jonathan-goke/">Jonathan Goke</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/nikola-mueller/">Nikola Mueller</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/manolis-kellis/">Manolis Kellis</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/anshul-kundaje/">Anshul Kundaje</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/michael-beer/">Michael Beer</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/sunduz-keles/">Sunduz Keles</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/david-gifford/">David Gifford</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/nir-yosef/">Nir Yosef</a></span>
+
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/kreimer17/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1002/humu.23197" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item" itemscope itemtype="http://schema.org/ScholarlyArticle">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0" itemprop="name">
+      <a href="/publication/wang15/" itemprop="url">Epstein-Barr Virus Nuclear Antigen 3 (EBNA3) Proteins Regulate EBNA2 Binding to Distinct RBPJ Genomic Sites</a>
+    </h3>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      Latent infection of B lymphocytes by Epstein-Barr virus (EBV) in vitro results in their immortalization into lymphoblastoid cell lines …
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+      <div itemprop="author">
+        
+
+
+
+  <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/anqi-wang/">Anqi Wang</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/admin/">Rene Welch</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/bo-zhao/">Bo Zhao</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/tram-ta/">Tram Ta</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/sunduz-keles/">Sunduz Keles</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/eric-johannsen/">Eric Johannsen</a></span>
+
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/wang15/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1128/JVI.02737-15" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+      
+        
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+  
+
+
+<div class="media stream-item" itemscope itemtype="http://schema.org/ScholarlyArticle">
+  <div class="media-body">
+
+    <h3 class="article-title mb-0 mt-0" itemprop="name">
+      <a href="/publication/zeng15/" itemprop="url">Perm-seq: Mapping Protein-DNA Interactions in Segmental Duplication and Highly Repetitive Regions of Genomes with Prior-Enhanced Read Mapping</a>
+    </h3>
+
+    
+    <div class="article-style" itemprop="articleBody">
+      Segmental duplications and other highly repetitive regions of genomes contribute significantly to cells’ regulatory programs. …
+    </div>
+    
+
+    <div class="stream-meta article-metadata">
+
+      
+
+      
+      <div itemprop="author">
+        
+
+
+
+  <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/xin-zeng/">Xin Zeng</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/bo-li/">Bo Li</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/admin/">Rene Welch</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/constanza-rojo/">Constanza Rojo</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/ye-zheng/">Ye Zheng</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/colin-dewey/">Colin Dewey</a></span>, <span itemprop="author name" itemtype="http://schema.org/Person"><a href="/authors/sunduz-keles/">Sunduz Keles</a></span>
+
+      </div>
+      
+    </div>
+
+    
+    <div class="btn-links">
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<button type="button" class="btn btn-outline-primary my-1 mr-1 btn-sm js-cite-modal"
+        data-filename="/publication/zeng15/cite.bib">
+  Cite
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://doi.org/10.1371/journal.pcbi.1004491" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+
+    </div>
+    
+
+  </div>
+  <div class="ml-3">
+    
+    
+  </div>
+</div>
+
+      
+    
+
+    
+
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+  <section id="contact" class="home-section wg-contact   "  >
+    <div class="container">
+      
+
+
+
+
+<div class="row contact-widget">
+  <div class="col-12 col-lg-4 section-heading">
+    <h1>Contact</h1>
+    
+  </div>
+  <div class="col-12 col-lg-8">
+    
+
+    
+
+    
+    
+      
+      
+    
+
+    <div class="mb-3">
+      <form name="contact" method="POST" action="https://formspree.io/rwelch@biostat.wisc.edu">
+        <div class="form-group form-inline">
+          <label class="sr-only" for="inputName">Name</label>
+          <input type="text" name="name" class="form-control w-100" id="inputName" placeholder="Name" required>
+        </div>
+        <div class="form-group form-inline">
+          <label class="sr-only" for="inputEmail">Email</label>
+          <input type="email" name="email" class="form-control w-100" id="inputEmail" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="inputMessage">Message</label>
+          <textarea name="message" class="form-control" id="inputMessage" rows="5" placeholder="Message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-primary px-3 py-2">Send</button>
+      </form>
+    </div>
+    
+
+    <ul class="fa-ul" itemscope>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      
+
+    </ul>
+
+    
+
+  </div>
+</div>
+
+    </div>
+  </section>
+
+
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/python.min.js"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.9ef1b53ee2bde6c7f33b150c6ba4d452.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    <a href="/privacy/">Privacy Policy</a>
+  </p>
+  
+
+  <p class="powered-by">
+    2019 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
-

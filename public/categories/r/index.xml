@@ -4,32 +4,182 @@
     <title>R on Rene Welch</title>
     <link>/categories/r/</link>
     <description>Recent content in R on Rene Welch</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>{year}</copyright>
     <lastBuildDate>Mon, 21 Jan 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Bioconductor slides</title>
-      <link>/post/bioconductor-slides/</link>
+      <title>Bioconductor slide format</title>
+      <link>/post/bioconductor-slide-format/</link>
       <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/bioconductor-slides/</guid>
-      <description>Last week, I gave a presentation about developing R packages with Bioconductor. The slides are available here
- Besides the slides, I created a format based on the amazing ninjutsu, kunoichi with the Bioconductor colors.</description>
+      <guid>/post/bioconductor-slide-format/</guid>
+      <description>
+
+
+&lt;p&gt;Last week, I gave a presentation about developing &lt;strong&gt;R packages&lt;/strong&gt; with Bioconductor. The slides are available &lt;a href=&#34;http://welch16.rbind.io/bioc_slides/2019_01_creating_bioc_package#1&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;iframe src=&#34;http://welch16.rbind.io/bioc_slides/2019_01_creating_bioc_package#1&#34; width=&#34;672&#34; height=&#34;400px&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Besides the slides, I created a format based on the amazing &lt;a href=&#34;https://emitanaka.github.io/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1&#34;&gt;ninjutsu, kunoichi&lt;/a&gt; with the &lt;a href=&#34;https://github.com/welch16/create_bioc_package/blob/master/assets/bioctheme.css&#34;&gt;Bioconductor colors&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>Tidy Parallel Loading of Rdata Files</title>
-      <link>/post/tidy-parallel-loading-of-rdata-files/</link>
-      <pubDate>Thu, 14 Jun 2018 00:00:00 +0000</pubDate>
+      <title>Tidy loading of RData files in parallel</title>
+      <link>/post/tidy-loading-of-rdata-files-in-parallel/</link>
+      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/tidy-parallel-loading-of-rdata-files/</guid>
-      <description>In my last project, I have been using the following function a lot:
-load2env &amp;lt;- function(file,env = new.env()) { load(file,envir = env) env } This function load the RData file into the environment env, which will return. However, if we have multiple files to load simultaneously then we would like to load those files in parallel.
-Using the new furrr or any other package that allows parallel processing, we can do that by using something as:</description>
+      <guid>/post/tidy-loading-of-rdata-files-in-parallel/</guid>
+      <description>
+
+
+&lt;p&gt;In my last project, I have been using this function very frequently:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;load2env &amp;lt;- function(file,env = new.env())
+{
+  load(file,envir = env)
+  env
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This function loads the RData file into the environment &lt;code&gt;env&lt;/code&gt;, which will usually return. However, if we have multiple files to load simultaneously, when trying to load multiple files in parallel we would run into an error, because it would be creating many environments at the same time.&lt;/p&gt;
+&lt;p&gt;Using the new &lt;a href=&#34;https://github.com/DavisVaughan/furrr&#34;&gt;furrr&lt;/a&gt; or any other package that allows parallel processing, and creating the environments in advance, we can load many RData files in paralele by using:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(furrr)
+
+plan(multiprocess)
+
+my_data = tibble(
+  files = list.files( my_dir ,full.names = TRUE )) %&amp;gt;% 
+  mutate(
+    env = map(files,  ~ new.env()),
+    data = future_map2( files, env, load2env   ) %&amp;gt;% 
+      map(as.list)
+  )&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Plotting manhattan plots and LD matrices together in R</title>
+      <link>/post/plotting-manhattan-plots-and-ld-matrices-together-in-r/</link>
+      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/plotting-manhattan-plots-and-ld-matrices-together-in-r/</guid>
+      <description>
+
+
+&lt;p&gt;Genomic Wide Association Studies have been used to identify robust associations between phenotype and genotypes. However, these studies are hard to interpret because positions in the genome are usually correlated. For that purpose, we would like to compare the signal’s strength and the correlation between the SNPs at the same time.&lt;/p&gt;
+&lt;p&gt;When I looked for tools to make these plots, I only found the &lt;code&gt;LDheatmap&lt;/code&gt; which is capable of plotting the heatmap but not adding it to a manhattan plot.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(scales)
+library(grid)
+library(gridExtra)
+
+theme_set(theme_minimal())&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For the purpose of this post, I cleaned eQTL p.values for one loci.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 14 x 3
+##    SNP             pos eQTL_log10pval
+##    &amp;lt;chr&amp;gt;         &amp;lt;int&amp;gt;          &amp;lt;dbl&amp;gt;
+##  1 rs10864454 10417853          -15.2
+##  2 rs12135774 10386506          -13.4
+##  3 rs1220400   9997079          -55.6
+##  4 rs1234694  10003320          -99.4
+##  5 rs3820192  11847772          -19.4
+##  6 rs41275494 11894133          -14.3
+##  7 rs4240912  10437778          -13.8
+##  8 rs55741089 11898859          -14.0
+##  9 rs55867221 11845222          -19.4
+## 10 rs56001051 11838841          -19.4
+## 11 rs6670157  10458439          -12.4
+## 12 rs6688187  11837473          -19.4
+## 13 rs6703535  11843919          -19.4
+## 14 rs72638698 11835455          -19.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mat_data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 196 x 6
+##    SNP1       SNP2          cor     pos1    pos2 abs_dist
+##    &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;   &amp;lt;int&amp;gt;    &amp;lt;int&amp;gt;
+##  1 rs1220400  rs1220400  1.      9997079 9997079        0
+##  2 rs1234694  rs1220400  0.952  10003320 9997079     6241
+##  3 rs10864454 rs1220400 -0.102  10417853 9997079   420774
+##  4 rs12135774 rs1220400 -0.0985 10386506 9997079   389427
+##  5 rs3820192  rs1220400 -0.0474 11847772 9997079  1850693
+##  6 rs41275494 rs1220400 -0.0489 11894133 9997079  1897054
+##  7 rs4240912  rs1220400 -0.0426 10437778 9997079   440699
+##  8 rs55741089 rs1220400 -0.0473 11898859 9997079  1901780
+##  9 rs55867221 rs1220400 -0.0557 11845222 9997079  1848143
+## 10 rs56001051 rs1220400 -0.0670 11838841 9997079  1841762
+## # … with 186 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first steps are to make the plots by separate:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot1 = plot_data %&amp;gt;% 
+  ggplot(aes(pos,-eQTL_log10pval))+
+  geom_point()+
+  scale_x_continuous(labels = comma)
+plot1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together-in-r_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;snp_levels = mat_data %&amp;gt;% 
+    dplyr::select(SNP1,pos1) %&amp;gt;% 
+    unique() %&amp;gt;% 
+    arrange(pos1) %&amp;gt;% 
+    pluck(&amp;quot;SNP1&amp;quot;)
+
+plot2 = mat_data %&amp;gt;% 
+  dplyr::filter(pos1 &amp;gt;= pos2) %&amp;gt;% 
+  mutate_at(vars(contains(&amp;quot;SNP&amp;quot;)),funs(factor(.,levels = snp_levels))) %&amp;gt;% 
+    ggplot(
+      aes(SNP1,SNP2,fill = cor^2))+
+    geom_tile()+
+    theme(legend.position = &amp;quot;right&amp;quot;)+
+    scale_fill_distiller(palette = &amp;quot;Spectral&amp;quot;,
+                         guide = guide_colourbar(title = expression(R^2),
+                                                 barheight = unit(0.4,&amp;quot;npc&amp;quot;),
+                                                 barwidth = unit(0.03,&amp;quot;npc&amp;quot;)))+
+    theme(
+      axis.text.x = element_text(angle = 90)
+    )+
+    xlab(&amp;quot;SNP&amp;quot;)+ylab(&amp;quot;SNP&amp;quot;)+coord_fixed()
+plot2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together-in-r_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;This plot requires some cleaning work, we first remove the labels from the axis:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot2_clean = plot2 +
+    theme(legend.position = &amp;quot;none&amp;quot;,
+        axis.title = element_blank(),
+        panel.grid = element_blank(),
+        plot.background = element_blank(),
+        panel.border = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x = element_blank())
+plot2_clean&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together-in-r_files/figure-html/clean-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;snp_data = mat_data %&amp;gt;% 
+  dplyr::filter(SNP1 == SNP2)
+
+plot2_clean = plot2_clean +
+  geom_text(
+    data = snp_data,aes(label = SNP1),size =3,angle = -45,hjust = 1,
+    nudge_x = -.5,nudge_y = .5,show.legend = FALSE)
+plot2_clean&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together-in-r_files/figure-html/clean-2.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We almost have the pieces, so we arrange everything together by using &lt;code&gt;gridExtra&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## extract the legend
+aux_grob = ggplotGrob(plot2)$grobs
+legend = aux_grob[[which(sapply(aux_grob,function(x)x$name) == &amp;quot;guide-box&amp;quot;)]]
+
+## rotate the LD matrix
+bottom_part = arrangeGrob(plot2_clean,vp = viewport(angle = -45)) 
+
+## overlap the empty part of the LD matrix (which requires theme_minimal) and
+## included a bit of space at the bottom
+whole_plot = arrangeGrob(plot1 +
+                           theme(axis.title.x = element_blank()),
+                         textGrob(&amp;quot;&amp;quot;),
+                         bottom_part,textGrob(&amp;quot;&amp;quot;),
+                         ncol =1,heights = c(5,-2,10,2))
+grid.newpage()
+grid.arrange(whole_plot,legend,nrow = 1,widths = c(9,1)) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together-in-r_files/figure-html/done-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The result is a publication ready figure that shows 14 snps are clustered into at least 4 clusters.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

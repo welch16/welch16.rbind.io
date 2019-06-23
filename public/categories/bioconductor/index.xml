@@ -4,21 +4,28 @@
     <title>Bioconductor on Rene Welch</title>
     <link>/categories/bioconductor/</link>
     <description>Recent content in Bioconductor on Rene Welch</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>{year}</copyright>
     <lastBuildDate>Mon, 21 Jan 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/bioconductor/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="/categories/bioconductor/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Bioconductor slides</title>
-      <link>/post/bioconductor-slides/</link>
+      <title>Bioconductor slide format</title>
+      <link>/post/bioconductor-slide-format/</link>
       <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/bioconductor-slides/</guid>
-      <description>Last week, I gave a presentation about developing R packages with Bioconductor. The slides are available here
- Besides the slides, I created a format based on the amazing ninjutsu, kunoichi with the Bioconductor colors.</description>
+      <guid>/post/bioconductor-slide-format/</guid>
+      <description>
+
+
+&lt;p&gt;Last week, I gave a presentation about developing &lt;strong&gt;R packages&lt;/strong&gt; with Bioconductor. The slides are available &lt;a href=&#34;http://welch16.rbind.io/bioc_slides/2019_01_creating_bioc_package#1&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;iframe src=&#34;http://welch16.rbind.io/bioc_slides/2019_01_creating_bioc_package#1&#34; width=&#34;672&#34; height=&#34;400px&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Besides the slides, I created a format based on the amazing &lt;a href=&#34;https://emitanaka.github.io/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1&#34;&gt;ninjutsu, kunoichi&lt;/a&gt; with the &lt;a href=&#34;https://github.com/welch16/create_bioc_package/blob/master/assets/bioctheme.css&#34;&gt;Bioconductor colors&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

@@ -3,23 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/post/bioconductor-slides/</loc>
-    <lastmod>2019-01-21T00:00:00+00:00</lastmod>
+    <loc>/categories/</loc>
+    <lastmod>2019-06-14T22:41:04-05:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/tidy-parallel-loading-of-rdata-files/</loc>
-    <lastmod>2018-06-14T00:00:00+00:00</lastmod>
+    <loc>/categories/latex/</loc>
+    <lastmod>2019-06-14T22:41:04-05:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/plotting-manhattan-plots-and-ld-matrices-together/</loc>
-    <lastmod>2018-04-10T00:00:00+00:00</lastmod>
+    <loc>/post/</loc>
+    <lastmod>2019-06-14T22:41:04-05:00</lastmod>
   </url>
   
   <url>
-    <loc>/about/</loc>
-    <lastmod>2017-07-26T00:00:00+00:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2019-06-14T22:41:04-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/university-of-wisconsin-poster-format/</loc>
+    <lastmod>2019-06-14T22:41:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/slides/</loc>
+    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/slides/example/</loc>
+    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -29,8 +48,59 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>/post/bioconductor-slide-format/</loc>
     <lastmod>2019-01-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/r/</loc>
+    <lastmod>2019-01-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2019-01-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/slides/</loc>
+    <lastmod>2019-01-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/xaringan/</loc>
+    <lastmod>2019-01-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/privacy/</loc>
+    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/tidy-loading-of-rdata-files-in-parallel/</loc>
+    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/furrr/</loc>
+    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/load-data/</loc>
+    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tidy/</loc>
+    <lastmod>2018-06-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -41,34 +111,281 @@
   </url>
   
   <url>
-    <loc>/home/</loc>
+    <loc>/post/plotting-manhattan-plots-and-ld-matrices-together-in-r/</loc>
+    <lastmod>2018-04-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/license/</loc>
+    <loc>/project/chiputils/</loc>
+    <lastmod>2017-10-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2019-01-21T00:00:00+00:00</lastmod>
+    <loc>/project/</loc>
+    <lastmod>2017-10-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2019-01-21T00:00:00+00:00</lastmod>
+    <loc>/project/chipexoqual/</loc>
+    <lastmod>2017-09-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/admin/</loc>
+    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/publication_types/2/</loc>
+    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2019-01-21T00:00:00+00:00</lastmod>
+    <loc>/authors/</loc>
+    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>/publication/welch17/</loc>
+    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/dongjun-chung/</loc>
+    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/jeffrey-grass/</loc>
+    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/publication_types/</loc>
+    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/publication/</loc>
+    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/robert-landick/</loc>
+    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/sunduz-keles/</loc>
+    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/anat-kreimer/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/anshul-kundaje/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/david-gifford/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/gokcen-eraslan/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/haoyang-zeng/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/jonathan-goke/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/kevin-tian/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/manolis-kellis/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/matthew-d-edwards/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/michael-beer/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/michael-wainberg/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/nicholas-sinnott-armstrong/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/nikola-mueller/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/nir-yosef/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/pardis-sabetti/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/publication/kreimer17/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/rahul-mohan/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/ryan-tewhey/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/sunyoung-shin/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/talal-bin-amin/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/yuchun-guo/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/yue-li/</loc>
+    <lastmod>2017-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/anqi-wang/</loc>
+    <lastmod>2015-12-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/bo-zhao/</loc>
+    <lastmod>2015-12-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/publication/wang15/</loc>
+    <lastmod>2015-12-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/eric-johannsen/</loc>
+    <lastmod>2015-12-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/tram-ta/</loc>
+    <lastmod>2015-12-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/bo-li/</loc>
+    <lastmod>2015-10-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/colin-dewey/</loc>
+    <lastmod>2015-10-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/constanza-rojo/</loc>
+    <lastmod>2015-10-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/publication/zeng15/</loc>
+    <lastmod>2015-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/xin-zeng/</loc>
+    <lastmod>2015-10-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/ye-zheng/</loc>
+    <lastmod>2015-10-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/project/segvis/</loc>
+    <lastmod>2015-07-03T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>

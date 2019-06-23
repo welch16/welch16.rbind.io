@@ -1,57 +1,66 @@
-baseurl = "/"
-theme = "cocoa-eh-hugo-theme"
-builddrafts = true
-canonifyurls = true
-contentdir = "content"
-languageCode = "en-US"
-layoutdir = "layouts"
-publishdir = "public"
-#author = "Alexis Tacnet"
+# Configuration of Academic
+# Documentation: https://sourcethemes.com/academic/
+#
+# This file is formatted using TOML syntax - learn more at https://learnxinyminutes.com/docs/toml/
+# Each configuration section is defined by a name in square brackets (e.g. `[outputs]`).
+
+# Title of your site
 title = "Rene Welch"
-disqusshortname = ""
-pluralizelisttitles = false
 
-[permalinks]
-blog = "blog/:slug/"
+# The URL of your site.
+# End your URL with a `/` trailing slash, e.g. `https://example.com/`.
+baseurl = "/"
 
-[params]
-dateform = "Jan 2, 2006"
-dateformfull = "Jan 2 2006"
-description = "Example blog"
-copyright = "Copyright © 2018 Rene Welch"
-# copyrightUrl = "https://creativecommons.org/licenses/by-sa/4.0/"
-logofile = ""
-faviconfile = ""
-#logofile = "img/bike_snow_me.png"
-#faviconfile = "img/logo.png"
-highlightjs = true
-progressively = true
-share = true
-latestpostcount = 5
-github = "welch16"
-email = "welch@stat.wisc.edu"
-linkedin = "welch16"
-twitter = "ReneWelch"
-social_banner = "img/banner.png"
-usesmallsummarycard = true
-posts_navigation = true
-# issoHost = "comments.domain.tld:1234"
-#githubRepo = "githubUsername/repositoryName/tree/master"
-small_banner_logo = false
+# Enter a copyright notice to display in the site footer.
+# To display a copyright symbol, type `&copy;`. For current year, type `{year}`.
+copyright = "{year}"
 
-[options]
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+# Enable analytics by entering your Google Analytics tracking ID
+googleAnalytics = ""
 
-[params.colors]
-identifier = "#527fc1f"
-identifier_dark = "#1a3152"
-trivial = "#6a7a8b"
-foreground = "#181d2a"
-background = "#f9f9f9"
-background_dark = "#282a36"
-code = "#87a5d2"
-type = "#97d28b"
-special = "#ffcb8d"
-value = "#96c2d7"
-statement = "#ff8e91"
+# Enable comments by entering your Disqus shortname
+disqusShortname = ""
 
+############################
+## Advanced options below ##
+############################
+
+# Name of Academic theme folder in `themes/`.
+theme = "hugo-academic"
+
+# Get last modified date for content from Git?
+enableGitInfo = false
+
+# Default language to use (if you setup multilingual support)
+defaultContentLanguage = "en"
+hasCJKLanguage = false  # Set `true` for Chinese/Japanese/Korean languages.
+defaultContentLanguageInSubdir = false
+
+paginate = 10  # Number of items per page in paginated lists.
+enableEmoji = true
+footnotereturnlinkcontents = "<sup>^</sup>"
+ignoreFiles = ["\\.ipynb$", ".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+[outputs]
+  home = [ "HTML", "RSS", "JSON" ]
+  section = [ "HTML", "RSS" ]
+
+# Configure BlackFriday Markdown rendering.
+#   See: https://gohugo.io/getting-started/configuration/#configure-blackfriday
+[blackfriday]
+  hrefTargetBlank = true  # `true` opens external links in a new tab. See https://github.com/gohugoio/hugo/issues/2424
+	angledQuotes = false
+	latexDashes = true
+  extensions = ["backslashLineBreak"]
+
+[imaging]
+  resampleFilter = "lanczos"
+  quality = 90
+  anchor = "smart"  # Anchor for cropping. Options include Smart and Center.
+
+# Taxonomies.
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  publication_type = "publication_types"
+  author = "authors"

@@ -4,76 +4,472 @@
     <title>Rene Welch</title>
     <link>/</link>
     <description>Recent content on Rene Welch</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
-    <lastBuildDate>Mon, 21 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>{year}</copyright>
+    <lastBuildDate>Fri, 14 Jun 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Bioconductor slides</title>
-      <link>/post/bioconductor-slides/</link>
+      <title>University of Wisconsin Poster format</title>
+      <link>/post/university-of-wisconsin-poster-format/</link>
+      <pubDate>Fri, 14 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/university-of-wisconsin-poster-format/</guid>
+      <description>
+
+
+&lt;p&gt;I recently presented a poster at &lt;a href=&#34;https://www.iscb.org/glbio2019&#34;&gt;GLBIO 2019&lt;/a&gt;. I adapted the &lt;a href=&#34;https://www.overleaf.com/latex/templates/emory-poster-template/skpfmpxjnqdh&#34;&gt;Emory Poster template&lt;/a&gt; to have &lt;a href=&#34;https://www.overleaf.com/latex/templates/uw-madison-poster-template/tfbyxyhbymsq&#34;&gt;UW Madison’s colors&lt;/a&gt;. And it will look similar to:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/img/uwposter.jpeg&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;I hope this is useful!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Slides</title>
+      <link>/slides/example/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/slides/example/</guid>
+      <description>
+
+&lt;h1 id=&#34;welcome-to-slides&#34;&gt;Welcome to Slides&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34;&gt;Academic&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Efficiently write slides in Markdown&lt;/li&gt;
+&lt;li&gt;3-in-1: Create, Present, and Publish your slides&lt;/li&gt;
+&lt;li&gt;Supports speaker notes&lt;/li&gt;
+&lt;li&gt;Mobile friendly slides&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;controls&#34;&gt;Controls&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Next: &lt;code&gt;Right Arrow&lt;/code&gt; or &lt;code&gt;Space&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Previous: &lt;code&gt;Left Arrow&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Start: &lt;code&gt;Home&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Finish: &lt;code&gt;End&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Overview: &lt;code&gt;Esc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Speaker notes: &lt;code&gt;S&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Fullscreen: &lt;code&gt;F&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Zoom: &lt;code&gt;Alt + Click&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/hakimel/reveal.js#pdf-export&#34; target=&#34;_blank&#34;&gt;PDF Export&lt;/a&gt;: &lt;code&gt;E&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;code-highlighting&#34;&gt;Code Highlighting&lt;/h2&gt;
+
+&lt;p&gt;Inline code: &lt;code&gt;variable&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Code block:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;porridge = &amp;quot;blueberry&amp;quot;
+if porridge == &amp;quot;blueberry&amp;quot;:
+    print(&amp;quot;Eating...&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;math&#34;&gt;Math&lt;/h2&gt;
+
+&lt;p&gt;In-line math: $x + y = z$&lt;/p&gt;
+
+&lt;p&gt;Block math:&lt;/p&gt;
+
+&lt;p&gt;$$
+f\left( x \right) = \;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
+$$&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
+
+&lt;p&gt;Make content appear incrementally&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
+{{% fragment %}} **Two** {{% /fragment %}}
+{{% fragment %}} Three {{% /fragment %}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+   One
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+   &lt;strong&gt;Two&lt;/strong&gt;
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+   Three
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
+
+&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
+- Only the speaker can read these notes
+- Press `S` key to view
+{{% /speaker_note %}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
+
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;
+&lt;li&gt;white: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;league: Gray background, white text, blue links&lt;/li&gt;
+&lt;li&gt;beige: Beige background, dark text, brown links&lt;/li&gt;
+&lt;li&gt;sky: Blue background, thin dark text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;night: Black background, thick white text, orange links&lt;/li&gt;
+&lt;li&gt;serif: Cappuccino background, gray text, brown links&lt;/li&gt;
+&lt;li&gt;simple: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;solarized: Cream-colored background, dark green text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+
+&lt;section data-noprocess data-shortcode-slide
+  
+      
+      data-background-image=&#34;/img/boards.jpg&#34;
+  &gt;
+
+
+&lt;h2 id=&#34;custom-slide&#34;&gt;Custom Slide&lt;/h2&gt;
+
+&lt;p&gt;Customize the slide style and background&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; slide background-image=&amp;quot;/img/boards.jpg&amp;quot; &amp;gt;}}
+{{&amp;lt; slide background-color=&amp;quot;#0000FF&amp;quot; &amp;gt;}}
+{{&amp;lt; slide class=&amp;quot;my-style&amp;quot; &amp;gt;}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;custom-css-example&#34;&gt;Custom CSS Example&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s make headers navy colored.&lt;/p&gt;
+
+&lt;p&gt;Create &lt;code&gt;assets/css/reveal_custom.css&lt;/code&gt; with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.reveal section h1,
+.reveal section h2,
+.reveal section h3 {
+  color: navy;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;questions&#34;&gt;Questions?&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://discourse.gohugo.io&#34; target=&#34;_blank&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bioconductor slide format</title>
+      <link>/post/bioconductor-slide-format/</link>
       <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/bioconductor-slides/</guid>
-      <description>Last week, I gave a presentation about developing R packages with Bioconductor. The slides are available here
- Besides the slides, I created a format based on the amazing ninjutsu, kunoichi with the Bioconductor colors.</description>
+      <guid>/post/bioconductor-slide-format/</guid>
+      <description>
+
+
+&lt;p&gt;Last week, I gave a presentation about developing &lt;strong&gt;R packages&lt;/strong&gt; with Bioconductor. The slides are available &lt;a href=&#34;http://welch16.rbind.io/bioc_slides/2019_01_creating_bioc_package#1&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;iframe src=&#34;http://welch16.rbind.io/bioc_slides/2019_01_creating_bioc_package#1&#34; width=&#34;672&#34; height=&#34;400px&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Besides the slides, I created a format based on the amazing &lt;a href=&#34;https://emitanaka.github.io/ninja-theme/themes/kunoichi/kunoichi-theme-example.html#1&#34;&gt;ninjutsu, kunoichi&lt;/a&gt; with the &lt;a href=&#34;https://github.com/welch16/create_bioc_package/blob/master/assets/bioctheme.css&#34;&gt;Bioconductor colors&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>Tidy Parallel Loading of Rdata Files</title>
-      <link>/post/tidy-parallel-loading-of-rdata-files/</link>
-      <pubDate>Thu, 14 Jun 2018 00:00:00 +0000</pubDate>
+      <title>Privacy Policy</title>
+      <link>/privacy/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
       
-      <guid>/post/tidy-parallel-loading-of-rdata-files/</guid>
-      <description>In my last project, I have been using the following function a lot:
-load2env &amp;lt;- function(file,env = new.env()) { load(file,envir = env) env } This function load the RData file into the environment env, which will return. However, if we have multiple files to load simultaneously then we would like to load those files in parallel.
-Using the new furrr or any other package that allows parallel processing, we can do that by using something as:</description>
+      <guid>/privacy/</guid>
+      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>Plotting manhattan plots and LD matrices together</title>
-      <link>/post/plotting-manhattan-plots-and-ld-matrices-together/</link>
+      <title>Tidy loading of RData files in parallel</title>
+      <link>/post/tidy-loading-of-rdata-files-in-parallel/</link>
+      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tidy-loading-of-rdata-files-in-parallel/</guid>
+      <description>
+
+
+&lt;p&gt;In my last project, I have been using this function very frequently:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;load2env &amp;lt;- function(file,env = new.env())
+{
+  load(file,envir = env)
+  env
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This function loads the RData file into the environment &lt;code&gt;env&lt;/code&gt;, which will usually return. However, if we have multiple files to load simultaneously, when trying to load multiple files in parallel we would run into an error, because it would be creating many environments at the same time.&lt;/p&gt;
+&lt;p&gt;Using the new &lt;a href=&#34;https://github.com/DavisVaughan/furrr&#34;&gt;furrr&lt;/a&gt; or any other package that allows parallel processing, and creating the environments in advance, we can load many RData files in paralele by using:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(furrr)
+
+plan(multiprocess)
+
+my_data = tibble(
+  files = list.files( my_dir ,full.names = TRUE )) %&amp;gt;% 
+  mutate(
+    env = map(files,  ~ new.env()),
+    data = future_map2( files, env, load2env   ) %&amp;gt;% 
+      map(as.list)
+  )&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Plotting manhattan plots and LD matrices together in R</title>
+      <link>/post/plotting-manhattan-plots-and-ld-matrices-together-in-r/</link>
       <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/plotting-manhattan-plots-and-ld-matrices-together/</guid>
-      <description>Genomic Wide Association Studies have robustly identified associations between phenotype and genotypes. However, these studies are hard to interpret as positions in the genome are usually correlated. For that purpose, we would like to compare the signal’s strength and the correlation between the SNPs at the same time.
-When I looked for tools to make these type of plots, I only found the LDheatmap which is capable of plotting the heatmap but not adding it to a manhattan plot.</description>
+      <guid>/post/plotting-manhattan-plots-and-ld-matrices-together-in-r/</guid>
+      <description>
+
+
+&lt;p&gt;Genomic Wide Association Studies have been used to identify robust associations between phenotype and genotypes. However, these studies are hard to interpret because positions in the genome are usually correlated. For that purpose, we would like to compare the signal’s strength and the correlation between the SNPs at the same time.&lt;/p&gt;
+&lt;p&gt;When I looked for tools to make these plots, I only found the &lt;code&gt;LDheatmap&lt;/code&gt; which is capable of plotting the heatmap but not adding it to a manhattan plot.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(scales)
+library(grid)
+library(gridExtra)
+
+theme_set(theme_minimal())&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For the purpose of this post, I cleaned eQTL p.values for one loci.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 14 x 3
+##    SNP             pos eQTL_log10pval
+##    &amp;lt;chr&amp;gt;         &amp;lt;int&amp;gt;          &amp;lt;dbl&amp;gt;
+##  1 rs10864454 10417853          -15.2
+##  2 rs12135774 10386506          -13.4
+##  3 rs1220400   9997079          -55.6
+##  4 rs1234694  10003320          -99.4
+##  5 rs3820192  11847772          -19.4
+##  6 rs41275494 11894133          -14.3
+##  7 rs4240912  10437778          -13.8
+##  8 rs55741089 11898859          -14.0
+##  9 rs55867221 11845222          -19.4
+## 10 rs56001051 11838841          -19.4
+## 11 rs6670157  10458439          -12.4
+## 12 rs6688187  11837473          -19.4
+## 13 rs6703535  11843919          -19.4
+## 14 rs72638698 11835455          -19.4&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mat_data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 196 x 6
+##    SNP1       SNP2          cor     pos1    pos2 abs_dist
+##    &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;       &amp;lt;dbl&amp;gt;    &amp;lt;int&amp;gt;   &amp;lt;int&amp;gt;    &amp;lt;int&amp;gt;
+##  1 rs1220400  rs1220400  1.      9997079 9997079        0
+##  2 rs1234694  rs1220400  0.952  10003320 9997079     6241
+##  3 rs10864454 rs1220400 -0.102  10417853 9997079   420774
+##  4 rs12135774 rs1220400 -0.0985 10386506 9997079   389427
+##  5 rs3820192  rs1220400 -0.0474 11847772 9997079  1850693
+##  6 rs41275494 rs1220400 -0.0489 11894133 9997079  1897054
+##  7 rs4240912  rs1220400 -0.0426 10437778 9997079   440699
+##  8 rs55741089 rs1220400 -0.0473 11898859 9997079  1901780
+##  9 rs55867221 rs1220400 -0.0557 11845222 9997079  1848143
+## 10 rs56001051 rs1220400 -0.0670 11838841 9997079  1841762
+## # … with 186 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first steps are to make the plots by separate:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot1 = plot_data %&amp;gt;% 
+  ggplot(aes(pos,-eQTL_log10pval))+
+  geom_point()+
+  scale_x_continuous(labels = comma)
+plot1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together-in-r_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;snp_levels = mat_data %&amp;gt;% 
+    dplyr::select(SNP1,pos1) %&amp;gt;% 
+    unique() %&amp;gt;% 
+    arrange(pos1) %&amp;gt;% 
+    pluck(&amp;quot;SNP1&amp;quot;)
+
+plot2 = mat_data %&amp;gt;% 
+  dplyr::filter(pos1 &amp;gt;= pos2) %&amp;gt;% 
+  mutate_at(vars(contains(&amp;quot;SNP&amp;quot;)),funs(factor(.,levels = snp_levels))) %&amp;gt;% 
+    ggplot(
+      aes(SNP1,SNP2,fill = cor^2))+
+    geom_tile()+
+    theme(legend.position = &amp;quot;right&amp;quot;)+
+    scale_fill_distiller(palette = &amp;quot;Spectral&amp;quot;,
+                         guide = guide_colourbar(title = expression(R^2),
+                                                 barheight = unit(0.4,&amp;quot;npc&amp;quot;),
+                                                 barwidth = unit(0.03,&amp;quot;npc&amp;quot;)))+
+    theme(
+      axis.text.x = element_text(angle = 90)
+    )+
+    xlab(&amp;quot;SNP&amp;quot;)+ylab(&amp;quot;SNP&amp;quot;)+coord_fixed()
+plot2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together-in-r_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;This plot requires some cleaning work, we first remove the labels from the axis:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot2_clean = plot2 +
+    theme(legend.position = &amp;quot;none&amp;quot;,
+        axis.title = element_blank(),
+        panel.grid = element_blank(),
+        plot.background = element_blank(),
+        panel.border = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x = element_blank())
+plot2_clean&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together-in-r_files/figure-html/clean-1.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;snp_data = mat_data %&amp;gt;% 
+  dplyr::filter(SNP1 == SNP2)
+
+plot2_clean = plot2_clean +
+  geom_text(
+    data = snp_data,aes(label = SNP1),size =3,angle = -45,hjust = 1,
+    nudge_x = -.5,nudge_y = .5,show.legend = FALSE)
+plot2_clean&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together-in-r_files/figure-html/clean-2.png&#34; width=&#34;672&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We almost have the pieces, so we arrange everything together by using &lt;code&gt;gridExtra&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## extract the legend
+aux_grob = ggplotGrob(plot2)$grobs
+legend = aux_grob[[which(sapply(aux_grob,function(x)x$name) == &amp;quot;guide-box&amp;quot;)]]
+
+## rotate the LD matrix
+bottom_part = arrangeGrob(plot2_clean,vp = viewport(angle = -45)) 
+
+## overlap the empty part of the LD matrix (which requires theme_minimal) and
+## included a bit of space at the bottom
+whole_plot = arrangeGrob(plot1 +
+                           theme(axis.title.x = element_blank()),
+                         textGrob(&amp;quot;&amp;quot;),
+                         bottom_part,textGrob(&amp;quot;&amp;quot;),
+                         ncol =1,heights = c(5,-2,10,2))
+grid.newpage()
+grid.arrange(whole_plot,legend,nrow = 1,widths = c(9,1)) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-04-10-plotting-manhattan-plots-and-ld-matrices-together-in-r_files/figure-html/done-1.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The result is a publication ready figure that shows 14 snps are clustered into at least 4 clusters.&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Wed, 26 Jul 2017 00:00:00 +0000</pubDate>
+      <title>ChIPUtils</title>
+      <link>/project/chiputils/</link>
+      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/about/</guid>
-      <description>Hello, my name is Rene Welch and I am working as an assistant scientist at the CISR. I did my Ph.D. at the Statistics Department at UW - Madison too, where I focused on developing computational tools for genomic data.
-My research interests are:
- Data Integration in Computational biology.
- Reproducible research, and Data visualization
-  </description>
+      <guid>/project/chiputils/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/welch16/ChIPUtils&#34; target=&#34;_blank&#34;&gt;ChIPUtils&lt;/a&gt; is an R package that contains many functions used for exploratory analysis of ChIP-seq and ChIP-exo data. It includes some commonly used quality control measures:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;PCR bottleneck coefficient&lt;/li&gt;
+&lt;li&gt;Strand cross-correlation&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
-      <title>Home</title>
-      <link>/home/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>ChIPexoQual</title>
+      <link>/project/chipexoqual/</link>
+      <pubDate>Wed, 06 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>/home/</guid>
+      <guid>/project/chipexoqual/</guid>
+      <description>&lt;p&gt;ChIP-exo/nexus experiments rely on innovative modifications of the commonly used ChIP-seq protocol for high resolution mapping of transcription factor binding sites. Although many aspects of the ChIP-exo data analysis are similar to those of ChIP-seq, these high throughput experiments pose a number of unique quality control and analysis challenges. We develop a novel statistical quality control pipeline and accompanying R/Bioconductor package, ChIPexoQual, to enable exploration and analysis of ChIP-exo and related experiments. ChIPexoQual evaluates a number of key issues including strand imbalance, library complexity, and signal enrichment of data. Assessment of these features are facilitated through diagnostic plots and summary statistics computed over regions of the genome with varying levels of coverage.&lt;/p&gt;
+
+&lt;p&gt;The package is available in &lt;a href=&#34;https://bioconductor.org/packages/release/bioc/html/ChIPexoQual.html&#34; target=&#34;_blank&#34;&gt;Bioconductor&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Data Exploration, quality control and statistical analysis of ChIP-exo/nexus experiments</title>
+      <link>/publication/welch17/</link>
+      <pubDate>Sat, 29 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/welch17/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>License</title>
-      <link>/license/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Predicting gene expression in massively parallel reporter assays: A comparative study</title>
+      <link>/publication/kreimer17/</link>
+      <pubDate>Mon, 10 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>/license/</guid>
-      <description>You can use this page to put a license on the contents of your blog, like so:
- The MIT License (MIT)
-Copyright &amp;copy; 2015 Nishanth Shanmughamnishanth.gerrard@gmail.com
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &amp;ldquo;Software&amp;rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</description>
+      <guid>/publication/kreimer17/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Epstein-Barr Virus Nuclear Antigen 3 (EBNA3) Proteins Regulate EBNA2 Binding to Distinct RBPJ Genomic Sites</title>
+      <link>/publication/wang15/</link>
+      <pubDate>Mon, 21 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/wang15/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Perm-seq: Mapping Protein-DNA Interactions in Segmental Duplication and Highly Repetitive Regions of Genomes with Prior-Enhanced Read Mapping</title>
+      <link>/publication/zeng15/</link>
+      <pubDate>Tue, 20 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/zeng15/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Segvis</title>
+      <link>/project/segvis/</link>
+      <pubDate>Fri, 03 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/project/segvis/</guid>
+      <description>&lt;p&gt;An R package to visualize ChIP-seq experiments across a set of pre-defined peaks. The package requires a set of pre-defined genomic regions, and aligned reads in bam format. We can do many tasks with it, some examples are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Extracts read data of specified input regions&lt;/li&gt;
+&lt;li&gt;Plot peaks of different conditions across the same set of regions&lt;/li&gt;
+&lt;li&gt;Plot central measures for a set of regions with the same width&lt;/li&gt;
+&lt;li&gt;Subset regions according to used defined annotations&lt;/li&gt;
+&lt;li&gt;Plot the heatmap of signal curves accross regions separated by annotation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The package is available &lt;a href=&#34;https://github.com/welch16/Segvis&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
   </channel>

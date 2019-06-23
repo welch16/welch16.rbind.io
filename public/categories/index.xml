@@ -4,12 +4,22 @@
     <title>Categories on Rene Welch</title>
     <link>/categories/</link>
     <description>Recent content in Categories on Rene Welch</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
-    <lastBuildDate>Mon, 21 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>{year}</copyright>
+    <lastBuildDate>Fri, 14 Jun 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+	    <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Latex</title>
+      <link>/categories/latex/</link>
+      <pubDate>Fri, 14 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/latex/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Bioconductor</title>
@@ -21,20 +31,29 @@
     </item>
     
     <item>
-      <title>Gwas</title>
-      <link>/categories/gwas/</link>
-      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/gwas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>R</title>
       <link>/categories/r/</link>
       <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/categories/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xaringan</title>
+      <link>/categories/xaringan/</link>
+      <pubDate>Mon, 21 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/xaringan/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GWAS</title>
+      <link>/categories/gwas/</link>
+      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/gwas/</guid>
       <description></description>
     </item>
     
