@@ -3,6 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/obligatory-how-to-do-a-blogdown-like-website-post/</loc>
+    <lastmod>2019-06-24T22:38:51-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2019-06-24T22:38:51-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-06-24T22:38:51-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
     <lastmod>2019-06-14T22:41:04-05:00</lastmod>
     <priority>0</priority>
@@ -10,17 +26,6 @@
   
   <url>
     <loc>/categories/latex/</loc>
-    <lastmod>2019-06-14T22:41:04-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2019-06-14T22:41:04-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
     <lastmod>2019-06-14T22:41:04-05:00</lastmod>
     <priority>0</priority>
   </url>

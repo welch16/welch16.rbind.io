@@ -1,0 +1,49 @@
+---
+title: Obligatory how to do a blogdown-like-website post
+author: ''
+date: '2019-06-24'
+slug: obligatory-how-to-do-a-blogdown-like-website-post
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-06-24T22:38:51-05:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+I tend to repeat myself a lot, but I guess that there are many resources explaining how to do a website with blogdown. So, I will list all of the resources that I followed:
+
+1. [blogdown, creating websites with R markdown](https://bookdown.org/yihui/blogdown/), this book explains pretty much all the details. The chapter that I had to pay the most attention was the one about [deployment of the website](https://bookdown.org/yihui/blogdown/deployment.html). 
+
+2. [Alison Hill's Up & Running with blogdown](https://alison.rbind.io/post/2017-06-12-up-and-running-with-blogdown/), a graphical guide on how to set up the website, starting from the github repository, and ending on how to custom CSS, using formspree, or even adapting the domain to be `.rbind.io`
+
+3. [Leslie Myint's Tips for using the Hugo academic theme](https://lmyint.github.io/post/hugo-academic-tips/). This post was key to learn how to pick the right colors on the configuration of the site, and the `code chunks`
+
+I used the [Hugo Academic's theme](https://themes.gohugo.io/academic/), which is more powerful than what I did for this site, but to keep things simple, almost all the files that need to be edited are in the `content` folder.
+
+* The main page is in `content/authors/admin/_index.md`
+
+* The posts are in `content/post`, and to generate a new post the `blogdown`'s addin does everything except writing a new post.
+
+* I used the `content/project` directory to keep the `Software` tab, and it is only necessary to create a folder for every software project, and edit one of the `index.md` files that come by default when creating an `academic` blog project. The picture was added as a file name `featured.png` in the same folder.
+
+* The `content/publication` works similarly, but we can also add a `cite.bib` / a `pdf` version of the paper, etc. 
+    
+More details on how to configure the site are available in the [academic site's documentation](https://sourcethemes.com/academic/docs/), I hope this is useful!
+
+
+
+
+
+
+```{r rwlib,echo=FALSE,out.width="450px"}
+
+knitr::include_graphics("https://media.giphy.com/media/l3vRfMnNtfBvwsdby/giphy.gif")
+
+```

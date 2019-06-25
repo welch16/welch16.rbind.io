@@ -1,0 +1,36 @@
+---
+title: Obligatory how to do a blogdown-like-website post
+author: ''
+date: '2019-06-24'
+slug: obligatory-how-to-do-a-blogdown-like-website-post
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-06-24T22:38:51-05:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p>I tend to repeat myself a lot, but I guess that there are many resources explaining how to do a website with blogdown. So, I will list all of the resources that I followed:</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://bookdown.org/yihui/blogdown/">blogdown, creating websites with R markdown</a>, this book explains pretty much all the details. The chapter that I had to pay the most attention was the one about <a href="https://bookdown.org/yihui/blogdown/deployment.html">deployment of the website</a>.</p></li>
+<li><p><a href="https://alison.rbind.io/post/2017-06-12-up-and-running-with-blogdown/">Alison Hill’s Up &amp; Running with blogdown</a>, a graphical guide on how to set up the website, starting from the github repository, and ending on how to custom CSS, using formspree, or even adapting the domain to be <code>.rbind.io</code></p></li>
+<li><p><a href="https://lmyint.github.io/post/hugo-academic-tips/">Leslie Myint’s Tips for using the Hugo academic theme</a>. This post was key to learn how to pick the right colors on the configuration of the site, and the <code>code chunks</code></p></li>
+</ol>
+<p>I used the <a href="https://themes.gohugo.io/academic/">Hugo Academic’s theme</a>, which is more powerful than what I did for this site, but to keep things simple, almost all the files that need to be edited are in the <code>content</code> folder.</p>
+<ul>
+<li><p>The main page is in <code>content/authors/admin/_index.md</code></p></li>
+<li><p>The posts are in <code>content/post</code>, and to generate a new post the <code>blogdown</code>’s addin does everything except writing a new post.</p></li>
+<li><p>I used the <code>content/project</code> directory to keep the <code>Software</code> tab, and it is only necessary to create a folder for every software project, and edit one of the <code>index.md</code> files that come by default when creating an <code>academic</code> blog project. The picture was added as a file name <code>featured.png</code> in the same folder.</p></li>
+<li><p>The <code>content/publication</code> works similarly, but we can also add a <code>cite.bib</code> / a <code>pdf</code> version of the paper, etc.</p></li>
+</ul>
+<p>More details on how to configure the site are available in the <a href="https://sourcethemes.com/academic/docs/">academic site’s documentation</a>, I hope this is useful!</p>
+<p><img src="https://media.giphy.com/media/l3vRfMnNtfBvwsdby/giphy.gif" width="450px" /></p>
