@@ -7,10 +7,127 @@
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>{year}</copyright>
-    <lastBuildDate>Sat, 29 Jul 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 25 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ahmed Ali</title>
+      <link>/authors/ahmed-ali/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/ahmed-ali/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Eric Johannsen</title>
+      <link>/authors/eric-johannsen/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/eric-johannsen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>J Tod Guidry</title>
+      <link>/authors/j-tod-guidry/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/j-tod-guidry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kathleen R Makielski</title>
+      <link>/authors/kathleen-r-makielski/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/kathleen-r-makielski/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kyle McChesney</title>
+      <link>/authors/kyle-mcchesney/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/kyle-mcchesney/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Makoto Ohashi</title>
+      <link>/authors/makoto-ohashi/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/makoto-ohashi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mark R Eichelberg</title>
+      <link>/authors/mark-r-eichelberg/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/mark-r-eichelberg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Nicholas Van Sciver</title>
+      <link>/authors/nicholas-van-sciver/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/nicholas-van-sciver/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Paul F Lambert</title>
+      <link>/authors/paul-f-lambert/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/paul-f-lambert/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rene Welch</title>
+      <link>/authors/rene-welch/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/rene-welch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rona S Scott</title>
+      <link>/authors/rona-s-scott/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/rona-s-scott/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shannon C Kenney</title>
+      <link>/authors/shannon-c-kenney/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/shannon-c-kenney/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sunduz Keles</title>
+      <link>/authors/sunduz-keles/</link>
+      <pubDate>Sun, 25 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/sunduz-keles/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title></title>
@@ -48,15 +165,6 @@
       <pubDate>Sat, 29 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>/authors/robert-landick/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sunduz Keles</title>
-      <link>/authors/sunduz-keles/</link>
-      <pubDate>Sat, 29 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/authors/sunduz-keles/</guid>
       <description></description>
     </item>
     
@@ -264,15 +372,6 @@
       <pubDate>Mon, 21 Dec 2015 00:00:00 +0000</pubDate>
       
       <guid>/authors/bo-zhao/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Eric Johannsen</title>
-      <link>/authors/eric-johannsen/</link>
-      <pubDate>Mon, 21 Dec 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/authors/eric-johannsen/</guid>
       <description></description>
     </item>
     

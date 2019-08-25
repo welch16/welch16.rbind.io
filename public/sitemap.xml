@@ -3,6 +3,118 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/publication_types/2/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/ahmed-ali/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/publication/eichelberg19/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/eric-johannsen/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/j-tod-guidry/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/kathleen-r-makielski/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/kyle-mcchesney/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/makoto-ohashi/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/mark-r-eichelberg/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/nicholas-van-sciver/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/paul-f-lambert/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/publication_types/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/publication/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/authors/rene-welch/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/rona-s-scott/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/shannon-c-kenney/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/authors/sunduz-keles/</loc>
+    <lastmod>2019-08-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/post/obligatory-how-to-do-a-blogdown-like-website-post/</loc>
     <lastmod>2019-06-24T22:38:51-05:00</lastmod>
   </url>
@@ -10,12 +122,6 @@
   <url>
     <loc>/post/</loc>
     <lastmod>2019-06-24T22:38:51-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2019-06-24T22:38:51-05:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -82,11 +188,6 @@
   </url>
   
   <url>
-    <loc>/privacy/</loc>
-    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/tidy-loading-of-rdata-files-in-parallel/</loc>
     <lastmod>2018-06-04T00:00:00+00:00</lastmod>
   </url>
@@ -142,18 +243,6 @@
   </url>
   
   <url>
-    <loc>/publication_types/2/</loc>
-    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/authors/</loc>
-    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/publication/welch17/</loc>
     <lastmod>2017-07-29T00:00:00+00:00</lastmod>
   </url>
@@ -171,24 +260,7 @@
   </url>
   
   <url>
-    <loc>/publication_types/</loc>
-    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/publication/</loc>
-    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/authors/robert-landick/</loc>
-    <lastmod>2017-07-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/authors/sunduz-keles/</loc>
     <lastmod>2017-07-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -339,12 +411,6 @@
   <url>
     <loc>/publication/wang15/</loc>
     <lastmod>2015-12-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/eric-johannsen/</loc>
-    <lastmod>2015-12-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
