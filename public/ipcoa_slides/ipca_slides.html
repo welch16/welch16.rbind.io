@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Integrated Principal Components Analysis</title>
+    <meta charset="utf-8" />
+    <link href="libs/remark-css-0.0.1/shinobi.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Integrated Principal Components Analysis
+### (2019-08-08)
+
+---
+
+layout: false
+class: middle center
+
+
+
+
+.font5[.indigo[Why this paper?]]
+
+.font2.black.left[
+
+* .indigo[Principal components] is a general method use to explore the structure of the data
+
+* In this project, we have many data types extracted for the same samples. This method performs PCA for the samples .blue[integrated] over the different data types
+
+* .red[The paper is very long, so I am not cover all the details that are a bit technical]
+
+]
+
+---
+layout: false
+class:middle left
+
+.font5.center[What is .indigo[PCA]?]
+
+
+.font2.black[
+
+Given a matrix `\(\mathbf{X}\in \mathbb{R}^{n\times p}\)`, want to find orthogonal directions `\(\mathbf{v}_j\)`, that max. the covariance matrix `\(\Delta\)`:
+
+`\(v_j = \mbox{argmax}_\mathbf{v} \mathbf{v}^T \Delta \mathbf{v}\text{ s.t. } \mathbf{v}^T\mathbf{v}=1\text{ and }\mathbf{v}^T\mathbf{v}_i = 0\text{ }i&lt;j\)`
+
+The problem is solved by diagonalizating the cov. matrix `\(\hat{\Delta} = \frac{1}{n} \mathbf{X}^T \mathbf{X}\)`, and the vector `\(\mathbf{v}_j\)` are the eigen-vectors.
+
+]
+
+---
+layout: false
+class: middle left
+
+.font5.center[What is .indigo[PCA]?]
+
+.font2[
+
+The general idea, is that if we observe an iid sample `\(\mathbf{X}_i \sim \mathcal{N}_p(\mathbf{0},\Delta)\)`, then:
+
+i) We can estimate via max. likelihood `\(\hat{\Delta} = \frac{1}{n}\sum_i \mathbf{X}_i \mathbf{X}_i^T\)`
+
+ii) .indigo[PCA] follows from this observation
+
+]
+
+---
+layout: false
+class: middle left
+
+.font4.center[What about the .blue[integrated part]?]
+
+.font2[
+
+Assume matrix normal dist: `\(\mathbf{X}_k \sim \mathcal{N}_{n\times p_k}(1_n \mu_k^T, \Sigma, \Delta_k)\)`
+
+]
+
+&lt;img src="paper_figs/diagram.png" width="750" style="display: block; margin: auto;" /&gt;
+
+.font2[
+
+The .blue[sample covariance matrix ] `\(\Sigma \in \mathbb{R}^{n\times n}\)` is the same for all the data types, but the .red[data variable covariances] `\(\Delta_k \in \mathbb{R}^{p_k \times p_k}\)` are different.
+
+]
+
+---
+layout: false
+class: middle left
+
+.font4.center[What about the .blue[integrated part]?]
+
+&lt;img src="paper_figs/simdata.png" width="950" style="display: block; margin: auto;" /&gt;
+
+.font2[
+
+Example: The truth is simulated from the iPCA model.
+
+* When performing PCA on each `\(\mathbf{X}_k\)` by separate, the 3 classes are mixed together
+
+* iPCA separates the 3 classes very similarly to the truth
+
+]
+
+---
+layout: false
+class: middle left
+
+
+.font2[
+
+Density of a matrix normal dist
+
+`\(p(\mathbf{X}\mid \mathbf{M}, \mathbf{U},\mathbf{V}) = \frac{\exp\left(- \frac{1}{2} \mbox{tr}(\mathbf{U}^{-1}(\mathbf{X - M})\mathbf{V}(\mathbf{X - M})^T\right)}{(2\pi)^{np/2}| \mathbf{V} |^{n/2} |\mathbf{U}|^{p/2}}\)`
+
+Then, the log-likelihood of the `\(\mathbf{X}_k\)`s would be
+
+`\(\begin{aligned}\ell(\Sigma,\Delta) \propto &amp;\text{ }p \log |\Sigma^{-1}| + n \sum_k \log | \Delta_k^{-1}| \\&amp;- \sum_k \mbox{tr}(\Sigma^{-1} (\mathbf{X}_k - 1_n \mu_k^T)\Delta_k^{-1}(\mathbf{X}_k - 1_n \mu_k^T)^T\end{aligned}\)`
+
+]
+
+---
+layout: false
+class: middle left
+
+.font4[
+.center[
+Estimating `\(\Sigma\)` and `\(\Delta_k\)`s
+]]
+
+.font2[
+
+* If `\(\Sigma = I\)`, then `\(\hat{\Delta}_k = \frac{1}{n} (\mathbf{X}_k - 1_n \mu_k^T)^T(\mathbf{X}_k - 1_n \mu_k^T)\)`
+
+* If all `\(\Delta_k = I\)`, then `\(\hat{\Sigma} = \frac{1}{p}\sum_k (\mathbf{X}_k - 1_n \mu_k^T)(\mathbf{X}_k - 1_n \mu_k^T)^T\)`
+
+* "Both" at the same time is a harder problem: 
+`\(\hat{\Sigma},\hat{\Delta}_1,\cdots,\hat{\Delta}_K= \mbox{argmax } \ell(\Sigma,\Delta)\)`
+
+]
+
+---
+layout: false
+class: middle left
+
+.font3.center[General algorithm:]
+
+.font2[
+
+1. Center columns of all `\(\mathbf{X}_k\)`
+
+2. Init the matrices to be s.p.d.
+
+3. While not converge:
+
+  a. Update `\(\Sigma\)` (with the `\(\Delta\)`s fixed)
+   
+  b. for `\(k=1,\cdots,K\)`: Update `\(\Delta_k\)` (with `\(\Sigma\)` fixed)
+
+
+]
+
+---
+layout: false
+class: middle left
+
+.font3[
+.center[
+Update rules:
+]]
+
+.font2[
+
+Recall graphical lasso: `\(\hat{\Theta}=\operatorname{argmin}_{\Theta}\left(\operatorname{tr}(S \Theta)-\log \operatorname{det}(\Theta)+\lambda P(\Theta) \right)\)`
+
+For our setting they propose two different penalties (q = 1, graphical lasso):
+
+i) `\(P_q(\Sigma^{-1},\Delta_k^{-1})= \lambda_\Sigma \Vert \Sigma^{-1}\Vert_q + \sum_k \lambda_k \Vert \Delta_k^{-1}\Vert_q\)`
+
+
+ii) `\(P_F(\Sigma^{-1},\Delta_k^{-1}) = \sum_k \lambda_k \Vert \Sigma^{-1}\otimes \Delta_k^{-1}\Vert_F^2\)`
+
+]
+
+---
+layout: false
+class: middle left
+
+.font3[
+.center[
+Update rules:
+]]
+
+.font2[
+
+Recall graphical lasso: `\(\hat{\Theta}=\operatorname{argmin}_{\Theta}\left(\operatorname{tr}(S \Theta)-\log \operatorname{det}(\Theta)+\lambda P(\Theta) \right)\)`
+
+For our setting they propose two different penalties (q = 1, graphical lasso):
+
+i) `\(P_q(\Sigma^{-1},\Delta_k^{-1})= \lambda_\Sigma \Vert \Sigma^{-1}\Vert_q + \sum_k \lambda_k \Vert \Delta_k^{-1}\Vert_q\)` 
+
+ii) `\(P_F(\Sigma^{-1},\Delta_k^{-1}) = \Vert \Sigma^{-1} \Vert^2_F \sum_k \lambda_k \Vert \Delta_k^{-1}\Vert_F^2\)`
+
+
+]
+
+
+---
+layout: false
+class: middle left
+
+.font3.center[Simulation]
+
+.font2[
+
+Coupled data matrices `\(\mathbf{X}_1, \mathbf{X}_2, \mathbf{X}_3\)`, with `\(n=150\)`, `\(p_1 = 300\)`, `\(p_2 = 500\)`, and `\(p_3 = 400\)`
+
+* `\(\Sigma\)` is a spiked covariance matrix with the top two factors forming 3 clusters
+
+* `\(\Delta_1^{(i,j)} = 0.9^{|i - j |}\)`, `\(\Delta_2\)` observed from ovarian TCGA data, `\(\Delta_3\)` is block-diagonal
+
+]
+
+---
+layout: false
+class: middle left
+
+
+
+&lt;img src="paper_figs/sims2.png" width="950" style="display: block; margin: auto;" /&gt;
+
+.font2[
+Subspace recovery error: `\(\frac{1}{d} \Vert \hat{\mathbf{U}}\hat{\mathbf{U}}^T - \mathbf{U}\mathbf{U}^T\Vert^2_F\)`, where `\(\mathbf{U}\)` contains the top d eigenvectors of `\(\Sigma\)`, lower error implies higher estimation accuracy
+]
+
+---
+layout: false
+class: middle left
+
+
+&lt;img src="paper_figs/sims1.png" width="950" style="display: block; margin: auto;" /&gt;
+
+.center[JIVE model]
+
+&lt;img src="paper_figs/jive.png" width="450" style="display: block; margin: auto;" /&gt;
+
+---
+layout: false
+class: middle left
+
+.font3[Case of study: Alzheimer disease]
+
+.font2[Joinly analyzing mRNA, RNA-seq, and methylation data for `\(n = 507\)` subjects:
+
+Originally: `\(p_1 = 309\)` mRNAs, `\(p_2 = 41,809\)` genes, `\(p_3 = 420,132\)` CpGs
+
+Highest variance: `\(p_1 = 309\)` mRNAs, `\(p_2 = 20,000\)` genes, `\(p_3 = 50,000\)` CpGs
+
+Univariate filtering: `\(p_1 = 309\)` mRNA, `\(p_2 = 900\)` genes, `\(p_3 = 1250\)` CpGs
+
+]
+
+---
+layout: false
+class: middle left
+
+.font3[Case of study: Alzheimer disease]
+
+
+
+&lt;img src="paper_figs/top3_components.png" width="950" style="display: block; margin: auto;" /&gt;
+
+
+.font2[
+
+`\(\mbox{PVE}_{k,m} = \frac{\Vert (\mathbf{U}^{(m)})^T \mathbf{X}_k \mathbf{V}_k^{(m)}\Vert^2_F}{\Vert \mathbf{X}_k\Vert^2_F}\)` and `\(\mbox{MPVE}_{k,m} = \mbox{PVE}_{k,m} - \mbox{PVE}_{k,m-1}\)`
+
+]
+
+
+---
+layout: false
+class: middle left
+
+.font3[Case of study: Alzheimer disease]
+
+
+&lt;img src="paper_figs/diagnosis.png" width="1000" style="display: block; margin: auto;" /&gt;
+
+
+---
+layout: false
+class: middle left
+
+.font3[Case of study: Alzheimer disease]
+
+
+&lt;img src="paper_figs/cognition.png" width="1000" style="display: block; margin: auto;" /&gt;
+
+
+---
+layout: false
+class: middle left
+
+.font3[Case of study: Alzheimer disease]
+
+
+&lt;img src="paper_figs/RFmodels.png" width="1000" style="display: block; margin: auto;" /&gt;
+
+---
+layout: false
+class: middle left
+
+.font4[.center[How we can use it?]]
+
+
+&lt;img src="paper_figs/iPCoA.jpg" width="650px" style="display: block; margin: auto;" /&gt;
+
+
+---
+layout: false
+class: middle left
+
+.font4[.center[How we can use it?]]
+
+.font2[
+
+* We have coupled microbiome data
+
+* .indigo[PCoA] is a generalization of .indigo[PCA] where the corr. matrix is based on general distance matrices
+
+* The iPCA algorithm is easy to adapt for correlation matrices (probably under mild assumptions)
+
+* Fit a classification model over the "iPCoA" components
+
+* Profit!
+
+]
+
+
+---
+layout: false
+class: middle center
+
+
+&lt;img src="https://media.giphy.com/media/3eUO1Wb9eq4z9hnml5/giphy.gif" width="350px" /&gt;
+
+.font5.blue[Thanks!]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
