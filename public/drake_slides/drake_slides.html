@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Reproducible research with drake</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Rene Welch" />
+    <link href="libs/font-awesome-5.3.1/css/fontawesome-all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="myslides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Reproducible research with drake
+### Rene Welch
+### 2020/05/14
+
+---
+
+
+
+
+
+
+
+class: center, top
+
+# why drake?
+
+&lt;img src="https://rstudio-education.github.io/tidyverse-cookbook/images/data-science-workflow.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+.left.large[
+- We repeat this process many times
+- If one step is changed, we need to repeat all the process
+- When there is a new dataset, we need to repeat the analysis
+]
+
+---
+class: center, middle
+
+# what is drake?
+
+.larger[
+**R package** that manages code dependencies, and allows for the analysis process to be **reproducible**
+
+it was inspired by **make**
+
+but it is completely <i class="fab  fa-r-project " style="color:#035AA6;"></i> centric
+]
+
+---
+class: center, middle
+
+# how to use drake?
+
+
+---
+class: center, middle
+
+## how to use drake?
+
+.pull-left[
+
+#### scripts
+
+&lt;img src="extra/wwhs_process.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+#### functions
+
+&lt;img src="extra/how_drake.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+
+???
+
+- we change from scripts doing tasks to functions
+- drake recognizes the elements in the plan automatically, and builds the process network
+- detects the parts that have been 
+
+
+---
+class: left, middle
+
+.center[
+## drake details 🔽
+]
+
+.larger[The plan from is coded as a `tibble`, and `drake` detects the dependencies among targets]
+
+
+```
+## # A tibble: 10 x 2
+##    target              command                                                  
+##    &lt;chr&gt;               &lt;expr_lst&gt;                                               
+##  1 common_samples      here::here("results", "2019_05_02_pick_samples_clean_sur…
+##  2 csv_files_survey_d… readr::write_csv(survey_data, file.path("data", "csv", s…
+##  3 csv_files_geno_data readr::write_csv(geno_data, file.path("data", "csv", str…
+##  4 csv_files_mammo_nl… readr::write_csv(mammo_nlp_data, file.path("data", "csv"…
+##  5 geno_data           here::here("results", "2019_05_24_clean_genotype_data", …
+##  6 mammo_nlp_data      summarize_nlp(raw_nlp, survey_data)                     …
+##  7 minor_allele_freq   here::here("results", "2019_05_24_clean_genotype_data", …
+##  8 raw_nlp             here::here("rawdata", "raw_nlp", "Export4wFullDate.csv")…
+##  9 snps                here::here("results", "2019_04_12_clean_snps", "2019_04_…
+## 10 survey_data         here::here("results", "2019_05_06_impute_survey_and_geno…
+```
+
+---
+class: center, top
+
+## drake dependency graph 🔽
+
+&lt;iframe src="extra/wwhs_plan_viz.html?showcase=0" width="100%" height="420px"&gt;&lt;/iframe&gt;
+
+---
+class: left, top
+
+.center[
+## drake's primary functions
+]
+
+.large[
+
+Using `drake_plan` and `target`, we build the plan:
+
+
+```r
+my_plan &lt;- drake_plan(
+  cmd1 = target(file_in),
+  cmd2 = fun(cmd1),
+  report = render(knitr_in("knitr_file")))
+```
+
+* Using `file_in`, `file_out` and `knitr_in` we specificy the objects that are saved explicitly to disk
+
+
+```r
+make(my_plan)  ## all plan
+make(my_plan, targets = "cmd1") ## only `cmd1`
+```
+
+* To generate the graph dependency `widget`
+
+
+```r
+viz &lt;- vis_drake_graph(my_plan)
+htmlwidgets::saveWidget(viz, file = "file.html")
+```
+
+]
+
+---
+class: top, center
+
+# Lasso fit example
+
+## Obtained and edited from [Julia Silge's blog](https://juliasilge.com/blog/lasso-the-office/)
+
+&lt;iframe src="https://juliasilge.com/blog/lasso-the-office/" width="80%" height="300px"&gt;&lt;/iframe&gt;
+
+
+???
+take home message: use functions instead of scripting
+
+- this makes stuff re-usable beyond copy and pasting chunks of code
+- we don't need to keep editing multiple copies of the same plot
+- goal: predict imdb score from `the office data`
+
+---
+class: center, middle
+
+## The office example (demo time)
+
+.larger[The code is almost the same]
+
+.pull-left[
+
+&lt;img src="extra/office_example_ss.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+&lt;img src="extra/office_example_drake_ss.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+
+??? 
+The idea is to show here that if we source the code:
+- the main code will run everything as many time as needed but all
+- drake only runs what is necessary
+
+---
+class: left, top
+
+.center[
+## The office example]
+
+&lt;iframe src="extra/office_plan.html?showcase=0" width="100%" height="420px"&gt;&lt;/iframe&gt;
+
+???
+We can access all targets from `office_plan` in the knitr slides
+
+---
+class: left, top
+
+.center[
+## Extra]
+
+.larger[Now, since `office_plan` was ran as part of the slides project, we can access elements from the plan]
+
+
+```r
+readd(office)
+```
+
+```
+## # A tibble: 136 x 32
+##    season episode episode_name  andy angela darryl dwight   jim kelly kevin
+##     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+##  1      1       1 pilot            0      1      0     29    36     0     1
+##  2      1       2 diversity d…     0      4      0     17    25     2     8
+##  3      1       3 health care      0      5      0     62    42     0     6
+##  4      1       5 basketball       0      3     15     25    21     0     1
+##  5      1       6 hot girl         0      3      0     28    55     0     5
+##  6      2       1 dundies          0      1      1     32    32     7     1
+##  7      2       2 sexual hara…     0      2      9     11    16     0     6
+##  8      2       3 office olym…     0      6      0     55    55     0     9
+##  9      2       4 fire             0     17      0     65    51     4     5
+## 10      2       5 halloween        0     13      0     33    30     3     2
+## # … with 126 more rows, and 22 more variables: michael &lt;int&gt;, oscar &lt;int&gt;,
+## #   pam &lt;int&gt;, phyllis &lt;int&gt;, ryan &lt;int&gt;, toby &lt;int&gt;, erin &lt;int&gt;, jan &lt;int&gt;,
+## #   ken_kwapis &lt;dbl&gt;, greg_daniels &lt;dbl&gt;, b_j_novak &lt;dbl&gt;,
+## #   paul_lieberstein &lt;dbl&gt;, mindy_kaling &lt;dbl&gt;, paul_feig &lt;dbl&gt;,
+## #   gene_stupnitsky &lt;dbl&gt;, lee_eisenberg &lt;dbl&gt;, jennifer_celotta &lt;dbl&gt;,
+## #   randall_einhorn &lt;dbl&gt;, brent_forrester &lt;dbl&gt;, jeffrey_blitz &lt;dbl&gt;,
+## #   justin_spitzer &lt;dbl&gt;, imdb_rating &lt;dbl&gt;
+```
+
+---
+class: left, top
+
+.center[
+## Manipulate-plots]
+
+.larger[We can access elements from `office_plan`]
+
+
+```r
+readd(office_boxplot)
+```
+
+&lt;img src="drake_slides_files/figure-html/office-bp-1.png" width="900" style="display: block; margin: auto;" /&gt;
+
+---
+class: left, top
+
+.center[
+## Manipulate-plots]
+
+.larger[and even modify it]
+
+
+```r
+readd(office_boxplot) + theme_xaringan() +
+  scale_xaringan_fill_discrete()
+```
+
+&lt;img src="drake_slides_files/figure-html/office-bp2-1.png" width="900" style="display: block; margin: auto;" /&gt;
+
+---
+class: left, top
+
+
+```r
+loadd(error_plot)
+error_plot + theme_xaringan() + scale_xaringan_colour_discrete()
+```
+
+&lt;img src="drake_slides_files/figure-html/office-err-1.png" width="900" style="display: block; margin: auto;" /&gt;
+
+---
+class: left, middle
+
+.center[
+# drake advantages
+]
+
+.larger[
+1. Everything is reproducible, and easy to generalize
+2. It is not necessary to remember the locations of previously generated files, as everything is accessed by doing `readd(target)` or `loadd(target)`
+3. We can even configure the `cache` in the `rmd` file, so we only re-reprocess report segments that depend on a specific analysis
+4. I showed a simple example, but is possible to make more complex plans wih `cross`, `map`, etc
+5. Can do larger plans with `bind_plans`
+6. Allow for less replication, i.e. only have 1 table / 1 plot, and modify it in the report / slides.
+
+]
+
+---
+class: left, top
+
+.center[
+# drake problems (for us)
+]
+
+.larger[
+1. `drake` is not compatible with condor. In the documentation is mentioned that it can work with `slurm` though
+2. Everything is saved in a `invisible cache` folder, so it can get very big with our kind of datasets, e.g. 200MB large `Seurat` objects 
+3. Since the package is `R`-centric, I am not sure if it is possible to allow for non-R tools (I know that there is a package called [processx](https://processx.r-lib.org/) to run stuff from the command line within `R`,  but haven't experimented with it)
+4. `drake`'s parallelization doesn't handle [BiocParallel](https://bioconductor.org/packages/release/bioc/html/BiocParallel.html) multiple handlers. This is concerning, because we use a lot of `bioconductor` packages that use that engine for parallel processing, e.g. `DESeq2`, `edgeR`, `zinb-wave`, etc.
+]
+
+---
+class: center, middle
+
+.center[
+# Resources
+]
+
+### [drake's manual](https://books.ropensci.org/drake/)
+### [drake's github page <i class="fab  fa-github "></i>](https://github.com/ropensci/drake/issues)
+### [<i class="fab  fa-r-project "></i> opensci communty](https://discuss.ropensci.org/)
+
+.superlarger[
+# Thank you very much!
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
