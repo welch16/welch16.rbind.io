@@ -1,7 +1,7 @@
 ---
 title: "Reproducible research with drake"
 author: "Rene Welch"
-date: "2020/05/14"
+date: "2020/09/09"
 output:
   xaringan::moon_reader:
     css: ["xaringan-themer.css", "myslides.css"]
@@ -15,10 +15,7 @@ output:
 
 ```{r xaringan-themer, include=FALSE}
 
-library(pacman)
-p_load(
-  xaringanthemer,
-  icon)
+pacman::p_load(xaringanthemer, icon)
 
 style_duo_accent(
   primary_color = "#035AA6",        # blue
@@ -46,6 +43,13 @@ knitr::opts_chunk$set( include = TRUE, eval = TRUE, cache = FALSE,
 ```
 
 
+class: center, middle
+
+# slides: https://bit.ly/3bz1Y4N
+
+# source code: https://github.com/welch16/drake_slides
+
+---
 class: center, top
 
 # why drake?
@@ -204,6 +208,17 @@ knitr::include_app("extra/wwhs_plan_viz.html",
 
 ```
 
+???
+
+- triangle are functios -> main object of drake
+if a function is changed, either by us or in the package, then the 
+processes that depend on that function are regenerated
+
+- functions can be imported from
+    - an R package
+    - a script loaded with source
+    - a function in the global environment
+
 ---
 class: left, top
 
@@ -224,7 +239,7 @@ my_plan <- drake_plan(
 
 ```
 
-* Using `file_in`, `file_out` and `knitr_in` we specificy the objects that are saved explicitly to disk
+* Using `file_in`, `file_out` and `knitr_in` we specificy the objects that are saved into specific files
 
 ```{r demo-plan2, echo = TRUE, eval = FALSE}
 
@@ -247,9 +262,9 @@ htmlwidgets::saveWidget(viz, file = "file.html")
 ---
 class: top, center
 
-# Lasso fit example
+# Lasso modelling of "The office" ratings
 
-## Obtained and edited from [Julia Silge's blog](https://juliasilge.com/blog/lasso-the-office/)
+## Obtained from [Julia Silge's blog](https://juliasilge.com/blog/lasso-the-office/)
 
 ```{r js-blog, echo = FALSE, out.width = "80%"}
 
@@ -271,7 +286,7 @@ class: center, middle
 
 ## The office example (demo time)
 
-.larger[The code is almost the same]
+.larger.left[The code is almost the same, I only added `drake_plan` at the start, and `target` for every variable assignment]
 
 .pull-left[
 
@@ -297,29 +312,13 @@ The idea is to show here that if we source the code:
 - the main code will run everything as many time as needed but all
 - drake only runs what is necessary
 
----
-class: left, top
-
-.center[
-## The office example]
-
-```{r office-depens, echo = FALSE, out.width = "100%", out.height="50%"}
-
-knitr::include_app("extra/office_plan.html",
-  height = "420px")
-
-```
-
-???
-We can access all targets from `office_plan` in the knitr slides
 
 ---
 class: left, top
 
-.center[
-## Extra]
+.larger[Now, since `office_plan` was ran as part of the slides project, we can access elements from the plan: `readd` to read an object / `loadd` to load into the global environment
 
-.larger[Now, since `office_plan` was ran as part of the slides project, we can access elements from the plan]
+]
 
 ```{r office-data}
 
@@ -337,7 +336,8 @@ class: left, top
 
 ```{r office-bp, include = TRUE, echo = TRUE, eval = TRUE, fig.width = 8, fig.height = 3, out.width = 900, dpi = 800, fig.showtext = TRUE}
 
-readd(office_boxplot)
+loadd(office_boxplot)
+office_boxplot
 
 ```
 
@@ -380,21 +380,22 @@ class: left, middle
 4. I showed a simple example, but is possible to make more complex plans wih `cross`, `map`, etc
 5. Can do larger plans with `bind_plans`
 6. Allow for less replication, i.e. only have 1 table / 1 plot, and modify it in the report / slides.
-
 ]
 
 ---
 class: left, top
 
 .center[
-# drake problems (for us)
+# drake problems (at CISR at least)
 ]
 
 .larger[
 1. `drake` is not compatible with condor. In the documentation is mentioned that it can work with `slurm` though
-2. Everything is saved in a `invisible cache` folder, so it can get very big with our kind of datasets, e.g. 200MB large `Seurat` objects 
-3. Since the package is `R`-centric, I am not sure if it is possible to allow for non-R tools (I know that there is a package called [processx](https://processx.r-lib.org/) to run stuff from the command line within `R`,  but haven't experimented with it)
-4. `drake`'s parallelization doesn't handle [BiocParallel](https://bioconductor.org/packages/release/bioc/html/BiocParallel.html) multiple handlers. This is concerning, because we use a lot of `bioconductor` packages that use that engine for parallel processing, e.g. `DESeq2`, `edgeR`, `zinb-wave`, etc.
+2. Everything is saved in a `invisible cache` folder, so it can get very big with our kind of datasets, e.g. 200MB large for single-cell RNA-seq data 
+3. Upgrades in packages' version, can trigger time-consuming processes when trying to advance an analysis
+4. Since the package is `R`-centric, I am not sure if it is possible to allow for non-R tools (I know that there is a package called [processx](https://processx.r-lib.org/) to run stuff from the command line within `R`,  but haven't experimented with it)
+5. `drake`'s parallelization doesn't handle [BiocParallel](https://bioconductor.org/packages/release/bioc/html/BiocParallel.html) multiple handlers. This is concerning, because we use a lot of `bioconductor` packages that use that engine for parallel processing, e.g. differential expression analysis
+
 ]
 
 ---
