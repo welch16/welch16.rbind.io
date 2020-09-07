@@ -1,7 +1,6 @@
-library(pacman)
+pacman::p_load(magrittr, tidyverse, tidymodels, broom, schrute, janitor, vip)
 
-pacman::p_load(magrittr, tidyverse, tidymodels, broom)
-
+# load data
 ratings_raw <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-17/office_ratings.csv")
 
 remove_regex <- "[:punct:]|[:digit:]|parts |part |the |and"
@@ -12,7 +11,6 @@ office_ratings <- ratings_raw %>%
     episode_name = str_remove_all(episode_name, remove_regex),
     episode_name = str_trim(episode_name),
     imdb_rating)
-
 
 office_info <- schrute::theoffice %>%
   mutate(
@@ -92,33 +90,22 @@ tune_spec <- linear_reg(penalty = tune(), mixture = 1) %>%
 
 lambda_grid <- grid_regular(penalty(), levels = 10)
 
-doParallel::registerDoParallel()
-
 set.seed(2020)
-lasso_grid <- tune_grid(
+model_grid <- tune_grid(
   wf %>% add_model(tune_spec),
   resamples = office_boot,
   grid = lambda_grid)
 
-# office_nest <- rsample::nested_cv(office_train, 
-#   outside = vfold_cv(v = 5), inside = bootstraps(times = 10))
 
-
-# lasso_grid2 <- tune_grid(
-#   wf %>% add_model(tune_spec),
-#   resamples = office_nest,
-#   grid = lambda_grid)
-
-lasso_grid %>%
+model_grid %>%
   collect_metrics()
   
-lasso_grid %>%
+model_grid %>%
   collect_metrics() %>%
   ggplot(aes(penalty, mean, color = .metric)) +
   geom_errorbar(aes(
     ymin = mean - std_err,
-    ymax = mean + std_err
-  ),
+    ymax = mean + std_err ),
   alpha = 0.5
   ) +
   geom_line(size = 1.5) +
@@ -126,8 +113,8 @@ lasso_grid %>%
   scale_x_log10() +
   theme(legend.position = "none")
   
-lowest_rmse <- lasso_grid %>%
-  select_best("rmse", maximize = FALSE)
+lowest_rmse <- model_grid %>%
+  select_best("rmse")
 
 final_lasso <- finalize_workflow(
   wf %>% add_model(tune_spec),

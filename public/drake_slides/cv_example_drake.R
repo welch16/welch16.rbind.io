@@ -1,8 +1,7 @@
-library(pacman)
-
-pacman::p_load(magrittr, tidyverse, tidymodels, broom, drake)
+pacman::p_load(magrittr, tidyverse, tidymodels, broom, schrute, janitor, vip)
 
 office_plan <- drake_plan(
+  # load data
   ratings_raw = target(
     readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-17/office_ratings.csv")),
   remove_regex = target(
@@ -83,22 +82,22 @@ office_plan <- drake_plan(
   lasso_fit = target(
     wf %>%
       add_model(lasso_spec) %>%
-      parsnip::fit(data = office_train)  ),
+      parsnip::fit(data = office_train)),
   office_boot = target(bootstraps(office_train, strata = season)),
   office_vcv = target(
     vfold_cv(office_train, strate = season, v = 10, repeats = 3)),
   tune_spec = target(
-    linear_reg(penalty = tune(), mixture = 1) %>%
+    linear_reg(penalty = tune(), mixture = 0) %>%
       set_engine("glmnet")),
   lambda_grid = target(grid_regular(penalty(), levels = 50)),
   # alpha_lambda_grid = target(
   #   grid_regular(penalty(), mixture(), levels = 50)),
-  lasso_grid = target(
+  model_grid = target(
     tune_grid(
       wf %>% add_model(tune_spec),
       resamples = office_boot,
       grid = lambda_grid)),
-  metrics = target(lasso_grid %>% collect_metrics()),
+  metrics = target(model_grid %>% collect_metrics()),
   error_plot = target(
     metrics %>%
       ggplot(aes(penalty, mean, color = .metric)) +
@@ -112,7 +111,7 @@ office_plan <- drake_plan(
       scale_x_log10() +
       theme(legend.position = "none")),
   lowest_rmse = target(
-    lasso_grid %>%
+    model_grid %>%
       select_best("rmse")),
   final_lasso = target(
     finalize_workflow(
@@ -126,7 +125,7 @@ office_plan <- drake_plan(
       Importance = abs(Importance),
       Variable = fct_reorder(Variable, Importance)) %>%
     ggplot(aes(x = Importance, y = Variable, fill = Sign)) +
-    geom_col() +
+    geom_col(width = .1) +
     scale_x_continuous(expand = c(0, 0)) +
     labs(y = NULL)),
   final_lasso_metric = target(
