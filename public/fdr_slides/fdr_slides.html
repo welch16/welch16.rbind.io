@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>.red[A practical guide] .white[to methods] .green[controlling false] .red[discoveries] .white[in computational] .green[biology]</title>
+    <meta charset="utf-8" />
+    <meta name="author" content=".red[presented] .white[by Rene] .green[Welch]" />
+    <link href="libs/remark-css/shinobi.css" rel="stylesheet" />
+    <link href="libs/remark-css/ninjutsu.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/bioctheme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# .red[A practical guide] .white[to methods] .green[controlling false] .red[discoveries] .white[in computational] .green[biology]
+## .red[Genome] .white[Biology,] .green[2019]
+### .red[presented] .white[by Rene] .green[Welch]
+### 🇲🇽 .white[2020/09/16] 🇲🇽
+
+---
+
+
+
+class: center, middle, bg-main1
+
+# slides: https://bit.ly/3bz1Y4N
+
+## .red[But today] is Mexico's .green[independence day so...]
+
+&lt;img src="https://media.giphy.com/media/AwcmOV28QPnck/giphy.gif" width="50%" /&gt;
+
+
+---
+class: center, middle
+
+# .alert[[Why this paper?](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1716-1)]
+
+## In statistics, we usually estimate our parameters and then we want to do some inference over the estimates
+
+## We usually compute a p.value for each parameter, and if p.value `\(\leq\)` a threshold p, then we say that there is some significant / confidence of the estimate being true
+
+## The question that we are trying to answer is what happens when we are estimating a really large number of parameters?
+
+## .blue[This paper was conceived a journal club about the FDR]
+
+## .blue[This paper illustrates how a statistical concept is applied to a different settings]
+
+---
+class: center, middle
+
+# .alert[Hypothesis testing]
+
+## We have a model with parameters `\(\theta \in \Theta\)`
+
+## we test `\(\mathcal{H}_0: \theta = \theta_0\)` vs. `\(\mathcal{H}_1: \theta \neq \theta_0\)`, we can make two errors
+
+&lt;img src="images/hypothesistable.png" width="70%" /&gt;
+
+## Want to minimize `\(\alpha\)` while controlling `\(\beta\)`
+
+---
+class: center, middle
+
+# .alert[What is a p.value?]
+
+## The p.value is a way of quantifying the strength of the evidence against the null hypothesis vs the alternative
+
+## .alert[Official definition] The p.value is the **conditional probability** of observing data at least favorable to the .alert[alternative] `\(\mathcal{H}_1\)` given the .alert[null] `\(\mathcal{H}_0\)`
+
+
+&lt;img src="images/pvalue.png" width="40%" /&gt;
+
+Observe `\(X_1,\cdots,X_n \sim \mathcal{N}(\mu,\sigma^2)\)` and test `\(\mathcal{H}_0: \mu = \mu_0\)` vs `\(\mathcal{H}_1: \mu &lt; \mu_0\)`. [(the material is from this notes)](https://xiangzhu.github.io/stanford-stats110/hypothesis_test)
+
+---
+class: center, middle, bg-main1
+
+# .red[Multiple] hypothesis .green[testing]
+
+---
+class: left, middle
+
+# .center.alert[Multiple hypothesis testing]
+
+## - .alert[RNA-seq:] differential expression
+## - .alert[ChIP-seq:] differential binding
+## - .alert[GSEA:] DE genes representative in pathway
+## - .alert[GWAS:] SNPs associated with a trait
+## - .alert[Microbiome:] Differential abundance
+
+&lt;img src="images/multiplehypothesis.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+### The table above resembles the original for single hypothesis, but counting the cases: `\(V\)` are the false positives, `\(m_1 - S\)` are the false negatives, ... 
+
+---
+class: left, middle
+
+
+
+# .center.alert[Why MHT corrections?]
+
+### When doing multiple testing, we get pvalues `\(p_1,\cdots, p_m\)`, which are supposed to look as:
+
+&lt;img src="fdr_slides_files/figure-html/pvals-1.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+### - It could be expected that some tests are being called significant by chance.
+
+### - Classical methods to control this: FWER, `\(\mathbb{P}(V \geq 1)\)`, etc. These methods are highly conservative, i.e. we get very few discoveries
+
+---
+class: left, middle
+
+# .center[Some definitions]
+
+# `\(\text{FWER} = \alpha / m\)`
+
+# `\(\text{FDR} = \mathbb{E} \left[\frac{V}{R} | R &gt; 0\right]\)`
+
+# .center[Benjamini Hochberg]
+
+.left[
+## - Sort p.values `\(p_{(1)},\cdots, p_{(m)}\)`,
+## - Compute `\(L = \max \{j : p_{(j)} &lt; \alpha j / m \}\)`
+## - Reject hypothesis `\(p_j \leq p_{(L)}\)`
+]
+
+
+---
+class: center, middle, bg-main1
+
+
+# .red[Finally] the .green[paper !]
+
+
+---
+class: center, middle
+
+# .alert[What this paper is about?]
+
+## The authors compare in real and simulated data the following methods
+
+&lt;img src="images/methods-comp.webp" width="75%" /&gt;
+
+---
+class: left, middle
+
+# .alert.center[More details]
+
+### .red[Note:] For this paper, the authors gathered different methods to control the .teal[FDR] and then applied to simulated and real data. In the manuscript, the authors report the finding of their journal club
+
+### .blue[exchangeability:] this means that `\((X_1,\cdots, X_n)\)` and `\((X_{\sigma(1)},\cdots, X_{\sigma(n)})\)` have the same distribution for any permutation `\(\sigma\)`
+
+### .teal[BH] and .teal[q-value] are the earliest methods. In fact, under certain conditions both are equivalent
+
+### A common theme is to use external information, for example .teal[IHW], requires a covariate independent of the p.values or .teal[ASH], which is based in GWAS / eQTL experiments and requires effect sizes and std. errors
+
+### [The authors provide a website with more analysis](https://www.pkimes.com/benchmark-fdr-html/) which is a great reference to start analysis
+
+---
+class: left, middle
+
+# .alert.center[FDR control in silicon experiments and simulations]
+
+&lt;img src="images/fig2.webp" width="65%" style="display: block; margin: auto;" /&gt;
+
+???
+
+.left.large[
+- Modern methods don't control the FDR always
+- Randomly selecting 2 sets of 5 - 10 samples from a dataset of 48 biological replicates and adding differential signal to genes to define TP
+- lfdr and fdrreg-t do not control FDR with few tests
+- lfdr and ashq don't control FDR for extreme proportions
+- panel a: want to be close or below the diagonal
+- panel b: want to be at line or below
+]
+
+---
+class: left, middle
+
+# .alert.center[Power in silico experiments and simulations]
+
+&lt;img src="images/fig3.webp" width="65%" style="display: block; margin: auto;" /&gt;
+
+???
+
+.left.large[
+
+- Modern methods are modestly more powerful. 
+- Power of modern methods is sensitive to how informative is the covariate. Including a non-informative covariate is not harmful
+- panel a: Want to have higher tpr as we increase the `\(\alpha\)`
+- panel b:
+  - left: best case scenario: want the curves to be flat. Same rate of discovery as we increase the number of tests
+  - right: as the proportion of non-null increases, want to get more discoveries
+
+]
+
+---
+class: left, middle
+
+# .alert.center[Applicability of benchmarked methods to various test statistics I]
+
+&lt;img src="images/fig4a.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+???
+
+.left.large[
+
+- Top: 4
+  - 4 different simulation settings
+  - The simulation is based on the fact that if `\(X \sim F\)` then `\(F(X) \sim \text{U}(0,1)\)`, this means that conditional under the null the p.value ~ Unif too
+  
+- Bottom 4: ashq and fdrreg-t fail on the t simulations, because they are only approximating but there is not complete method
+
+]
+
+---
+class: left, middle
+
+# .alert.center[Applicability of benchmarked methods to various test statistics II]
+
+&lt;img src="images/fig4b.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+???
+
+.left.large[
+
+### Independent covariates utilized
+
+- Microbiome: prevalence, non-zero mean
+- GWAS: minor allele frequency, sample size (for meta-analysis)
+- GSEA: gene set sizes
+- Bulk RNA-seq: average gene expression
+- single cell RNA-seq: average non-zero gene expression, detection rate: # samples were the gene expression is &gt; 0
+- ChIP-seq: average read depth for the region / length of the region
+
+]
+
+
+---
+class: left, middle
+
+# .alert.center[Summary metrics (left) and recomendations (right)]
+
+&lt;img src="images/fig5.webp" width="50%" /&gt;&lt;img src="images/fig6.webp" width="50%" /&gt;
+
+### .right[BL software was recently updated to fix that middle point]
+
+???
+
+Top:
+yeast - simulated spike ins
+sims - 4a
+
+a - adapt-glm, ihw, bl archiever FDR control in almost all sim and in silico experiments
+b - on average ranked near the mean in terms of TPR
+  - superior: mean rank tpr &lt; 5
+  - satisfactory: mean rank tpr &lt; 6
+  - else unsatisfactory
+
+c - d: relative comparisons respect to BH / qvalue
+
+right panel:
+
+full - good
+empty - bad
+
+
+---
+class: left, middle
+
+# .center.red[Bibliography: Books]
+
+## - Book about stats for modern bio http://web.stanford.edu/class/bios221/book/
+
+## - Focused on genomics http://genomicsclass.github.io/book/
+
+## - Basic stats https://xiangzhu.github.io/stanford-stats110/index.html
+
+# .center.green[Bibliography: papers]
+
+## - [BH](https://www.stat.purdue.edu/~doerge/BIOINFORM.D/FALL06/Benjamini%20and%20Y%20FDR.pdf), [qvalue](https://projecteuclid.org/euclid.aos/1074290335), [math justification of FDR](https://projecteuclid.org/euclid.aos/1085408494)
+
+## - With covariates [IHW](nature.com/articles/nmeth.3885), [BL](https://doi.org/10.1101/035675) (the software was recently improved too!)
+## - signed FDR [ASH](https://academic.oup.com/biostatistics/article/18/2/275/2557030), [MASH](https://www.nature.com/articles/s41588-018-0268-8), etc
+## - Not here but locally made 🐄 [MHT under dependent models](https://projecteuclid.org/euclid.aoas/1475069624)
+
+---
+class: left, middle
+
+# .center.blue[Extra: Diagnostics]
+
+## Want a peak at 0, and uniform otherwise need to review the data. [More details in this blog post](http://varianceexplained.org/statistics/interpreting-pvalue-histogram/)
+
+&lt;img src="fdr_slides_files/figure-html/pvals-all-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+---
+class: center, middle, bg-main1
+
+.font5[.red[Muchas] gracias por su .green[atencion!!]]
+
+.font5[and]
+
+&lt;img src="https://media.giphy.com/media/VMAg1fTuO7yW4/giphy.gif" width="50%" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
