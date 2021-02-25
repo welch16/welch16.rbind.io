@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Peptide + MHC binding prediction methods</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Rene Welch" />
+    <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+    <script src="libs/anchor-sections/anchor-sections.js"></script>
+    <link rel="stylesheet" href="assets/ayu.css" type="text/css" />
+    <link rel="stylesheet" href="assets/ayu-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/ninjutsu.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Peptide + MHC binding prediction methods
+### Rene Welch
+
+---
+
+
+
+
+class: center, middle, inverse
+
+# Overview
+
+---
+class: center, middle
+
+# Why this paper?
+
+--
+Mostly because it is a review of MHC + peptide binding methods
+
+
+--
+but in reality this problem is important because by understanding the binding between the .alert[HLA] and .alert[peptides], then in theory would be possible to induce a desired .alert[immune response]
+
+
+--
+for example the .alert[COVID vaccine] or .alert[cancer immunotherapy]
+
+---
+class: left, top
+
+# .center[Biological context]
+
+&lt;img src="figs/tcell_mhc.jpg" width="55%" style="display: block; margin: auto;" /&gt;
+
+
+--
+T cells recognize antigens through the CDR3 sequence
+
+
+???
+__(A)__ Model of extracellular complex architectures within a T cell/antigen. Trimolecular complexes of TCR/MHC/CD8 and TCR/MHC/CD4 have been modeled based on superposition of the MHC in each of the respective TCR/pMHC and MHC/CD8 and MHC/CD4 binary complexes. The transmembrane segments of the CD3 and CD3 subunits have been drawn in with the charges indicated necessary for assembly with the TCR chains. __(B)__ A TCR/pMHC complex (left) and a closeup of the interface (right) showing the “germline” CDR1 and 2 TCR loops contacting the MHC helices, while the centrally located and genetically recombined CDR3 contact the antigenic peptide bound to the MHC.
+
+
+---
+class: left, top
+
+# .center[Biological context II]
+
+- .alert[MHC] - Major Histocompatibility complex
+
+- .alert[HLA] - Human leukocyte antigen, i.e. the .alert[human's MHC]
+
+--
+- .alert[HLA class I] - bind .alert[short] peptides of length 8-12 AAs, which are presented on the cell surface of the cell for .alert[CD8+ (T-killer cells)]recognition
+
+  - there are many HLA molecules, depending on .alert[loci and alleles]
+
+- .alert[HLA class II] -bind .alert[longer] peptides of length 12-20 AAs, which are present on the surface of the professional antigen presented cells for recognition of the .alert[CD4+ (T-helper cells)]
+
+---
+class: left, middle
+
+# .center[What is the problem?]
+
+- Given a peptide of length .alert[8-12 AAs], we want to know if it binds to an HLA molecule
+
+- How to solve this problem?
+
+    - use an heuristic to score the peptides,
+    - learn a prediction / classification model,
+    - use a combination of the previous two
+
+- The quantity of data has been increasing, there are the following databases
+
+    - [IEDB](https://www.iedb.org/) -&gt; largest database, and more frequently updated
+    - [SYFPEITHI](http://www.syfpeithi.de/)
+    - [MHCBN](http://crdd.osdd.net/raghava/mhcbn/)
+    - [EPIMHC](http://bio.med.ucm.es/epimhc/) 
+
+
+---
+class: center, middle, inverse
+
+# Position scoring methods
+
+&lt;!--perhaps a plot of blosum matrix---&gt;
+&lt;!-- pssm method ---&gt;
+
+---
+class: left, top
+
+&lt;img src="figs/fig1_scoring.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+- Most of these methods rely on the .alert[Blosum 62] matrix, to build a Position Specific Scoring Matrix (PSSM), and use that matrix to score each peptide
+
+- Most of the methods are more than 10 years old
+
+---
+class: center, middle
+
+# Blosum 62 matrix
+
+&lt;img src="slides_files/figure-html/blosum-heatmap-1.png" width="50%" /&gt;
+
+
+---
+class: split-two, top
+
+.column[.content[
+# .alert.center[PSSMHCan]
+
+- Compute frequency, convert to .alert[PSSM] `\(F_{ai} \rightarrow P_{ai} = \log \frac{F_{ai} + \omega}{\text{BG}_a}\)`
+
+- Compute binding score `\(\text{bs} = \frac{1}{N} \sum_{i=1}^N P_{ai}\)`
+
+- Convert to IC50 score `\(\text{IC50} = 50,000^{\max - \text{bs}} / (\max - \min)\)`
+
+- .alert[Pan prediction] For peptides with an uncharacterized HLA alleles `\(\text{IC50}_\text{un} = \frac{\sum_{i=1}^S w_i \text{IC50}_i}{\sum_i w_i}\)`
+
+where the weights were computed by using a BLAST alignment of the HLA proteins
+
+]]
+
+.column[.content[
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="figs/PSSMHCpan.png" alt="HLA sequence similarity" width="90%" /&gt;
+&lt;p class="caption"&gt;HLA sequence similarity&lt;/p&gt;
+&lt;/div&gt;
+
+]]
+
+???
+F are the frequencies, a is the aminoacid, i is the position, omega is a random dirichlet value, BG is the frequency of the aminoacid in uniprot db
+
+
+---
+class: center, middle, inverse
+
+# Machine learning prediction methods
+
+---
+class: center, top
+
+&lt;img src="figs/fig1_ml.png" width="100%" /&gt;
+
+most of them depend on neural network architectures, and usually with few layers
+
+the differences are usually the architecture, and how they initially parse the peptide sequences
+
+---
+class: top, left, split-two
+
+.column[.content[
+
+## .center.alert[NetMHCpan]
+
+Ensemble of networks, trained on IEDB data
+
+&lt;img src="figs/netmhcpan.png" width="90%" /&gt;
+
+]]
+
+.column[.content[
+
+BA are experimental IC50 scores, and EL comes from MS experiments, BA are tranformed to be in [0,1]
+
+The peptide sequences are aligned with insertions and deletions, and represented as PSSMs (using the [SMM algorithm](https://link.springer.com/article/10.1186/1471-2105-8-238))
+
+__note:__ .alert[NetMHC] and .alert[NNalign] use the same algorithm / model with the exception of only using BA responses
+
+]]
+
+???
+
+BA and EL values are specific to a peptide and MHC / HLA molecule
+
+---
+class: top, left
+# .alert.center[MHCFlurry V1 and V2]
+
+These are ensembles of feed-forward NN, with 0, 1 or 2 layers
+
+Use a modified MSE loss:
+
+\\[
+`\begin{aligned}
+\ell(y_i, \hat{y}_i) = &amp;(y_i - \hat{y}_i)^2 &amp;\text{BA measurement} \\
+  &amp;\max(\hat{y}_i - y_i,0)^2 &amp;\text{BS is positive high, intermediate, or low} \\
+  &amp;\max(y_i - \hat{y}_i,0)^2 &amp;\text{BS is negative}
+\end{aligned}`
+\\]
+
+this is because the data can have either a continuous .alert[BA] response, or ordinal qualitative .alert[BS] measurements ( `\(\approx 25\%\)` of the data )
+
+---
+class: top, left, split-two
+
+.column[.content[
+# .alert.center[MHCFlurry]
+
+The peptides are extended to be 15 AA long by adding a mask AA `X`, and adding a row to the Blosum 60 matrix, e.g. the peptide
+
+- `SIINFEKL`   -&gt; `SIINXXXXXXXFEKL`
+- `GILGFVETL`  -&gt; `GILGXXXFXXXVETL`
+- `TPRVTGGGAM` -&gt; `TPRVXXXTFXXGGAM` 
+
+
+Then, they use a PSSM of 21 x 15 entries to represent each peptide
+
+]]
+
+--
+
+.column[.content[
+# .alert.center[MHCFlurry V2]
+
+The peptides are extended to be 15x3 AA long, and use the same mask AA `X` to have 3 flanks:
+
+- left: `GILGVFTLXXXXXXXX`
+- middle: `XXXGILGVFTLXXXXX`
+- right: `XXXXXXXXGILGVFTL`
+
+which are joined to have a 45 AA long peptide sequence, this is done to represent the position where the peptide binds. 
+
+]]
+
+---
+class: top, left, split-two
+
+.column[.content[
+# .alert.center[MHCFlurry V2]
+
+For all networks in the ensemble:
+
+- The 45 AA representation allows to use a .alert[convolutional layer]
+
+- The remaining parts are 0, 1, or 2 dense layers
+]]
+
+.column[.content[
+
+
+&lt;img src="figs/mhcflurry2.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+]]
+
+---
+class: top, left
+
+# .center.alert[MHCnuggets]
+
+&lt;img src="figs/mhcnuggets.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+- this is a LSTM network, one network per allele
+- .alert[for transfer learning], first fit models for most abundant .alert[HLA], then utilize that network to init the rest
+- use one-hot encoding to parse the data, with extra `Z` masked AA
+
+---
+class: top, left
+
+# .center.alert[ConvMHC]
+
+&lt;img src="figs/convmhc.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+- 3 convolutional layers
+- The AAs in the peptides are represented as "cubes" of [bio-physical properties (which can be computed with tools like alakazam)](https://alakazam.readthedocs.io/en/stable/), this step was taken from an earlier method that used [SVM](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-182) for this classification task
+- Provide an interface for interpretation using [DeepLift](https://arxiv.org/abs/1704.02685), which is a tool to interpret NN, that has been succesfully used in the regulatory genomics context ([recent example with ChIP-nexus](https://www.nature.com/articles/s41588-021-00782-6))
+
+&lt;!--- netmhcpan and mhcflurry are the big ones ---&gt;
+&lt;!--- neofuse minor mention ---&gt;
+
+&lt;!--- perhaps speak a little bit about the ones that are CNN ---&gt;
+---
+class: top, left
+
+# .top.center.alert[HLA-bind]
+
+This is a combination of two methods: .alert[HLA-Vec] and .alert[HLA-CNN].
+
+&lt;img src="figs/hla-cnn.png" width="35%" style="display: block; margin: auto;" /&gt;
+
+- .alert[HLA-Vec] is the embedding layer, .alert[HLA-CNN] is the rest
+- .alert[HLA-Vec] is obtained via the skip-gram model: Given sequence of words `\(w_1,\cdots,w_T\)`, maximize:
+
+\\[
+`\begin{aligned}
+\frac{1}{T} \sum_{t=1}^T \sum_{-c\leq j \leq c, j\neq 0} \log p(w_{t+j}\mid w_j), \quad \text{where}\quad p(w_O\mid w_I) \propto \exp(v_{w_O}^Tv_{w_I})
+\end{aligned}`
+\\]
+
+---
+class: middle, left
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="figs/hlavec.png" alt="HLA-Vec embedding repreduces peptide properties" width="75%" /&gt;
+&lt;p class="caption"&gt;HLA-Vec embedding repreduces peptide properties&lt;/p&gt;
+&lt;/div&gt;
+
+
+
+
+
+
+---
+class: center, middle, inverse
+
+# Consensus methods
+
+--
+prediction performance can be improved by integrating the output of several methods
+
+---
+class: center, top
+
+&lt;img src="figs/fig1_consensus.png" width="100%" /&gt;
+
+mostly the idea is to mix methods, e.g. .alert[NetMHCcons]
+
+\\[
+`\begin{aligned}
+\text{NetMHCcons} = &amp;\text{NetMHC} + \text{NetMHCPan}\quad D = 0 \\
+&amp; \text{NetMHCpan}\quad 0 &lt; D &lt; 0.1 \\
+&amp; \text{NetMHCpan} + \text{PickPocket} \quad D \geq 0.1 \\
+\end{aligned}`
+\\]
+
+???
+where .alert[D] is the distance between the query and reference HLA allele
+
+
+---
+class: center, middle, inverse 
+
+# Back to the manuscript
+
+---
+class: left, top
+
+# .center[Benchmarking]
+
+1. The goal is to evaluate as many if not all the methods in the same dataset, since at the end the tools have been developed over the last &gt; 10 years
+2. Generate a .alert[balanced test dataset]:
+
+- the positive class are peptides that bind to the HLA
+- then, to generate the negative class, 
+  - used non-binding regions of the source proteins of the peptides in the positive dataset
+  - split the sequences into peptides of length 9, 10 or 11 AAs such that the size of positive and negative classes are the same
+  - repeat the process for different HLA alleles
+
+???
+is this an appropiate dataset for this problem?
+
+---
+class: left, top
+
+# .center[HLA-A*02:01]
+
+&lt;img src="figs/roc1.png" width="100%" /&gt;
+
+---
+class: left, top
+
+# .center[HLA-A*02:04]
+
+&lt;img src="figs/roc2.png" width="100%" /&gt;
+
+---
+class: left, top
+
+# .center[HLA-B*27:01]
+
+&lt;img src="figs/roc3.png" width="100%" /&gt;
+
+---
+class: left, top
+
+# .center[HLA-C*02:02]
+
+&lt;img src="figs/roc4.png" width="100%" /&gt;
+
+
+
+
+---
+class: center, middle
+
+# .alert[Thank you very much!]
+
+&lt;img src="https://media.giphy.com/media/E6jscXfv3AkWQ/giphy.gif" width="50%" /&gt;
+
+---
+class: center, bottom, inverse
+background-image: url(https://rorymuses.files.wordpress.com/2018/09/helper-t-cell-and-killer-t-cell.jpg?w=1280)
+
+### .left[.blue[CD4+ (T-helper)]&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;.blue[CD8+ (T-killer)]]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
