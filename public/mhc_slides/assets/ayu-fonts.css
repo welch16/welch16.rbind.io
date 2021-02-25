@@ -1,0 +1,42 @@
+@import url(https://fonts.googleapis.com/css2?family=Fira+Code);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat+Alternates);
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+
+.font-mono {
+  font-family: monospace;
+}
+
+h1, h2, h3{
+  font-family: 'Montserrat Alternates';
+  font-weight: normal;
+}
+
+body {
+  font-family: 'Fira Code';
+  font-weight: normal;
+}
+
+.remark-code, .remark-inline-code {
+  font-family: 'Fira Code';
+  color: var(--code-text-color);
+  background-color: var(--code-background);
+}
+
+
+
+h1, h2, h3, h4 {
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+h1 { font-size: 3.5em; }
+h2 { font-size: 3em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1em; }
+p { font-size: 28px;}
+
+.remark-code {font-size: 18px; line-height: 1;}
+
+a { color: var(--link-color); text-decoration: none; }
